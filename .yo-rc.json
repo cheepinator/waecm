@@ -1,0 +1,18 @@
+{
+  "generator-ng-fullstack": {
+    "appName": "stodtradl",
+    "username": "edamike",
+    "userEmail": "office@michaeleder.at",
+    "stack": "fullstack",
+    "repoHostUrl": "bitbucket.org",
+    "userNameSpace": "edamike",
+    "client": "ng2",
+    "stylePreprocessor": "less",
+    "server": "node",
+    "nodeWebFrameworkServer": "express",
+    "transpilerServer": "node",
+    "secure": true,
+    "testsSeparated": true,
+    "differentStaticServer": false
+  }
+}
