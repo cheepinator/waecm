@@ -10,4 +10,3 @@ var todoRoutes = [
     }
 ];
 exports.todoRouting = router_1.RouterModule.forRoot(todoRoutes);
-//# sourceMappingURL=todo-route.js.map
