@@ -17,6 +17,7 @@ RUN npm install
 RUN npm i -g istanbul mocha babel gulp-cli
 RUN npm install -g typescript typings
 RUN typings install
+EXPOSE 3000:8080
 
 ENTRYPOINT ["/bin/sh", "-c", "/usr/src/tmp/docker-start-script.sh"]
 #todo call entrypoint script ENTRYPOINT ["/bin/sh", "-c", "/docker-start-script.sh ${*}", "--"]
