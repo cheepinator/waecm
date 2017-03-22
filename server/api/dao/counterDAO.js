@@ -2,7 +2,7 @@
 
 let mongoose = require("mongoose");
 const Promise = require("bluebird");
-const todoSchema = require("../model/counterModel");
+const counterSchema = require("../model/counterModel");
 const _ = require("lodash");
 
 counterSchema.statics.getCounter = () => {
