@@ -6,3 +6,4 @@ client/dev/bower_components
 typings
 client/dev/**/**/*.js
 tests/client/**/**/*.js
+client/app/app.module.js
