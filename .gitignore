@@ -7,3 +7,4 @@ typings
 client/dev/**/**/*.js
 tests/client/**/**/*.js
 client/app/app.module.js
+dist
