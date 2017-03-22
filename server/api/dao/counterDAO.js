@@ -14,18 +14,19 @@ counterSchema.statics.getCounter = () => {
               if(err)
               {
                 console.log("error");
-                createCounter(new Counter());
+                //createCounter();
               }
               else
               {
                 if(counter == null)
                 {
                   console.log("error2");
-                  let _counter = new Counter();
+                  /*let _counter = new Counter();
                   _counter.save((err, saved) => {
                     err ? reject(err)
                       : resolve(saved);
-                  });
+                  });*/
+                  resolve();
                 }
                 else
                 {
@@ -41,7 +42,6 @@ counterSchema.statics.getCounter = () => {
 counterSchema.statics.incrementCounter = () => {
     return new Promise((resolve, reject) => {
 
-
       let _counter = Counter.findOne({}).exec((err, counter) => {
         if(err)
         {
@@ -49,28 +49,23 @@ counterSchema.statics.incrementCounter = () => {
         }
         else
         {
-            console.log(counter);
             console.log(counter.counter);
-          console.log(counter);
-          counter.counter ++;
-          console.log(counter.counter);
-          counter.save((err, saved) => {
-            err ? reject(err)
-              : resolve(saved);
-          });
+            console.log(counter);
+            counter.counter ++;
+            console.log(counter.counter);
+            counter.save((err, saved) => {
+              err ? reject(err)
+                : resolve(saved);
+            });
         }
       });
 
     });
 }
 
-counterSchema.statics.createCounter = (counter) => {
+counterSchema.statics.createCounter = () => {
   return new Promise((resolve, reject) => {
-    if (!_.isObject(counter)) {
-      return reject(new TypeError("Todo is not a valid object."));
-    }
-
-    let _counter = new Counter(counter);
+    let _counter = new Counter();
 
     _counter.save((err, saved) => {
       err ? reject(err)
