@@ -14,63 +14,40 @@ counterSchema.statics.getCounter = () => {
               if(err)
               {
                 console.log("error");
-                createCounter(new Counter());
+                reject(err);
               }
               else
               {
                 if(counter == null)
                 {
-                  console.log("error2");
-                  let _counter = new Counter();
-                  _counter.save((err, saved) => {
-                    err ? reject(err)
-                      : resolve(saved);
-                  });
+                  resolve();
                 }
                 else
                 {
-
                   resolve(counter);
-                  console.log(counter.counter);
                 }
               }
             });
     });
 };
 
-counterSchema.statics.incrementCounter = () => {
+counterSchema.statics.incrementCounter = (counter) => {
     return new Promise((resolve, reject) => {
+      if (!_.isObject(counter)) {
+        return reject(new TypeError("counter is not a valid object."));
+      }
 
-
-      let _counter = Counter.findOne({}).exec((err, counter) => {
-        if(err)
-        {
-          console.log("error");
-        }
-        else
-        {
-            console.log(counter);
-            console.log(counter.counter);
-          console.log(counter);
-          counter.counter ++;
-          console.log(counter.counter);
-          counter.save((err, saved) => {
-            err ? reject(err)
-              : resolve(saved);
-          });
-        }
+      counter.counter ++;
+      counter.save((err, saved) => {
+        err ? reject(err)
+          : resolve(saved);
       });
-
     });
 }
 
-counterSchema.statics.createCounter = (counter) => {
+counterSchema.statics.createCounter = () => {
   return new Promise((resolve, reject) => {
-    if (!_.isObject(counter)) {
-      return reject(new TypeError("Todo is not a valid object."));
-    }
-
-    let _counter = new Counter(counter);
+    let _counter = new Counter();
 
     _counter.save((err, saved) => {
       err ? reject(err)
