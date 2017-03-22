@@ -5,7 +5,7 @@ const CounterController = require("../controller/counterController");
 module.exports = class CounterRoutes {
     static init(router) {
       router
-        .route("/counter")
+        .route("/api/counter")
         .get(CounterController.getCounter)
         .post(CounterController.incrementCounter);
     }
