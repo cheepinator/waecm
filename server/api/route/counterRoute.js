@@ -6,7 +6,7 @@ module.exports = class CounterRoutes {
     static init(router) {
       router
         .route("/counter")
-        .get(CounterController.getCounter())
-        .post(CounterController.incrementCounter());
+        .get(CounterController.getCounter)
+        .post(CounterController.incrementCounter);
     }
 }
