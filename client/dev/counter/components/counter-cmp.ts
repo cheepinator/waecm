@@ -46,6 +46,7 @@ export class CounterCmp implements OnInit {
 
   private  _increaseCounter(): void {
     this._counterService.increaseCounter();
+    this._getCounter();
   }
 
 

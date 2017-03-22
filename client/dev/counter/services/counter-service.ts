@@ -25,13 +25,13 @@ export class CounterService {
   getCounter(): Observable<any> {
       return this._http
                  .get(CounterService.ENDPOINT)
-                 .map((r) => r.json().counter);
+                 .map((r) => r.json());
     }
 
-  increaseCounter(): Observable<any> {
-    return this._http
+  increaseCounter(): void {
+     this._http
       .post(CounterService.ENDPOINT,"{}")
-      .subscribe().map((r) => r.json());
+      .subscribe();
 
   }
 
