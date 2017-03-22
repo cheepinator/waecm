@@ -6,20 +6,26 @@ import { App }   from "./app";
 import { TodoCmp }   from "./todo/components/todo-cmp";
 import { todoRouting } from "./todo/components/todo-route";
 import { TodoService }   from "./todo/services/todo-service";
+import { counterRouting } from "./counter/components/counter-route";
+import { CounterService }   from "./counter/services/counter-service";
+import {CounterCmp} from "./counter/components/counter-cmp";
 
 @NgModule({
     imports: [
       BrowserModule,
       FormsModule,
       HttpModule,
-      todoRouting
+      todoRouting,
+      counterRouting
     ],
     declarations: [
       App,
       TodoCmp,
+      CounterCmp,
     ],
     providers: [
       TodoService,
+      CounterService,
     ],
     bootstrap: [
       App,
