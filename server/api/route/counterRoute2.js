@@ -12,7 +12,6 @@ module.exports = class CounterRoutes2 {
         .route("/api/counter")
         .get(CounterController.getCounter)
         .post(CounterController.incrementCounter);
-        //.post(AuthController.createToken)
     }
 }
 

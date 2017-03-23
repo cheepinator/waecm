@@ -22,6 +22,7 @@ module.exports = class CounterController {
   }
 
   static incrementCounter(req, res) {
+
     CounterDAO
       .getCounter()
       .then(
