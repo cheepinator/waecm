@@ -3,10 +3,11 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" \) -a \( -z "$2" -o \( "$1"
 		if [ "$1" = "build" ]
       then
 			echo "building ..."
-      cp -R /usr/src/app/. /usr/src/tmp
-      cd /usr/src/tmp/
+      cp -av /usr/src/app/. /usr/src/tmp/
+      cd /usr/src/tmp
+      rm -rf node_modules
+      rm -rf typings
       npm install
-      npm install -g typescript typings
       typings install
       gulp client.build:dist
 			if [ "$2" = "deploy" ]
@@ -19,10 +20,11 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" \) -a \( -z "$2" -o \( "$1"
 		elif [ "$1" = "deploy" ]
 			then
     	  echo "deploying ..."
-        cp -R /usr/src/app/. /usr/src/tmp
-        cd /usr/src/tmp/
+        cp -av /usr/src/app/. /usr/src/tmp/
+        cd /usr/src/tmp
+        rm -rf node_modules
+        rm -rf typings
         npm install
-        npm install -g typescript typings
         typings install
         gulp client.build:dist
         /usr/bin/mongod &
@@ -30,7 +32,7 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" \) -a \( -z "$2" -o \( "$1"
         gulp
 		fi
 	else
-		echo "usage: build | depoly | build deploy"
+		echo "usage: build | deploy | build deploy"
 fi
 
 
