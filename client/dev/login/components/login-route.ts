@@ -9,7 +9,7 @@ import {
 
 const loginRoutes:Routes = [
 	{
-		path: "login",
+		path: "",
 		component: LoginCmp,
 		pathMatch: "full"
 	}

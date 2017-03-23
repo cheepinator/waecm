@@ -1,4 +1,3 @@
-#!/bin/sh
 if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" \) -a \( -z "$2" -o \( "$1" = "build" -a "$2" = "deploy" \) \) ]
 	then
 		if [ "$1" = "build" ]
