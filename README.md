@@ -16,6 +16,9 @@ https://localhost:8080/counter
 
 ##Technology stack
 
+For creating this application we used 
+the ng-fullstack yeoman generator available at https://github.com/ericmdantas/generator-ng-fullstack.
+
 ###Frontend
 
 As Frontend we choose **Angular2**.
