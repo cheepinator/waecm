@@ -1,14 +1,13 @@
+#!/bin/sh
 if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" \) -a \( -z "$2" -o \( "$1" = "build" -a "$2" = "deploy" \) \) ]
 	then
 		if [ "$1" = "build" ]
       then
 			echo "building ..."
-			cd /usr/src/app/
-      gulp client.build:dist
       cp -R /usr/src/app/. /usr/src/tmp
-      rm -rf /usr/src/app/client/dist
       cd /usr/src/tmp/
       npm install
+      gulp client.build:dist
 			if [ "$2" = "deploy" ]
 				then
 				echo "deploying ..."
@@ -19,12 +18,10 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" \) -a \( -z "$2" -o \( "$1"
 		elif [ "$1" = "deploy" ]
 			then
     	  echo "deploying ..."
-        cd /usr/src/app/
-        gulp client.build:dist
         cp -R /usr/src/app/. /usr/src/tmp
-        rm -rf /usr/src/app/client/dist
         cd /usr/src/tmp/
         npm install
+        gulp client.build:dist
         /usr/bin/mongod &
         npm start &
         gulp
