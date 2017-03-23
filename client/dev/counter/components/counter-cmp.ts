@@ -12,6 +12,7 @@ import {
 import {
   CounterService
 } from "../services/counter-service";
+import {LoggedInGuard} from "../../login/services/LoggedInGuard";
 
 type Counter = {
   counterMessage: string;

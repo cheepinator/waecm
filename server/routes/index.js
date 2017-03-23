@@ -17,7 +17,7 @@ var jwtCheck = jwt({
 
 module.exports = class Routes {
    static init(app, router) {
-     CounterRoutes2.init(router);
+     //CounterRoutes2.init(router);
      CounterRoutes.init(router);
      AuthRoutes.init(router);
 

@@ -12,26 +12,40 @@ import {CounterCmp} from "./counter/components/counter-cmp";
 import {loginRouting} from "./login/components/login-route";
 import {LoginCmp} from "./login/components/login-cmp";
 import {LoginService} from "./login/services/login-service";
+import {LoggedInGuard} from "./login/services/LoggedInGuard";
+import {Router} from "@angular/router";
 
 @NgModule({
     imports: [
       BrowserModule,
       FormsModule,
       HttpModule,
-      todoRouting,
+      //todoRouting,
       counterRouting,
       loginRouting,
     ],
     declarations: [
       App,
-      TodoCmp,
+      //TodoCmp,
       CounterCmp,
       LoginCmp,
     ],
     providers: [
-      TodoService,
+      {provide: 'LoggedInGuard',
+        useValue: () => {
+          if (localStorage.getItem('currentUser') != null) {
+            return true
+          }
+          else{
+            location.reload();
+            return false;
+          }
+      }},
+      //LoggedInGuard,
+      //TodoService,
       CounterService,
       LoginService,
+
     ],
     bootstrap: [
       App,

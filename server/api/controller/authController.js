@@ -39,22 +39,35 @@ module.exports = class AuthController {
         return res.status(400).send("You must send the username and the password");
       }
 
-    UserDAO
-      .getByUsername(_user.username)
-      .then(user => {
+      //--- Dummy hardcoded for Assignment 1
+    if (_user.username!= "user") {
+      return res.status(401).send("The username or password don't match");
+    }
 
-        if (!user) {
-          return res.status(401).send("The username or password don't match");
-        }
+    if (_user.password != "password") {
+      return res.status(401).send("The username or password don't match");
+    }
 
-        if (user.password !== _user.password) {
-          return res.status(401).send("The username or password don't match");
-        }
+    return res.status(201).send({
+      id_token: createToken(_user)
+    });
 
-        res.status(201).send({
-          id_token: createToken(user)
-        });
-      })
-      .catch(error => res.status(400).json(error));
+    // UserDAO
+    //   .getByUsername(_user.username)
+    //   .then(user => {
+    //
+    //     if (!user) {
+    //       return res.status(401).send("The username or password don't match");
+    //     }
+    //
+    //     if (user.password !== _user.password) {
+    //       return res.status(401).send("The username or password don't match");
+    //     }
+    //
+    //     res.status(201).send({
+    //       id_token: createToken(user)
+    //     });
+    //   })
+    //   .catch(error => res.status(400).json(error));
   }
 }

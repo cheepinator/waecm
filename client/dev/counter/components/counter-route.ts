@@ -11,7 +11,8 @@ const counterRoutes:Routes = [
 	{
 		path: "counter",
 		component: CounterCmp,
-		pathMatch: "full"
+		pathMatch: "full",
+    canActivate: ['LoggedInGuard']
 	}
 ]
 
