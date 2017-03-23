@@ -8,3 +8,4 @@ client/dev/**/**/*.js
 tests/client/**/**/*.js
 client/app/app.module.js
 dist
+server/constants/db.json
