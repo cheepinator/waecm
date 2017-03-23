@@ -2,6 +2,9 @@
 
 A application for displaying all citybike stations in vienna.
 
+##Please note:
+The file docker-start-script.sh must be encoded as LF. Probably this is only a problem on windows systems.
+
 ##Install
 
 ###Create the docker container (must be inside the folder of the dockerfile)
