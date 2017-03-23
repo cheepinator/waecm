@@ -1,3 +1,29 @@
 # stodtradl
-[![Build Status](https://secure.travis-ci.org/edamike/stodtradl.png?branch=master)](https://travis-ci.org/edamike/stodtradl)
-[![Coverage Status](https://coveralls.io/repos/edamike/stodtradl/badge.svg?branch=master)](https://coveralls.io/r/edamike/stodtradl/?branch=master)
+
+A application for displaying all citybike stations in vienna.
+
+##Install
+
+###Create the docker container 
+docker build -t waecm-bsp1 {path-to-stodtradl-source-code}
+
+###Build an deploy the docker container
+docker run waecm-bsp1 -v {path-to-stodtradl-source-code}:/usr/src/app build deploy
+
+##Access the application
+
+https://localhost:8080/counter
+
+##Technology stack
+
+###Frontend
+
+As Frontend we choose **Angular2**.
+
+###Backend
+
+In the backend we decided to use **node.js** and as web application framework **express**.
+
+###Database
+
+As database we use **mongoDB**. As ORM we use mongoose. 
