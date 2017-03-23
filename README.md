@@ -4,11 +4,11 @@ A application for displaying all citybike stations in vienna.
 
 ##Install
 
-###Create the docker container 
-docker build -t waecm-bsp1 {path-to-stodtradl-source-code}
+###Create the docker container (must be inside the folder of the dockerfile)
+docker build -t waecm-bsp1 .
 
 ###Build an deploy the docker container
-docker run waecm-bsp1 -v {path-to-stodtradl-source-code}:/usr/src/app build deploy
+docker run waecm-bsp1 -v {path-to-stodtradl-source-code}:/usr/src/app -p 8080:3000 build deploy
 
 ##Access the application
 

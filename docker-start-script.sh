@@ -6,6 +6,8 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" \) -a \( -z "$2" -o \( "$1"
       cp -R /usr/src/app/. /usr/src/tmp
       cd /usr/src/tmp/
       npm install
+      npm install -g typescript typings
+      typings install
       gulp client.build:dist
 			if [ "$2" = "deploy" ]
 				then
@@ -20,6 +22,8 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" \) -a \( -z "$2" -o \( "$1"
         cp -R /usr/src/app/. /usr/src/tmp
         cd /usr/src/tmp/
         npm install
+        npm install -g typescript typings
+        typings install
         gulp client.build:dist
         /usr/bin/mongod &
         npm start &

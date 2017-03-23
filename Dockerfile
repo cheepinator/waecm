@@ -12,12 +12,6 @@ RUN apt-get install -y npm
 RUN npm install -g n
 RUN n 6.10.1
 RUN npm i -g istanbul mocha babel gulp-cli
-RUN npm install -g typescript typings
-RUN typings install
 EXPOSE 3000
 
 ENTRYPOINT ["/bin/sh", "-c", "/usr/src/docker-start-script.sh ${*}", "--"]
-
-#todo call entrypoint script ENTRYPOINT ["/bin/sh", "-c", "/docker-start-script.sh ${*}", "--"]
-#todo run -v /src/webapp:/usr/src/app/ to mount the first to the second in the container
-# todo make
