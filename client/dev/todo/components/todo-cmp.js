@@ -14,7 +14,7 @@ var todo_service_1 = require("../services/todo-service");
 var TodoCmp = (function () {
     function TodoCmp(_todoService) {
         this._todoService = _todoService;
-        this.title = "ng2do";
+        this.title = "StodtRadl";
         this.todos = [];
         this.todoForm = {
             "todoMessage": ""

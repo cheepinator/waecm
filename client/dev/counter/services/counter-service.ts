@@ -16,21 +16,26 @@ import "rxjs/add/operator/map";
 
 @Injectable()
 export class CounterService {
-  static ENDPOINT: string = "api/counter";
+  static ENDPOINT: string = "api/protected/counter";
+  private headers: Headers;
 
   constructor(@Inject(Http) private _http: Http) {
 
+    this.headers = new Headers();
+    this.headers.append('Content-Type', 'application/json');
+    let currentUser = localStorage.getItem('currentUser');
+    this.headers.append('Authorization', 'Bearer '+currentUser);
   }
 
   getCounter(): Observable<any> {
       return this._http
-                 .get(CounterService.ENDPOINT)
+                 .get(CounterService.ENDPOINT, { headers: this.headers })
                  .map((r) => r.json());
     }
 
   increaseCounter(): void {
      this._http
-      .post(CounterService.ENDPOINT,"{}")
+      .post(CounterService.ENDPOINT,"{}",{ headers: this.headers })
       .subscribe();
 
   }
