@@ -2,8 +2,9 @@
 
 A application for displaying all citybike stations in vienna.
 
-##Please note:
+##PLEASE NOTE:
 The file docker-start-script.sh must be encoded as LF. Probably this is only a problem on windows systems.
+On Windows systems the volume host mapping did not work under CMD, (other than with administrator permissions), with PowerShell it worked well.
 
 ##Install
 
@@ -11,11 +12,18 @@ The file docker-start-script.sh must be encoded as LF. Probably this is only a p
 docker build -t waecm-bsp1 .
 
 ###Build an deploy the docker container
-docker run waecm-bsp1 -v {path-to-stodtradl-source-code}:/usr/src/app -p 8080:3000 build deploy
+docker run -v {path-to-stodtradl-source-code}:/usr/src/app -p 8080:3000 waecm-bsp1 build deploy
 
 ##Access the application
 
 https://localhost:8080/counter
+
+Comments on the application:
+  the Username is "user", the password is "password"
+  if a wrong username/password combination is given, the server sends a 401.
+  The authentication is realised using jwt.
+  by pressing the '+' button, a post is sent to the server to increment the counter.
+  After the post, a get is called to retrieve the actual counter value and displays it in the textarea below
 
 ##Technology stack
 
