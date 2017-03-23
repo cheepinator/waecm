@@ -1,95 +1,60 @@
 "use strict";
 
+const UserDAO = require("../dao/userDAO");
+
 var express = require('express'),
   _       = require('lodash'),
   config  = require('../../auth/config/config'),
   jwt     = require('jsonwebtoken');
 
-// XXX: This should be a database of users :).
-var users = [{
-  id: 1,
-  username: 'gonto',
-  password: 'gonto'
-}];
-
 function createToken(user) {
   return jwt.sign(_.omit(user, 'password'), config.secret, {expiresIn: 60 * 60 * 5});
 }
 
-function getUserScheme(req) {
-
-  var username;
-  var type;
-  var userSearch = {};
-
-  console.log(req.body.username);
-
-  // The POST contains a username and not an email
-  if (req.body.username) {
-    username = req.body.username;
-    type = 'username';
-    userSearch = {username: username};
-  }
-  // The POST contains an email and not an username
-  else if (req.body.email) {
-    username = req.body.email;
-    type = 'email';
-    userSearch = {email: username};
-  }
-
-  return {
-    username: username,
-    type: type,
-    userSearch: userSearch
-  }
-}
 
 module.exports = class AuthController {
   static createUser(req, res) {
-      console.log("2");
+    console.log("start create User");
 
-      var userScheme = getUserScheme(req);
+    let _user = req.body;
 
-      if (!userScheme.username || !req.body.password) {
-        return res.status(400).send("You must send the username and the password");
-      }
-
-      if (_.find(users, userScheme.userSearch)) {
-        return res.status(400).send("A user with that username already exists");
-      }
-
-      var profile = _.pick(req.body, userScheme.type, 'password', 'extra');
-      profile.id = _.max(users, 'id').id + 1;
-
-      users.push(profile);
-
-      res.status(201).send({
-        id_token: createToken(profile)
-      });
+    UserDAO
+      .createUser(_user)
+      .then(user => {
+        //res.status(201).json(todo)
+        res.status(201).send({
+          id_token: createToken(user)
+        });
+      })
+      .catch(error => res.status(400).json(error));
   }
 
   static createToken(req, res) {
 
-      console.log(req.body);
+    let _user = req.body;
 
-      var userScheme = getUserScheme(req);
+      console.log(_user);
 
-      if (!userScheme.username || !req.body.password) {
+      if (!_user.username || !_user.password) {
         return res.status(400).send("You must send the username and the password");
       }
 
-      var user = _.find(users, userScheme.userSearch);
+    UserDAO
+      .getByUsername(_user.username)
+      .then(user => {
 
-      if (!user) {
-        return res.status(401).send("The username or password don't match");
-      }
+        if (!user) {
+          return res.status(401).send("The username or password don't match");
+        }
 
-      if (user.password !== req.body.password) {
-        return res.status(401).send("The username or password don't match");
-      }
+        if (user.password !== _user.password) {
+          return res.status(401).send("The username or password don't match");
+        }
 
-      res.status(201).send({
-        id_token: createToken(user)
-      });
+        res.status(201).send({
+          id_token: createToken(user)
+        });
+      })
+      .catch(error => res.status(400).json(error));
   }
 }
