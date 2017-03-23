@@ -17,6 +17,9 @@ var todo_service_1 = require("./todo/services/todo-service");
 var counter_route_1 = require("./counter/components/counter-route");
 var counter_service_1 = require("./counter/services/counter-service");
 var counter_cmp_1 = require("./counter/components/counter-cmp");
+var login_route_1 = require("./login/components/login-route");
+var login_cmp_1 = require("./login/components/login-cmp");
+var login_service_1 = require("./login/services/login-service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -29,16 +32,19 @@ AppModule = __decorate([
             forms_1.FormsModule,
             http_1.HttpModule,
             todo_route_1.todoRouting,
-            counter_route_1.counterRouting
+            counter_route_1.counterRouting,
+            login_route_1.loginRouting,
         ],
         declarations: [
             app_1.App,
             todo_cmp_1.TodoCmp,
             counter_cmp_1.CounterCmp,
+            login_cmp_1.LoginCmp,
         ],
         providers: [
             todo_service_1.TodoService,
             counter_service_1.CounterService,
+            login_service_1.LoginService,
         ],
         bootstrap: [
             app_1.App,

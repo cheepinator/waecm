@@ -24,7 +24,7 @@ type Counter = {
   styleUrls: ["counter/styles/counter.css"]
 })
 export class CounterCmp implements OnInit {
-  title: string = "ng2do";
+  title: string = "StodtRadl";
   counter: Number;
 
   constructor(private _counterService: CounterService) {

@@ -9,6 +9,9 @@ import { TodoService }   from "./todo/services/todo-service";
 import { counterRouting } from "./counter/components/counter-route";
 import { CounterService }   from "./counter/services/counter-service";
 import {CounterCmp} from "./counter/components/counter-cmp";
+import {loginRouting} from "./login/components/login-route";
+import {LoginCmp} from "./login/components/login-cmp";
+import {LoginService} from "./login/services/login-service";
 
 @NgModule({
     imports: [
@@ -16,16 +19,19 @@ import {CounterCmp} from "./counter/components/counter-cmp";
       FormsModule,
       HttpModule,
       todoRouting,
-      counterRouting
+      counterRouting,
+      loginRouting,
     ],
     declarations: [
       App,
       TodoCmp,
       CounterCmp,
+      LoginCmp,
     ],
     providers: [
       TodoService,
       CounterService,
+      LoginService,
     ],
     bootstrap: [
       App,
