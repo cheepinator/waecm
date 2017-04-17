@@ -14,6 +14,7 @@ import {
 } from "@angular/http";
 
 import "rxjs/add/operator/map";
+import {LoggedInGuard} from "./LoggedInGuard";
 
 @Injectable()
 export class LoginService {
@@ -39,8 +40,14 @@ export class LoginService {
         if (user && user.id_token) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', user.id_token);
+          console.log("setting local storage: currentUser: "+ user.id_token);
         }
       });
+  }
+
+  logout(): void{
+    console.log("Deleting "+localStorage.getItem('currentUser')+ " from Local Storage");
+    localStorage.setItem('currentUser', null);
   }
 
 }

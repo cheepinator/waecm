@@ -4,20 +4,11 @@ import {
 } from "@angular/core";
 
 import {
-  Validators,
-  FormGroup,
-  FormControl
-} from "@angular/forms";
-
-import {
   CounterService
 } from "../services/counter-service";
-import {LoggedInGuard} from "../../login/services/LoggedInGuard";
+import {LoginService} from "../../login/services/login-service";
+import {Router} from "@angular/router";
 
-type Counter = {
-  counterMessage: string;
-  _id?: string;
-};
 
 @Component({
   selector: "counter-cmp",
@@ -28,7 +19,7 @@ export class CounterCmp implements OnInit {
   title: string = "StodtRadl";
   counter: Number;
 
-  constructor(private _counterService: CounterService) {
+  constructor(private _counterService: CounterService, private _loginService: LoginService, private router: Router) { //
 
   }
 
@@ -50,6 +41,10 @@ export class CounterCmp implements OnInit {
     this._getCounter();
   }
 
+  private logout(): void {
+    this._loginService.logout();
+    this.router.navigate(['/']);
+  }
 
   // private _getAll(): void {
   //   this._counterService
