@@ -1,10 +1,19 @@
 "use strict";
 
 const mongoose = require("mongoose");
+const bankAccountSchema = require("../model/bankAccountModel");
 
 const userSchema = {
     username: {type: String},
-    password: {type: String}
+    password: {type: String},
+    firstName: {type: String},
+    lastName: {type: String},
+    bankAccount: {
+      type: bankAccountSchema,
+      ref: 'bankAccountSchema'
+    }
+
+
 }
 /*
 // generating a hash

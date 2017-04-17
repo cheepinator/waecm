@@ -7,6 +7,8 @@ const CounterRoutes = require("../api/route/counterRoute");
 const CounterRoutes2 = require("../api/route/counterRoute2");
 
 const AuthRoutes = require("../api/route/authRoutes");
+const TestDataRoutes = require("../api/route/testDataRoutes");
+const TransactionRoutes = require("../api/route/transactionRoutes");
 
 const StaticDispatcher = require("../commons/static/index");
 
@@ -20,6 +22,8 @@ module.exports = class Routes {
      //CounterRoutes2.init(router);
      CounterRoutes.init(router);
      AuthRoutes.init(router);
+     TestDataRoutes.init(router);
+     TransactionRoutes.init(router);
 
      app.use('/api/protected', jwtCheck);
 

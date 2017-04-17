@@ -11,9 +11,6 @@ var http_1 = require("@angular/http");
 var forms_1 = require("@angular/forms");
 var platform_browser_1 = require("@angular/platform-browser");
 var app_1 = require("./app");
-var todo_cmp_1 = require("./todo/components/todo-cmp");
-var todo_route_1 = require("./todo/components/todo-route");
-var todo_service_1 = require("./todo/services/todo-service");
 var counter_route_1 = require("./counter/components/counter-route");
 var counter_service_1 = require("./counter/services/counter-service");
 var counter_cmp_1 = require("./counter/components/counter-cmp");
@@ -31,18 +28,29 @@ AppModule = __decorate([
             platform_browser_1.BrowserModule,
             forms_1.FormsModule,
             http_1.HttpModule,
-            todo_route_1.todoRouting,
+            //todoRouting,
             counter_route_1.counterRouting,
             login_route_1.loginRouting,
         ],
         declarations: [
             app_1.App,
-            todo_cmp_1.TodoCmp,
+            //TodoCmp,
             counter_cmp_1.CounterCmp,
             login_cmp_1.LoginCmp,
         ],
         providers: [
-            todo_service_1.TodoService,
+            { provide: 'LoggedInGuard',
+                useValue: function () {
+                    if (localStorage.getItem('currentUser') != null) {
+                        return true;
+                    }
+                    else {
+                        location.reload();
+                        return false;
+                    }
+                } },
+            //LoggedInGuard,
+            //TodoService,
             counter_service_1.CounterService,
             login_service_1.LoginService,
         ],
