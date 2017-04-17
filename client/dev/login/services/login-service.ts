@@ -14,7 +14,6 @@ import {
 } from "@angular/http";
 
 import "rxjs/add/operator/map";
-import {LoggedInGuard} from "./LoggedInGuard";
 
 @Injectable()
 export class LoginService {

@@ -6,7 +6,8 @@ const User = require("../dao/userDAO");
 
 module.exports = class TestDataController {
   static testData(req, res) {
-
+    console.log("testdata");
+    var crypto = require('crypto');
     let user1 = new User();
     let bankAccount1 = new BankAccount();
     bankAccount1.balance = 300;
@@ -19,6 +20,7 @@ module.exports = class TestDataController {
     user1.firstName = 'Max';
     user1.lastName = 'Mustermann';
     user1.bankAccount = bankAccount1;
+    user1.password = crypto.createHash('sha256').update('password').digest('hex');
 
     let user2 = new User();
     let bankAccount2 = new BankAccount();
@@ -27,6 +29,7 @@ module.exports = class TestDataController {
     user2.firstName = 'Gabi';
     user2.lastName = 'Musterfrau';
     user2.bankAccount = bankAccount2;
+    user2.password = crypto.createHash('sha256').update('password').digest('hex');
 
     let user3 = new User();
     let bankAccount3 = new BankAccount();
@@ -35,6 +38,8 @@ module.exports = class TestDataController {
     user3.firstName = 'Erika';
     user3.lastName = 'Test';
     user3.bankAccount = bankAccount3;
+    user3.password = crypto.createHash('sha256').update('password').digest('hex');
+
     console.log(User.getByUsername('max.mustermann'));
     User
        .getByUsername('max.mustermann')

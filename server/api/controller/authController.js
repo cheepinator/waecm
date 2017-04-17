@@ -8,6 +8,7 @@ var express = require('express'),
   jwt     = require('jsonwebtoken');
 
 function createToken(user) {
+  console.log("creating token");
   return jwt.sign(_.omit(user, 'password'), config.secret, {expiresIn: 60 * 60 * 5});
 }
 
@@ -39,35 +40,33 @@ module.exports = class AuthController {
         return res.status(400).send("You must send the username and the password");
       }
 
-      //--- Dummy hardcoded for Assignment 1
-    if (_user.username!= "user") {
-      return res.status(401).send("The username or password don't match");
-    }
+  console.log("checking username server");
+    UserDAO
+      .getByUsername(_user.username)
+      .then(user => {
 
-    if (_user.password != "password") {
-      return res.status(401).send("The username or password don't match");
-    }
+        if (!user) {
+          return res.status(401).send("The username or password don't match");
+        }
 
-    return res.status(201).send({
-      id_token: createToken(_user)
-    });
+        var crypto = require('crypto');
 
-    // UserDAO
-    //   .getByUsername(_user.username)
-    //   .then(user => {
-    //
-    //     if (!user) {
-    //       return res.status(401).send("The username or password don't match");
-    //     }
-    //
-    //     if (user.password !== _user.password) {
-    //       return res.status(401).send("The username or password don't match");
-    //     }
-    //
-    //     res.status(201).send({
-    //       id_token: createToken(user)
-    //     });
-    //   })
-    //   .catch(error => res.status(400).json(error));
+
+        if (user.password !== crypto.createHash('sha256').update(_user.password).digest('hex')) {
+          return res.status(401).send("The username or password don't match");
+        }
+
+        res.status(201).send({
+          id_token: createToken(user)
+        });
+      })
+      .catch(error => res.status(400).json(error));
+
+
+    // return res.status(201).send({
+    //   id_token: createToken(_user)
+    // });
+
+
   }
 }
