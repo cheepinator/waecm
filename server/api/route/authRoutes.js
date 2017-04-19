@@ -13,4 +13,4 @@ module.exports = class AuthRoutes {
     router.route("/api/token")
       .post(AuthController.createToken);
   }
-}
+};

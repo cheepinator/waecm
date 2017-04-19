@@ -9,6 +9,9 @@ import { TodoService }   from "./todo/services/todo-service";
 import { counterRouting } from "./counter/components/counter-route";
 import { CounterService }   from "./counter/services/counter-service";
 import {CounterCmp} from "./counter/components/counter-cmp";
+import { AccountRouting } from "./account/components/account-route";
+import { AccountService }   from "./account/services/account-service";
+import {AccountCmp} from "./account/components/account-cmp";
 import {loginRouting} from "./login/components/login-route";
 import {LoginCmp} from "./login/components/login-cmp";
 import {LoginService} from "./login/services/login-service";
@@ -23,12 +26,14 @@ import {Router} from "@angular/router";
       //todoRouting,
       counterRouting,
       loginRouting,
+      AccountRouting
     ],
     declarations: [
       App,
       //TodoCmp,
       CounterCmp,
       LoginCmp,
+      AccountCmp
     ],
     providers: [
       {provide: 'LoggedInGuard',
@@ -45,6 +50,7 @@ import {Router} from "@angular/router";
       //TodoService,
       CounterService,
       LoginService,
+      AccountService
 
     ],
     bootstrap: [

@@ -1,0 +1,15 @@
+<div class="counter-container">
+  <button (click)="logout()">Logout</button>
+  <form class="counter-form">
+
+    <h1 class="counter-title">Account</h1>
+    <h1 class="counter-title">Balance: {{account}}</h1>
+    <ul>
+      <li *ngFor="let transaction of transactions">
+        {{ transaction.value }}
+        {{ transaction.time }}
+        {{ transaction.type }}
+      </li>
+    </ul>
+  </form>
+</div>

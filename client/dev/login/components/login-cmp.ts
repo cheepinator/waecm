@@ -39,7 +39,7 @@ export class LoginCmp implements OnInit {
     console.log("login cmp");
     this._loginService.login(username, password).subscribe(
       data => {
-        this.router.navigate(["counter"]);
+        this.router.navigate(["account"]);
       },
       error => {
         console.log("An error ocurred: "+error)

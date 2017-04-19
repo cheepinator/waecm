@@ -5,8 +5,6 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" \) -a \( -z "$2" -o \( "$1"
 			echo "building ..."
       cp -av /usr/src/app/. /usr/src/tmp/
       cd /usr/src/tmp
-      rm -rf node_modules
-      rm -rf typings
       npm install
       typings install
       gulp client.build:dist
@@ -22,8 +20,6 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" \) -a \( -z "$2" -o \( "$1"
     	  echo "deploying ..."
         cp -av /usr/src/app/. /usr/src/tmp/
         cd /usr/src/tmp
-        rm -rf node_modules
-        rm -rf typings
         npm install
         typings install
         gulp client.build:dist

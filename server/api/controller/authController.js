@@ -3,9 +3,9 @@
 const UserDAO = require("../dao/userDAO");
 
 var express = require('express'),
-  _       = require('lodash'),
-  config  = require('../../auth/config/config'),
-  jwt     = require('jsonwebtoken');
+  _ = require('lodash'),
+  config = require('../../auth/config/config'),
+  jwt = require('jsonwebtoken');
 
 function createToken(user) {
   console.log("creating token");
@@ -34,13 +34,13 @@ module.exports = class AuthController {
 
     let _user = req.body;
 
-      console.log(_user);
+    console.log(_user);
 
-      if (!_user.username || !_user.password) {
-        return res.status(400).send("You must send the username and the password");
-      }
+    if (!_user.username || !_user.password) {
+      return res.status(400).send("You must send the username and the password");
+    }
 
-  console.log("checking username server");
+    console.log("checking username server");
     UserDAO
       .getByUsername(_user.username)
       .then(user => {
@@ -49,15 +49,22 @@ module.exports = class AuthController {
           return res.status(401).send("The username or password don't match");
         }
 
-        var crypto = require('crypto');
+        let crypto = require('crypto');
 
 
         if (user.password !== crypto.createHash('sha256').update(_user.password).digest('hex')) {
           return res.status(401).send("The username or password don't match");
         }
 
+        //token only needs username, not whole user databaseObject
+        let userDTO = {
+          'username': user.username,
+          'firstName': user.firstName,
+          'lastName': user.lastName
+        };
+
         res.status(201).send({
-          id_token: createToken(user)
+          id_token: createToken(userDTO)
         });
       })
       .catch(error => res.status(400).json(error));
@@ -69,4 +76,4 @@ module.exports = class AuthController {
 
 
   }
-}
+};

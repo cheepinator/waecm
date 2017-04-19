@@ -1,22 +1,36 @@
-/**
- * Created by Michael on 17.04.2017.
- */
 "use strict";
 
 const User = require("../dao/userDAO");
+const Transaction = require("../dao/transactionDAO");
 
 module.exports = class TransactionController {
   static getTransactions(req, res) {
-    let _username =  req.params.username;
-
+    //user gets set from jwt parsing ==> has to be protected in route
+    let _username = req.user.username;
 
 
     User
       .getByUsername(_username)
       .then(user => {
-        //Eigentlich sollten nur die Transactions zurückgegeben werden, das schaff ich aber derzeit noch nicht.
-        res.status(200).json(user);
+        return res.status(200).json(user.bankAccount.transactions);
+      })
+      .catch((err) => {
+        return res.status(404).send("No BankAccount for user: ".concat(_username));
       });
   }
 
-}
+  static getTransaction(req, res) {
+    //user gets set from jwt parsing ==> has to be protected in route
+    let _id = req.params.id;
+
+    Transaction.findTransactionById(_id)
+      .then(transaction => {
+        res.status(200).json(transaction);
+      })
+      .catch((err) => {
+        return res.status(404).send("No Transaction found with id: ".concat(_id));
+      });
+
+
+  }
+};

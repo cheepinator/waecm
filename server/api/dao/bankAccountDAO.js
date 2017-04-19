@@ -1,13 +1,9 @@
-/**
- * Created by Michael on 17.04.2017.
- */
 "use strict";
 
 let mongoose = require("mongoose");
 const Promise = require("bluebird");
 const bankAccountSchema = require("../model/bankAccountModel");
 const _ = require("lodash");
-
 
 
 bankAccountSchema.statics.createBankAccount = (bankAccount) => {
@@ -18,12 +14,11 @@ bankAccountSchema.statics.createBankAccount = (bankAccount) => {
     let _bankAccount = new BankAccount(bankAccount);
 
     _bankAccount.save((err, saved) => {
-      err ? reject(err)
-        : resolve(saved);
+      err ? reject(err) : resolve(saved);
     });
   });
-}
+};
 
-const BankAccount  = mongoose.model("BankAccount", bankAccountSchema);
+const BankAccount = mongoose.model("BankAccount", bankAccountSchema);
 
 module.exports = BankAccount;

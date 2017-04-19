@@ -1,9 +1,10 @@
 "use strict";
 
-var jwt     = require('express-jwt'),
-  config = require('../auth/config/config')
+var jwt = require('express-jwt'),
+  config = require('../auth/config/config');
 
 const CounterRoutes = require("../api/route/counterRoute");
+const AccountRoutes = require("../api/route/accountRoutes");
 const CounterRoutes2 = require("../api/route/counterRoute2");
 
 const AuthRoutes = require("../api/route/authRoutes");
@@ -18,20 +19,21 @@ var jwtCheck = jwt({
 });
 
 module.exports = class Routes {
-   static init(app, router) {
-     //CounterRoutes2.init(router);
-     CounterRoutes.init(router);
-     AuthRoutes.init(router);
-     TestDataRoutes.init(router);
-     TransactionRoutes.init(router);
+  static init(app, router) {
+    //CounterRoutes2.init(router);
+    CounterRoutes.init(router);
+    AuthRoutes.init(router);
+    TestDataRoutes.init(router);
+    TransactionRoutes.init(router);
+    AccountRoutes.init(router);
 
-     app.use('/api/protected', jwtCheck);
+    app.use('/api/protected', jwtCheck);
 
-     router
-       .route("*")
-       .get(StaticDispatcher.sendIndex);
+    router
+      .route("*")
+      .get(StaticDispatcher.sendIndex);
 
 
-     app.use("/", router);
-   }
-}
+    app.use("/", router);
+  }
+};

@@ -12,4 +12,4 @@ module.exports = class CounterRoutes {
         .get(CounterController.getCounter)
         .post(CounterController.incrementCounter);
     }
-}
+};
