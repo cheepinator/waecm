@@ -13,18 +13,20 @@ export class AccountService {
   private headers: Headers;
 
   constructor(@Inject(Http) private _http: Http) {
-//todo injector
+//todo services for all account related subpages
     this.headers = new Headers();
     this.headers.append('Content-Type', 'application/json');
     let currentUser = localStorage.getItem('currentUser');
     this.headers.append('Authorization', 'Bearer ' + currentUser);
   }
 
-  getAccount(): Observable<any> {
-    return this._http
-      .get(AccountService.ENDPOINT, {headers: this.headers})
-      .map((r) => r.json());
-  }
+  // getAccount(): Observable<any> {
+  //   return this._http
+  //     .get(AccountService.ENDPOINT, {headers: this.headers})
+  //     .map((r) => r.json());
+  // }
+
+
 
   // getAll(): Observable<any> {
   //   return this._http

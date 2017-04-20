@@ -1,6 +1,6 @@
 <div>
 
-    <div class="container">
+  <div class="container">
     <div class="row">
       <div class="wrapper row">
         <md-toolbar color="primary">
@@ -12,35 +12,7 @@
         </md-toolbar>
       </div>
     </div>
-      <br/>
-      <br/>
-      <div class="row">
-        <div class="col-md-4">
-          <h4><b>Balance:</b></h4>
-        </div>
-        <div class="col-md-16">
-          <h4>{{account?.balance}}</h4>
-        </div>
-      </div>
-      <br/>
-      <h4>Transactions:</h4>
-      <br/>
-
-      <div class="row">
-        <div class="col-md-4">
-          <p-dataTable [value]="transactions">
-            <p-column field="value" header="Value"></p-column>
-            <p-column field="time" header="Time"></p-column>
-            <p-column field="type" header="Type"></p-column>
-          </p-dataTable>
-        </div>
-      </div>
-
-        <span class="done">
-          <button md-fab>
-            <md-icon>check circle</md-icon>
-          </button>
-        </span>
-    </div>
+    <router-outlet></router-outlet>
   </div>
+</div>
 
