@@ -48,7 +48,8 @@
     "systemjs": "^0.19.24",
     "tweetnacl-util": "^0.15.0",
     "typescript": "^2.1.5",
-    "zone.js": "^0.8.4"
+    "zone.js": "^0.8.4",
+    "primeng": "4.0.0-rc.3"
   },
   "devDependencies": {
     "aliv": "^1.6.0",

@@ -25,6 +25,10 @@ var material_1 = require("@angular/material");
 var material_2 = require("@angular/material");
 var material_3 = require("@angular/material");
 var material_4 = require("@angular/material");
+var material_5 = require("@angular/material");
+var material_6 = require("@angular/material");
+var primeng_1 = require("primeng/primeng");
+var material_7 = require("@angular/material");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -42,6 +46,11 @@ AppModule = __decorate([
             material_2.MdToolbarModule,
             material_3.MdMenuModule,
             material_4.MdIconModule,
+            material_5.MdGridListModule,
+            material_6.MdChipsModule,
+            primeng_1.DataTableModule,
+            primeng_1.SharedModule,
+            material_7.MdInputModule,
             //todoRouting,
             counter_route_1.counterRouting,
             login_route_1.loginRouting,

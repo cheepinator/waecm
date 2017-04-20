@@ -1,3 +1,42 @@
+<div>
+  <form class="login-form"
+        (submit)="login(username, password)">
+  <div class="container">
+    <md-toolbar color="primary">
+      <span><md-icon>account_balance</md-icon></span>
+
+      <span>Uber Bank</span>
+
+      <span>(c) 2017</span>
+    </md-toolbar>
+
+
+    <div class="row">
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-4">
+        <div class="card" style="margin-top:2em">
+          <div class="card-block">
+            <md-input-container class="example-full-width">
+              <input size="60" mdInput type="text" name="username" placeholder="Username" [(ngModel)]="username">
+            </md-input-container>
+            <md-input-container class="example-full-width">
+              <input size="60" mdInput type="password" name="password" placeholder="Password" [(ngModel)]="password">
+            </md-input-container>
+            <button style="margin-left:0px" class="pull-right" md-raised-button type="submit">Login</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-4">
+      </div>
+
+    </div>
+  </div>
+  </form>
+</div>
+
+<!--
 <div class="login-container">
   <form class="login-form"
         (submit)="login(username, password)">
@@ -13,6 +52,8 @@
     <input id="password" type="password" name="password" [(ngModel)]="password"/>
 
     <button type="submit">Login</button>
+
   </form>
 
 </div>
+-->

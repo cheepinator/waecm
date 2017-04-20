@@ -22,6 +22,10 @@ import {MdButtonModule, MdCheckboxModule} from '@angular/material';
 import {MdToolbarModule} from '@angular/material';
 import {MdMenuModule} from '@angular/material';
 import {MdIconModule} from '@angular/material';
+import {MdGridListModule} from '@angular/material';
+import {MdChipsModule} from '@angular/material';
+import {DataTableModule,SharedModule} from 'primeng/primeng';
+import {MdInputModule} from '@angular/material';
 import {Router} from "@angular/router";
 
 @NgModule({
@@ -35,6 +39,11 @@ import {Router} from "@angular/router";
       MdToolbarModule,
       MdMenuModule,
       MdIconModule,
+      MdGridListModule,
+      MdChipsModule,
+      DataTableModule,
+      SharedModule,
+      MdInputModule,
       //todoRouting,
       counterRouting,
       loginRouting,

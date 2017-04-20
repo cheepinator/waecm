@@ -8,7 +8,7 @@ md-card {
   text-align: center;
 }
 md-toolbar-row {
-  justify-content: space-between;
+  justify-content: space-between !important;
 }
 .done {
   position: fixed;

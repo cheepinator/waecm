@@ -9,6 +9,7 @@ import {
 import {LoginService} from "../../login/services/login-service";
 import {Router} from "@angular/router";
 import {Account} from "../model/account";
+import {Transaction} from "../model/transaction";
 
 
 @Component({
@@ -19,7 +20,7 @@ import {Account} from "../model/account";
 export class AccountCmp implements OnInit {
   title: string = "Account";
   account: any;
-  transactions: any = [];
+  transactions: Transaction;
 
   public ngOnInit():void {
     this._getAccount();
@@ -43,6 +44,13 @@ export class AccountCmp implements OnInit {
     this._loginService.logout();
     this.router.navigate(['/']);
   }
+
+  tiles = [
+    {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
+    {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
+    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
+    {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
+  ];
 
   // private _getAll(): void {
   //   this._counterService
