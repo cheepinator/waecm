@@ -2,6 +2,8 @@ import { NgModule } from "@angular/core";
 import { HttpModule } from "@angular/http";
 import { FormsModule, FormBuilder } from "@angular/forms";
 import { BrowserModule  } from "@angular/platform-browser";
+import { MaterialModule } from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { App }   from "./app";
 import { TodoCmp }   from "./todo/components/todo-cmp";
 import { todoRouting } from "./todo/components/todo-route";
@@ -16,6 +18,10 @@ import {loginRouting} from "./login/components/login-route";
 import {LoginCmp} from "./login/components/login-cmp";
 import {LoginService} from "./login/services/login-service";
 import {LoggedInGuard} from "./login/services/LoggedInGuard";
+import {MdButtonModule, MdCheckboxModule} from '@angular/material';
+import {MdToolbarModule} from '@angular/material';
+import {MdMenuModule} from '@angular/material';
+import {MdIconModule} from '@angular/material';
 import {Router} from "@angular/router";
 
 @NgModule({
@@ -23,6 +29,12 @@ import {Router} from "@angular/router";
       BrowserModule,
       FormsModule,
       HttpModule,
+      [BrowserAnimationsModule],
+      MdButtonModule,
+      MdCheckboxModule,
+      MdToolbarModule,
+      MdMenuModule,
+      MdIconModule,
       //todoRouting,
       counterRouting,
       loginRouting,

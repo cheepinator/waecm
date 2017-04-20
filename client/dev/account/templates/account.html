@@ -1,9 +1,60 @@
-<div class="counter-container">
-  <button (click)="logout()">Logout</button>
+<div>
+  <md-toolbar color="primary">
+    <span><md-icon>mood</md-icon></span>
+
+    <span>Uber Bank</span>
+
+    <button md-icon-button [md-menu-trigger-for]="menu">
+      <md-icon>more_vert</md-icon>
+    </button>
+  </md-toolbar>
+  <md-menu x-position="before" #menu="mdMenu">
+    <button md-menu-item>Option 1</button>
+    <button md-menu-item>Option 2</button>
+  </md-menu>
+
+  <md-card>
+    <button md-button>All</button>
+    <button md-raised-button>Of</button>
+    <button md-raised-button color="primary">The</button>
+    <button md-raised-button color="accent">Buttons</button>
+  </md-card>
+
+  <span class="done">
+    <button md-fab>
+      <md-icon>check circle</md-icon>
+    </button>
+  </span>
+</div>
+<!--
+
+<div>
+  <md-card>
+    <md-card-header>
+      <button md-button (click)="logout()">Logout</button>
+
+    </md-card-header>
+    <md-card-content>
+
+      <h1>Account</h1>
+      <h1>Balance: {{account?.balance}}</h1>
+      <ul>
+        <li *ngFor="let transaction of transactions">
+          {{ transaction.value }}
+          {{ transaction.time }}
+          {{ transaction.type }}
+        </li>
+      </ul>
+    </md-card-content>
+  </md-card>
+
   <form class="counter-form">
 
-    <h1 class="counter-title">Account</h1>
-    <h1 class="counter-title">Balance: {{account}}</h1>
+    <div>
+
+    </div>
+
+
     <ul>
       <li *ngFor="let transaction of transactions">
         {{ transaction.value }}
@@ -13,3 +64,4 @@
     </ul>
   </form>
 </div>
+-->

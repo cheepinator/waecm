@@ -35,6 +35,7 @@ export class AccountCmp implements OnInit {
     .subscribe((account) => {
       this.account = account;
       this.transactions = account.transactions;
+      return this.account;
     });
   }
 
