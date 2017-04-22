@@ -14,6 +14,10 @@ module.exports = class TransactionRoutes {
       .get(TransactionController.getTransactions);
 
     router
+      .route("/api/protected/transactions")
+      .post(TransactionController.createTransaction)
+
+    router
       .route("/api/protected/transactions/:id")
       .get(TransactionController.getTransaction);
 

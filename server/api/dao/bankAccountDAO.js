@@ -19,6 +19,24 @@ bankAccountSchema.statics.createBankAccount = (bankAccount) => {
   });
 };
 
+
+bankAccountSchema.statics.getByIBAN = (iban) => {
+  return new Promise((resolve, reject) => {
+    if (!iban) {
+      return reject(new TypeError("IBAN is not defined."));
+    }
+
+    let _query = {iban:iban}
+
+    BankAccount.findOne(_query)
+      .exec((err, bankAccount) => {
+        err ? reject(err)
+          : resolve(bankAccount);
+      });
+  });
+}
+
+
 const BankAccount = mongoose.model("BankAccount", bankAccountSchema);
 
 module.exports = BankAccount;

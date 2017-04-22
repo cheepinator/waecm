@@ -1,6 +1,8 @@
-export interface Transaction {
+export class Transaction {
   id:Number;
-  type:String;
+  //type:String;
+  ibanSender:String;
+  ibanReceiver:String;
   value:Number;
   time:Date;
 }

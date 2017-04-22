@@ -1,0 +1,31 @@
+<div>
+
+  <br/>
+  <br/>
+  <!--<div class="row">-->
+    <!--<div class="col-md-4">-->
+      <!--<h4><b>Balance:</b></h4>-->
+    <!--</div>-->
+    <!--<div class="col-md-16">-->
+      <!--<h4>{{account?.balance}}</h4>-->
+    <!--</div>-->
+  <!--</div>-->
+  <br/>
+  <h4>New Transaction:</h4>
+  <br/>
+
+  <form (ngSubmit)="executeTransaction()">
+    <md-input-container>
+      <label>Recipient IBAN:</label>
+      <input mdInput type="text" id="iban" class="form-control" name="recipient" [(ngModel)]="transaction.ibanReceiver" required/>
+
+      <label>Amount:</label>
+      <input mdInput type="text" class="form-control" id="amount" name="amount" [(ngModel)]="transaction.value" required/>
+      <button md-button class="md-primary">Send</button>
+    </md-input-container>
+    <!--<md-button md-fab type="submit" class="btn btn-success">Send</md-button>-->
+
+  </form>
+
+
+</div>

@@ -8,6 +8,7 @@ import {
 } from "./account-cmp";
 
 import {AccountOverviewCmp} from "../overview/components/account-overview-cmp"
+import {TransactionCmp} from "../transaction/components/transaction-cmp";
 
 const accountRoutes:Routes = [
 	{
@@ -16,7 +17,8 @@ const accountRoutes:Routes = [
     canActivate: ['LoggedInGuard'],
     children: [
       { path: '', redirectTo: 'overview', pathMatch: 'full' },
-      { path: 'overview', component: AccountOverviewCmp}
+      { path: 'overview', component: AccountOverviewCmp},
+      { path: 'transaction', component: TransactionCmp}
     ]
 
 	}
