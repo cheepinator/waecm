@@ -66,16 +66,6 @@ userSchema.statics.createUser = (user) => {
   });
 };
 
-userSchema.statics.deleteAll = () => {
-  return new Promise((resolve, reject) => {
-    let _query = {};
-
-    User.remove(_query, () => {
-    });
-  });
-};
-
-
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
