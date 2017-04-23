@@ -1,6 +1,6 @@
 import {
   Component,
-  OnInit, Input, Inject
+  OnInit, Inject
 } from "@angular/core";
 
 import {
@@ -9,11 +9,13 @@ import {
 import {Router} from "@angular/router";
 import {Transaction} from "../../model/transaction";
 import {MdDialogRef, MdDialog, MdDialogConfig, MD_DIALOG_DATA} from "@angular/material";
+//import {NotificationsService} from "angular2-notifications/dist";
 
 
 @Component({
   selector: "transaction-cmp",
   templateUrl: "account/transaction/templates/transaction.html",
+  //template: '<simple-notifications [options]="options"></simple-notifications>',
   styleUrls: ["account/transaction/styles/transaction.css"]
 })
 export class TransactionCmp implements OnInit {
@@ -27,20 +29,10 @@ export class TransactionCmp implements OnInit {
     this.transaction.value = 0;
   }
 
-  constructor(private _transactionService: TransactionService, private router: Router, private  dialog: MdDialog) { //
+  constructor(private _transactionService: TransactionService, private router: Router, private  dialog: MdDialog ) { //private _notificationService: NotificationsService
 
 
   }
-
-  // private _getTransaction(): void {
-  // this._transactionService
-  //   .getTransaction()
-  //   .subscribe((transaction) => {
-  //     this.transaction = transaction;
-  //     this.transactions = transaction.transactions;
-  //   },
-  //     error =>  console.log(error));
-  // }
 
   private generateTan(): void {
     this.transaction.tan = null;
@@ -49,18 +41,17 @@ export class TransactionCmp implements OnInit {
     this._transactionService.postTransaction(this.transaction).subscribe(
       transaction  =>
           this.dialog.open(TransactionDialog, config.data),
-      error =>  console.log("error: "+error) );
-    //TODO check if post succeeded?
-    //return true;
+      error =>  console.log("error: "+error) );//this._notificationService.error('TAN could not be created!'));//console.log("error: "+error) );
   }
 
   public sendTan(transaction:Transaction, tan:String):void{
     transaction.tan = tan;
     console.log("sending Tan");
     this._transactionService.postTransaction(transaction).subscribe(
-      transaction  => console.log("success"),
-      error =>  console.log("error: "+error) );
+      transaction  => console.log("success") );//this._notificationService.success("Transaction successfully sent!"),//console.log("success"),
+      error =>  console.log("error: "+error) ;//this._notificationService.error('Wrong TAN entered!'));//console.log("error: "+error) );
     this.dialog.closeAll();
+
   }
 
 }
@@ -82,19 +73,4 @@ export class TransactionCmp implements OnInit {
 export class TransactionDialog {
   constructor(public dialogRef: MdDialogRef<TransactionDialog>, private transactionCmp: TransactionCmp, @Inject(MD_DIALOG_DATA) public data: any) {
   }
-
-  // @Input() transaction;
-  // @Input() tan;
-  // @Input() _transactionService;
-  //
-  // public sendTan():void{
-  //   console.log("new");
-  //   console.log("transaction: "+this.transaction+" value "+this.transaction.value);
-  //   this.transaction.tan = this.tan;
-  //   console.log("sending Tan");
-  //   this._transactionService.postTransaction(this.transaction).subscribe(
-  //     transaction  => console.log("success"),
-  //     error =>  console.log("error: "+error) );
-  //   this.dialogRef.close();
-  // }
 }
