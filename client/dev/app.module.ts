@@ -22,12 +22,14 @@ import {AccountService} from "./account/services/account-service";
 import {AccountCmp} from "./account/components/account-cmp";
 import {AccountOverviewService} from "./account/overview/services/account-overview-service";
 import {AccountOverviewCmp} from "./account/overview/components/account-overview-cmp";
+import {TransactionCmp, TransactionDialog} from "./account/transaction/components/transaction-cmp";
 import {loginRouting} from "./login/components/login-route";
 import {LoginCmp, LoginErrorDialog} from "./login/components/login-cmp";
 import {LoginService} from "./login/services/login-service";
 import {LoggedInGuard} from "./login/services/LoggedInGuard";
 import {DataTableModule, SharedModule} from "primeng/primeng";
 import {Router} from "@angular/router";
+import {TransactionService} from "./account/transaction/services/transaction-service";
 
 @NgModule({
   imports: [
@@ -55,7 +57,10 @@ import {Router} from "@angular/router";
     LoginCmp,
     AccountCmp,
     AccountOverviewCmp,
+    TransactionCmp,
     LoginErrorDialog,
+    TransactionDialog,
+
   ],
   providers: [
     {
@@ -73,14 +78,16 @@ import {Router} from "@angular/router";
     //LoggedInGuard,
     LoginService,
     AccountService,
-    AccountOverviewService
+    AccountOverviewService,
+    TransactionService,
 
   ],
   bootstrap: [
     App,
   ],
   entryComponents: [
-    LoginErrorDialog
+    LoginErrorDialog,
+    TransactionDialog
   ],
 })
 export class AppModule {

@@ -33,6 +33,24 @@ userSchema.statics.getByUsername = (_username) => {
     });
 }
 
+
+userSchema.statics.getByIBAN = (_iban) => {
+  return new Promise((resolve, reject) => {
+    if (!_iban) {
+      return reject(new TypeError("IBAN is not defined."));
+    }
+
+    let _query = {'bankAccount.iban':_iban}
+
+    User.findOne(_query)
+      .exec((err, user) => {
+        err ? reject(err)
+          : resolve(user);
+      });
+  });
+}
+
+
 userSchema.statics.createUser = (user) => {
     return new Promise((resolve, reject) => {
       if (!_.isObject(user)) {
