@@ -12,9 +12,29 @@
           <button md-button (click)="logout()">Logout</button>
           </div>
         </md-toolbar>
+
       </div>
+      <div class="row">
+        <div class="wrapper row">
+          <md-toolbar color="secondary">
+
+            <button md-button routerLink="/account/overview">Overview</button>
+            <button md-button routerLink="/account/transaction">New Transaction</button>
+
+          </md-toolbar>
+
+        </div>
     </div>
-    <router-outlet></router-outlet>
+    <!--<md-sidenav-container>-->
+      <!--<md-sidenav mode="push">-->
+        <!--<button md-menu-item> Settings </button>-->
+        <!--<button md-menu-item> Help </button>-->
+      <!--</md-sidenav>-->
+
+      <router-outlet></router-outlet>
+    <!--</md-sidenav-container>-->
+
   </div>
 </div>
+
 

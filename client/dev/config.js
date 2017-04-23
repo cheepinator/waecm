@@ -22,10 +22,15 @@ System.config({
     '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
     '@angular/animations': 'npm:@angular/animations/bundles/animations.umd.js',
     '@angular/animations/browser': 'npm:@angular/animations/bundles/animations-browser.umd.js',
+    //'angular2-notifications': 'node_modules/angular2-notifications',
+
 
     // other libraries
     "socket.io-client": "npm:socket.io-client/dist/socket.io.js",
     "jwt-decode": "npm:jwt-decode/lib/index.js",
     'rxjs':                       'npm:rxjs'
-  }
+  },
+  // packages : {
+  //   'angular2-notifications': { main: 'components.js', defaultExtension: 'js' }
+  // }
 });
