@@ -34,7 +34,6 @@ export class LoginCmp implements OnInit {
         this.router.navigate(["account"]);
       },
       error => {
-        //todo popup
         let dialogRef = this.dialog.open(LoginErrorDialog);
         console.log("An error ocurred: " + error)
       });

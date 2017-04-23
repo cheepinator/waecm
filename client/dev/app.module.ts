@@ -12,7 +12,8 @@ import {
   MdIconModule,
   MdInputModule,
   MdMenuModule,
-  MdToolbarModule
+  MdToolbarModule,
+  MdSnackBarModule
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {App} from "./app";
@@ -37,6 +38,7 @@ import {Router} from "@angular/router";
     MdButtonModule,
     MdCheckboxModule,
     MdToolbarModule,
+    MdSnackBarModule,
     MdMenuModule,
     MdIconModule,
     MdGridListModule,

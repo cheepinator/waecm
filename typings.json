@@ -2,5 +2,8 @@
   "globalDependencies": {
     "es6-shim": "registry:dt/es6-shim#0.31.2+20160317120654",
     "jasmine": "registry:dt/jasmine#2.2.0+20160308082659"
+  },
+  "ambientDependencies": {
+    "socket-io-client":"github:DefinitelyTyped/DefinitelyTyped/socket.io-client/socket.io-client.d.ts#3f19445e374602e0eee479507ddd493f47bd7666"
   }
 }

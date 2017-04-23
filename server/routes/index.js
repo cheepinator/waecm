@@ -19,19 +19,20 @@ var jwtCheck = jwt({
 });
 
 module.exports = class Routes {
-  static init(app, router) {
+  static init(app, router, io) {
     //CounterRoutes2.init(router);
     CounterRoutes.init(router);
     AuthRoutes.init(router);
     TestDataRoutes.init(router);
-    TransactionRoutes.init(router);
+    TransactionRoutes.init(router, io);
     AccountRoutes.init(router);
+    console.log("init routes");
 
     app.use('/api/protected', jwtCheck);
 
-    router
-      .route("*")
-      .get(StaticDispatcher.sendIndex);
+    // router
+    //   .route("*")
+    //   .get(StaticDispatcher.sendIndex);
 
 
     app.use("/", router);

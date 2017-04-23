@@ -10,25 +10,18 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var forms_1 = require("@angular/forms");
 var platform_browser_1 = require("@angular/platform-browser");
+var material_1 = require("@angular/material");
 var animations_1 = require("@angular/platform-browser/animations");
 var app_1 = require("./app");
-var counter_route_1 = require("./counter/components/counter-route");
-var counter_service_1 = require("./counter/services/counter-service");
-var counter_cmp_1 = require("./counter/components/counter-cmp");
 var account_route_1 = require("./account/components/account-route");
 var account_service_1 = require("./account/services/account-service");
 var account_cmp_1 = require("./account/components/account-cmp");
+var account_overview_service_1 = require("./account/overview/services/account-overview-service");
+var account_overview_cmp_1 = require("./account/overview/components/account-overview-cmp");
 var login_route_1 = require("./login/components/login-route");
 var login_cmp_1 = require("./login/components/login-cmp");
 var login_service_1 = require("./login/services/login-service");
-var material_1 = require("@angular/material");
-var material_2 = require("@angular/material");
-var material_3 = require("@angular/material");
-var material_4 = require("@angular/material");
-var material_5 = require("@angular/material");
-var material_6 = require("@angular/material");
 var primeng_1 = require("primeng/primeng");
-var material_7 = require("@angular/material");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -43,28 +36,28 @@ AppModule = __decorate([
             [animations_1.BrowserAnimationsModule],
             material_1.MdButtonModule,
             material_1.MdCheckboxModule,
-            material_2.MdToolbarModule,
-            material_3.MdMenuModule,
-            material_4.MdIconModule,
-            material_5.MdGridListModule,
-            material_6.MdChipsModule,
+            material_1.MdToolbarModule,
+            material_1.MdMenuModule,
+            material_1.MdIconModule,
+            material_1.MdGridListModule,
+            material_1.MdChipsModule,
             primeng_1.DataTableModule,
             primeng_1.SharedModule,
-            material_7.MdInputModule,
-            //todoRouting,
-            counter_route_1.counterRouting,
+            material_1.MdInputModule,
             login_route_1.loginRouting,
+            material_1.MdDialogModule,
             account_route_1.AccountRouting
         ],
         declarations: [
             app_1.App,
-            //TodoCmp,
-            counter_cmp_1.CounterCmp,
             login_cmp_1.LoginCmp,
-            account_cmp_1.AccountCmp
+            account_cmp_1.AccountCmp,
+            account_overview_cmp_1.AccountOverviewCmp,
+            login_cmp_1.LoginErrorDialog,
         ],
         providers: [
-            { provide: 'LoggedInGuard',
+            {
+                provide: 'LoggedInGuard',
                 useValue: function () {
                     if (localStorage.getItem('currentUser') != null) {
                         return true;
@@ -73,15 +66,18 @@ AppModule = __decorate([
                         location.reload();
                         return false;
                     }
-                } },
+                }
+            },
             //LoggedInGuard,
-            //TodoService,
-            counter_service_1.CounterService,
             login_service_1.LoginService,
-            account_service_1.AccountService
+            account_service_1.AccountService,
+            account_overview_service_1.AccountOverviewService
         ],
         bootstrap: [
             app_1.App,
+        ],
+        entryComponents: [
+            login_cmp_1.LoginErrorDialog
         ],
     })
 ], AppModule);

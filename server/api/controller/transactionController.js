@@ -3,7 +3,14 @@
 const User = require("../dao/userDAO");
 const Transaction = require("../dao/transactionDAO");
 
+var io = null;
+
 module.exports = class TransactionController {
+
+  static init(iooo) {
+    io = iooo;
+  }
+
   static getTransactions(req, res) {
     //user gets set from jwt parsing ==> has to be protected in route
     let _username = req.user.username;
@@ -17,6 +24,8 @@ module.exports = class TransactionController {
       .catch((err) => {
         return res.status(404).send("No BankAccount for user: ".concat(_username));
       });
+    //todo transaction auf den empfangenden user emitten mit der transaction, dann im account controller im client anpassen
+    io().emit(_username, {data: 'test'});
   }
 
   static getTransaction(req, res) {
