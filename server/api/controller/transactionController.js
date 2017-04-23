@@ -25,8 +25,6 @@ module.exports = class TransactionController {
       .catch((err) => {
         return res.status(404).send("No BankAccount for user: ".concat(_username));
       });
-    //todo transaction auf den empfangenden user emitten mit der transaction, dann im account controller im client anpassen
-    io().emit(_username, {data: 'test'});
   }
 
   static getTransaction(req, res) {
@@ -45,7 +43,7 @@ module.exports = class TransactionController {
 
   }
 
-  static createTransaction(req, res){
+  static createTransaction(req, res) {
     console.log("createTransaction called");
 
     //TODO validation (keine negative transaktion etc. ^^)
@@ -54,36 +52,35 @@ module.exports = class TransactionController {
     let _username = req.user.username;
 
     //--------- Tan Creation ------
-    if(transaction.tan === null){
+    if (transaction.tan === null) {
       console.log("sent Tan is null, creating Tan");
       let tanUser;
-      let createdTan= require("crypto").randomBytes(4).toString('hex');
+      let createdTan = require("crypto").randomBytes(4).toString('hex');
 
-      console.log("Searching for User: "+_username);
+      console.log("Searching for User: " + _username);
       let receiverPromise = User.getByUsername(_username);
 
       receiverPromise
         .then(user => {
-          tanUser=user;
+          tanUser = user;
         })
         .catch((err) => {
-          return res.status(404).send("Sender Username not found: "+err);
+          return res.status(404).send("Sender Username not found: " + err);
         });
 
 
       Promise.all([receiverPromise]).then(function () {
-          tanUser.bankAccount.nexttan = createdTan;
-          console.log("TAN TO INPUT: "+ createdTan);
-          tanUser.save();
-          console.log("saved tan");
+        tanUser.bankAccount.nexttan = createdTan;
+        console.log("TAN TO INPUT: " + createdTan);
+        tanUser.save();
+        console.log("saved tan");
       })
       return res.status(200).json(transaction)
     }
 
 
-    if(transaction.tan !== null) {
+    if (transaction.tan !== null) {
       console.log("sent Tan is not null, checking:" + transaction.tan);
-
 
 
       let updatedReceiver;
@@ -120,7 +117,6 @@ module.exports = class TransactionController {
         });
 
 
-
       //--- Transaction and Update
       Promise.all([senderPromise, receiverPromise]).then(function () {
 
@@ -144,22 +140,21 @@ module.exports = class TransactionController {
 
           updatedReceiver.save();
           updatedSender.save();
+          //todo transaction auf den empfangenden user emitten mit der transaction, dann im account controller im client anpassen
+          io().emit(updatedReceiver.username, transaction);
           return res.status(200).json(transaction);
         }
 
         else {
-          console.log("tan not matching: saved:"+ updatedSender.bankAccount.nexttan + "!= provided:" + transaction.tan);
+          console.log("tan not matching: saved:" + updatedSender.bankAccount.nexttan + "!= provided:" + transaction.tan);
           return res.status(403).send("Wrong Tan");
         }
 
 
-
-        });
-
+      });
 
 
-
-      }
+    }
 
   }
 

@@ -6,31 +6,31 @@ const userSchema = require("../model/userModel");
 const _ = require("lodash");
 
 userSchema.statics.getAll = () => {
-    return new Promise((resolve, reject) => {
-        let _query = {};
+  return new Promise((resolve, reject) => {
+    let _query = {};
 
-        User.find(_query)
-            .exec((err, users) => {
-              err ? reject(err)
-                  : resolve(users);
-            });
-    });
+    User.find(_query)
+      .exec((err, users) => {
+        err ? reject(err)
+          : resolve(users);
+      });
+  });
 };
 
 userSchema.statics.getByUsername = (_username) => {
-    return new Promise((resolve, reject) => {
-      if (!_username) {
-        return reject(new TypeError("Username is not defined."));
-      }
+  return new Promise((resolve, reject) => {
+    if (!_username) {
+      return reject(new TypeError("Username is not defined."));
+    }
 
-      let _query = {username:_username}
+    let _query = {username: _username}
 
-      User.findOne(_query)
-            .exec((err, user) => {
-              err ? reject(err)
-                  : resolve(user);
-            });
-    });
+    User.findOne(_query)
+      .exec((err, user) => {
+        err ? reject(err)
+          : resolve(user);
+      });
+  });
 }
 
 
@@ -40,7 +40,7 @@ userSchema.statics.getByIBAN = (_iban) => {
       return reject(new TypeError("IBAN is not defined."));
     }
 
-    let _query = {'bankAccount.iban':_iban}
+    let _query = {'bankAccount.iban': _iban}
 
     User.findOne(_query)
       .exec((err, user) => {
@@ -52,21 +52,30 @@ userSchema.statics.getByIBAN = (_iban) => {
 
 
 userSchema.statics.createUser = (user) => {
-    return new Promise((resolve, reject) => {
-      if (!_.isObject(user)) {
-          return reject(new TypeError("User is not a valid object."));
-      }
+  return new Promise((resolve, reject) => {
+    if (!_.isObject(user)) {
+      return reject(new TypeError("User is not a valid object."));
+    }
 
-      let _user = new User(user);
+    let _user = new User(user);
 
-      _user.save((err, saved) => {
-        err ? reject(err)
-            : resolve(saved);
-      });
+    _user.save((err, saved) => {
+      err ? reject(err)
+        : resolve(saved);
     });
-}
+  });
+};
+
+userSchema.statics.deleteAll = () => {
+  return new Promise((resolve, reject) => {
+    let _query = {};
+
+    User.remove(_query, () => {
+    });
+  });
+};
 
 
-const User  = mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;

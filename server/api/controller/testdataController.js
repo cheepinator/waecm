@@ -6,6 +6,7 @@ const User = require("../dao/userDAO");
 
 module.exports = class TestDataController {
   static testData(req, res) {
+    User.deleteAll();
     console.log("testdata");
     var crypto = require('crypto');
     let user1 = new User();

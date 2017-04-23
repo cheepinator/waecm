@@ -24,7 +24,7 @@ export class AccountCmp implements OnInit {
     console.log(this.username);
     socket.on(this.username, function (data: any) {
       console.log(data);
-      let snackBarRef = this.snackBar.open("New transaction from ".concat(data.fromUser).concat(", amount: ").concat(data.amount).concat("!"), "Go to transaction", {
+      let snackBarRef = this.snackBar.open("New transaction from ".concat(data.ibanSender).concat(", amount: ").concat(data.value).concat("!"), "Go to transaction", {
         duration: 5000
       });
       snackBarRef.onAction().subscribe(() => {
