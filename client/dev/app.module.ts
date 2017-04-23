@@ -12,7 +12,8 @@ import {
   MdIconModule,
   MdInputModule,
   MdMenuModule,
-  MdToolbarModule
+  MdToolbarModule,
+  MdSnackBarModule
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {App} from "./app";
@@ -40,6 +41,7 @@ import {SimpleNotificationsModule} from "angular2-notifications/dist";
     MdButtonModule,
     MdCheckboxModule,
     MdToolbarModule,
+    MdSnackBarModule,
     MdMenuModule,
     MdIconModule,
     MdGridListModule,

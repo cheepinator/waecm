@@ -7,8 +7,9 @@ const TransactionController = require("../controller/transactionController");
 
 
 module.exports = class TransactionRoutes {
-  static init(router) {
-
+  static init(router, io) {
+    TransactionController.init(io);
+    console.log("init trnas routes");
     router
       .route("/api/protected/transactions")
       .get(TransactionController.getTransactions);

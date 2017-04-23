@@ -1,10 +1,14 @@
-import {
-  Component,
-  OnInit
-} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 
 import {LoginService} from "../../login/services/login-service";
 import {Router} from "@angular/router";
+
+import {MdSnackBar} from "@angular/material";
+
+import * as io from "socket.io-client";
+
+import * as jwtDecode from "jwt-decode";
+
 @Component({
   selector: "account-cmp",
   templateUrl: "account/templates/account.html",
@@ -12,14 +16,31 @@ import {Router} from "@angular/router";
 })
 export class AccountCmp implements OnInit {
 
-  public ngOnInit():void {
+  public username;
+
+  public ngOnInit(): void {
+    this.username = jwtDecode(localStorage.getItem('currentUser')).username;
+    var socket = io('/', {secure: true});
+    console.log(this.username);
+    socket.on(this.username, function (data: any) {
+      console.log(data);
+      let snackBarRef = this.snackBar.open("New transaction from ".concat(data.fromUser).concat(", amount: ").concat(data.amount).concat("!"), "Go to transaction", {
+        duration: 5000
+      });
+      snackBarRef.onAction().subscribe(() => {
+        console.log('The snack-bar action was triggered!');
+        //todo this.router.navigate(['/']); go to transaction and give transaction details
+      });
+    }.bind(this));
   }
-  constructor(private _loginService: LoginService, private router: Router) { //
+
+  constructor(private _loginService: LoginService, private router: Router, private snackBar: MdSnackBar) { //
   }
 
   private logout(): void {
     this._loginService.logout();
     this.router.navigate(['/']);
   }
+
 
 }

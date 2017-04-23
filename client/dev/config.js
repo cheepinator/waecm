@@ -26,6 +26,8 @@ System.config({
 
 
     // other libraries
+    "socket.io-client": "npm:socket.io-client/dist/socket.io.js",
+    "jwt-decode": "npm:jwt-decode/lib/index.js",
     'rxjs':                       'npm:rxjs'
   },
   // packages : {

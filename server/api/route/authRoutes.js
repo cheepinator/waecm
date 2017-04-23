@@ -6,6 +6,7 @@ const AuthController = require("../controller/authController");
 module.exports = class AuthRoutes {
   static init(router) {
 
+    console.log("init auth routes");
     router
       .route("/api/users")
       .post(AuthController.createUser);

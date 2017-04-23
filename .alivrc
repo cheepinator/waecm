@@ -11,8 +11,8 @@
         "jspm_packages"
     ],
     "proxy": true,
-    "proxyWhen": "/api/*",
-    
+    "proxyWhen": "/*",
+
     "proxyTarget": "https://localhost:3333"
-    
+
 }
