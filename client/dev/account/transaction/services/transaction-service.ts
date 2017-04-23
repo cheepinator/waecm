@@ -21,7 +21,7 @@ export class TransactionService {
   }
 
   postTransaction(transaction: Transaction): Observable<any> {
-    console.log("Send transaction: TO: "+transaction.toIBAN+ " Value: "+transaction.value);
+    console.log("Send transaction: TO: "+transaction.ibanReceiver+ " Value: "+transaction.value);
     return this._http
       .post(TransactionService.ENDPOINT,transaction, {headers: this.headers})
       .map((r) => r.json());

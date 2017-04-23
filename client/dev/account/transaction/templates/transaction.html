@@ -14,7 +14,7 @@
   <h4>New Transaction:</h4>
   <br/>
 
-  <form (ngSubmit)="executeTransaction()">
+  <form (ngSubmit)="generateTan()">
     <md-input-container>
       <label>Recipient IBAN:</label>
       <input mdInput type="text" id="iban" class="form-control" name="recipient" [(ngModel)]="transaction.ibanReceiver" required/>

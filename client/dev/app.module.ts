@@ -21,7 +21,7 @@ import {AccountService} from "./account/services/account-service";
 import {AccountCmp} from "./account/components/account-cmp";
 import {AccountOverviewService} from "./account/overview/services/account-overview-service";
 import {AccountOverviewCmp} from "./account/overview/components/account-overview-cmp";
-import {TransactionCmp} from "./account/transaction/components/transaction-cmp";
+import {TransactionCmp, TransactionDialog} from "./account/transaction/components/transaction-cmp";
 import {loginRouting} from "./login/components/login-route";
 import {LoginCmp, LoginErrorDialog} from "./login/components/login-cmp";
 import {LoginService} from "./login/services/login-service";
@@ -57,6 +57,8 @@ import {TransactionService} from "./account/transaction/services/transaction-ser
     AccountOverviewCmp,
     TransactionCmp,
     LoginErrorDialog,
+    TransactionDialog,
+
   ],
   providers: [
     {
@@ -82,7 +84,8 @@ import {TransactionService} from "./account/transaction/services/transaction-ser
     App,
   ],
   entryComponents: [
-    LoginErrorDialog
+    LoginErrorDialog,
+    TransactionDialog
   ],
 })
 export class AppModule {

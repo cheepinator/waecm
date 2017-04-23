@@ -10,18 +10,31 @@
       <h4>{{account?.balance}}</h4>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-4">
+      <h4><b>IBAN:</b></h4>
+    </div>
+    <div class="col-md-16">
+      <h4>{{account?.iban}}</h4>
+    </div>
+  </div>
   <br/>
   <h4>Transactions:</h4>
   <br/>
 
   <div class="row">
-    <div class="col-md-4">
+
       <p-dataTable [value]="transactions">
         <p-column field="value" header="Value"></p-column>
-        <p-column field="time" header="Time"></p-column>
-        <p-column field="type" header="Type"></p-column>
+        <p-column field="date" header="Time">
+          <ng-template let-transaction="rowData" pTemplate="body">
+            <span>{{transaction.date| date:'medium' }}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="ibanSender" header="From"></p-column>
+        <p-column field="ibanReceiver" header="To"></p-column>
       </p-dataTable>
-    </div>
+
   </div>
 
   <span class="done">

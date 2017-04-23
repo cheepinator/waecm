@@ -6,6 +6,7 @@ const transactionSchema = require("../model/transactionModel");
 const bankAccountSchema = {
   balance: {type: Number},
   iban: {type: String},
+  nexttan: {type: String},
   transactions: {type: [transactionSchema]}
 };
 

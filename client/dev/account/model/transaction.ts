@@ -4,5 +4,6 @@ export class Transaction {
   ibanSender:String;
   ibanReceiver:String;
   value:Number;
-  time:Date;
+  date:Date;
+  tan:String;
 }
