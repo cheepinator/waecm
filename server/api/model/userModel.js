@@ -8,6 +8,7 @@ const userSchema = {
     password: {type: String},
     firstName: {type: String},
     lastName: {type: String},
+    phoneNumber: {type: String},
     bankAccount: {
       type: bankAccountSchema,
       ref: 'bankAccountSchema'

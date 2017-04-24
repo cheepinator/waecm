@@ -75,20 +75,43 @@ module.exports = class TransactionController {
 
 
     Promise.all([senderPromise,receiverPromise]).then(function () {
-      if(receiver===null || tanUser === null){
+      if (receiver === null || tanUser === null) {
         return res.status(403).send("IBAN or Username incorrect!")
       }
-      if(receiver.bankAccount.iban === tanUser.bankAccount.iban){
+      if (receiver.bankAccount.iban === tanUser.bankAccount.iban) {
         return res.status(403).send("Sender and Receiver Account are identical!");
       }
       tanUser.bankAccount.nexttan = createdTan;
       console.log("TAN TO INPUT: " + createdTan);
       tanUser.save();
+
+      // This sends the tan to an SMS
+      // As we are just using a testaccount, the meessaging only works with preconfigured numbers
+      if (tanUser.phoneNumber !== null && tanUser.phoneNumber !== '') {
+        console.log("sending to:"+ tanUser.phoneNumber);
+        TransactionController.sendTan(tanUser.phoneNumber, createdTan, transaction.value, receiver.bankAccount.iban);
+      }
       return res.status(200).json(transaction);
     })
 
   }
 
+
+  static sendTan(number, tan, amount, receiverIBAN){
+    var accountSid = 'ACc750b05ce3562596beae513c448f26d3'; // Your Account SID from www.twilio.com/console
+    var authToken = 'c66a2acecfdee9ebedc6938b7fc3b9ab';   // Your Auth Token from www.twilio.com/console
+
+    var twilio = require('twilio');
+    var client = new twilio.RestClient(accountSid, authToken);
+
+    client.messages.create({
+      body: 'Your TAN for your transfer of '+ amount +'€ to '+receiverIBAN + ' is: '+tan +'  Thanks for banking with UberBank!',
+      to: number,  // Text this number
+      from: '+43676800200083' // From a valid Twilio number
+    }, function(err, message) {
+      console.log(message.sid);
+    });
+  }
 
   static executeTransaction(req, res){
 
