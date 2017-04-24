@@ -20,7 +20,7 @@
             <input mdInput type="text" id="iban" name="recipient" placeholder="Recipient IBAN:" [(ngModel)]="transaction.ibanReceiver" required/>
           </md-input-container><br/>
           <md-input-container  class="example-full-width">
-            <input mdInput type="text" id="amount" name="amount" placeholder="Amount:" [(ngModel)]="transaction.value" required/>
+            <input mdInput type="number" id="amount" name="amount" placeholder="Amount:" [(ngModel)]="transaction.value" required/>
 
           </md-input-container><br/>
           <button md-raised-button class="md-primary">Send</button>

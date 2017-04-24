@@ -71,7 +71,7 @@ export class TransactionCmp implements OnInit {
       <input mdInput type="text" class="form-control" id="tan" name="tan" [(ngModel)]="tan" required/>
         
       <button md-button (click)="transactionCmp.sendTan(this.data.transaction, this.tan)">Send Tan</button>
-      <button md-button (click)="dialogRef.close()">Close</button>
+      <button md-button (click)="dialogRef.close()">Abort</button>
       </md-input-container>
     </div>`
 })
