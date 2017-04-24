@@ -18,10 +18,12 @@ var account_service_1 = require("./account/services/account-service");
 var account_cmp_1 = require("./account/components/account-cmp");
 var account_overview_service_1 = require("./account/overview/services/account-overview-service");
 var account_overview_cmp_1 = require("./account/overview/components/account-overview-cmp");
+var transaction_cmp_1 = require("./account/transaction/components/transaction-cmp");
 var login_route_1 = require("./login/components/login-route");
 var login_cmp_1 = require("./login/components/login-cmp");
 var login_service_1 = require("./login/services/login-service");
 var primeng_1 = require("primeng/primeng");
+var transaction_service_1 = require("./account/transaction/services/transaction-service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -37,6 +39,7 @@ AppModule = __decorate([
             material_1.MdButtonModule,
             material_1.MdCheckboxModule,
             material_1.MdToolbarModule,
+            material_1.MdSnackBarModule,
             material_1.MdMenuModule,
             material_1.MdIconModule,
             material_1.MdGridListModule,
@@ -46,14 +49,16 @@ AppModule = __decorate([
             material_1.MdInputModule,
             login_route_1.loginRouting,
             material_1.MdDialogModule,
-            account_route_1.AccountRouting
+            account_route_1.AccountRouting,
         ],
         declarations: [
             app_1.App,
             login_cmp_1.LoginCmp,
             account_cmp_1.AccountCmp,
             account_overview_cmp_1.AccountOverviewCmp,
+            transaction_cmp_1.TransactionCmp,
             login_cmp_1.LoginErrorDialog,
+            transaction_cmp_1.TransactionDialog,
         ],
         providers: [
             {
@@ -71,14 +76,17 @@ AppModule = __decorate([
             //LoggedInGuard,
             login_service_1.LoginService,
             account_service_1.AccountService,
-            account_overview_service_1.AccountOverviewService
+            account_overview_service_1.AccountOverviewService,
+            transaction_service_1.TransactionService,
         ],
         bootstrap: [
             app_1.App,
         ],
         entryComponents: [
-            login_cmp_1.LoginErrorDialog
+            login_cmp_1.LoginErrorDialog,
+            transaction_cmp_1.TransactionDialog
         ],
     })
 ], AppModule);
 exports.AppModule = AppModule;
+//# sourceMappingURL=app.module.js.map

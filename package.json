@@ -52,7 +52,8 @@
     "primeng": "4.0.0-rc.3",
     "socket.io": "1.7.3",
     "socket.io-client": "1.7.3",
-    "jwt-decode": "2.2.0"
+    "jwt-decode": "2.2.0",
+    "angular2-notifications": "0.4.46"
   },
   "devDependencies": {
     "aliv": "^1.6.0",
