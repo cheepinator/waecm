@@ -30,7 +30,6 @@ import {LoggedInGuard} from "./login/services/LoggedInGuard";
 import {DataTableModule, SharedModule} from "primeng/primeng";
 import {Router} from "@angular/router";
 import {TransactionService} from "./account/transaction/services/transaction-service";
-import {SimpleNotificationsModule} from "angular2-notifications";
 
 @NgModule({
   imports: [
@@ -51,8 +50,7 @@ import {SimpleNotificationsModule} from "angular2-notifications";
     MdInputModule,
     loginRouting,
     MdDialogModule,
-    AccountRouting,
-    //SimpleNotificationsModule.forRoot(),
+    AccountRouting
   ],
   declarations: [
     App,

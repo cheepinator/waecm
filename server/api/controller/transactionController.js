@@ -58,29 +58,44 @@ module.exports = class TransactionController {
       let createdTan = require("crypto").randomBytes(4).toString('hex');
 
       console.log("Searching for User: " + _username);
-      let receiverPromise = User.getByUsername(_username);
+      let senderPromise = User.getByUsername(_username);
 
-      receiverPromise
+      senderPromise
         .then(user => {
           tanUser = user;
         })
         .catch((err) => {
-          return res.status(404).send("Sender Username not found: " + err);
+          return res.status(404).send("Sender Username not found!");
+        });
+
+      let receiverPromise = User.getByIBAN(transaction.ibanReceiver);
+      let receiver;
+
+      receiverPromise.then(user => {
+        receiver = user;
+      })
+        .catch((err) => {
+          return res.status(404).send("Receiver IBAN not found!");
         });
 
 
-      Promise.all([receiverPromise]).then(function () {
+      Promise.all([senderPromise,receiverPromise]).then(function () {
+        if(receiver===null || tanUser === null){
+          return res.status(403).send("IBAN or Username incorrect!")
+        }
+        console.log("receiver: "+tanUser.username)
         tanUser.bankAccount.nexttan = createdTan;
         console.log("TAN TO INPUT: " + createdTan);
         tanUser.save();
         console.log("saved tan");
+        return res.status(200).json(transaction);
       })
-      return res.status(200).json(transaction)
+
     }
 
 
     if (transaction.tan !== null) {
-      console.log("sent Tan is not null, checking:" + transaction.tan);
+      console.log("sent Tan is not null");
 
 
       let updatedReceiver;
@@ -91,7 +106,6 @@ module.exports = class TransactionController {
       }
 
       console.log("Transaction to: " + transaction.ibanReceiver);
-      //TODO fehlermeldungen am client
 
 
       //---------- Receiver --------
@@ -101,7 +115,7 @@ module.exports = class TransactionController {
         updatedReceiver = user;
       })
         .catch((err) => {
-          return res.status(404).send("Receiver IBAN not found " + err);
+          return res.status(404).send("Receiver IBAN not found!");
         });
 
       //---------Sender------
@@ -113,13 +127,18 @@ module.exports = class TransactionController {
           updatedSender = user;
         })
         .catch((err) => {
-          return res.status(404).send("Sender Username not found: " + err);
+          return res.status(404).send("Sender Username not found!");
         });
 
 
       //--- Transaction and Update
       Promise.all([senderPromise, receiverPromise]).then(function () {
 
+        if(updatedSender === null || updatedReceiver === null)
+        {
+          console.log("error user NULL");
+          return res.status(404).send("Wrong IBAN or Username!");
+        }
         //---- check tan ------
         if (updatedSender.bankAccount.nexttan === transaction.tan) {
 
@@ -147,7 +166,7 @@ module.exports = class TransactionController {
 
         else {
           console.log("tan not matching: saved:" + updatedSender.bankAccount.nexttan + "!= provided:" + transaction.tan);
-          return res.status(403).send("Wrong Tan");
+          return res.status(403).send("Wrong TAN!");
         }
 
 

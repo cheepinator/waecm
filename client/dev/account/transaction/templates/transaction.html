@@ -1,31 +1,35 @@
 <div>
-
-  <br/>
-  <br/>
-  <!--<div class="row">-->
-    <!--<div class="col-md-4">-->
-      <!--<h4><b>Balance:</b></h4>-->
-    <!--</div>-->
-    <!--<div class="col-md-16">-->
-      <!--<h4>{{account?.balance}}</h4>-->
-    <!--</div>-->
-  <!--</div>-->
-  <br/>
-  <h4>New Transaction:</h4>
-  <br/>
-
   <form (ngSubmit)="generateTan()">
-    <md-input-container>
-      <label>Recipient IBAN:</label>
-      <input mdInput type="text" id="iban" class="form-control" name="recipient" [(ngModel)]="transaction.ibanReceiver" required/>
+  <div class="container">
+    <div class="row">
 
-      <label>Amount:</label>
-      <input mdInput type="text" class="form-control" id="amount" name="amount" [(ngModel)]="transaction.value" required/>
-      <button md-button class="md-primary">Send</button>
-    </md-input-container>
-    <!--<md-button md-fab type="submit" class="btn btn-success">Send</md-button>-->
+      <br/>
+      <h4>New Transaction:</h4>
+      <br/>
+    </div>
+    <div class="row">
 
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card" style="margin-top:2em">
+        <div class="card-block">
+          <md-input-container class="example-full-width">
+            <input mdInput type="text" id="iban" name="recipient" placeholder="Recipient IBAN:" [(ngModel)]="transaction.ibanReceiver" required/>
+          </md-input-container><br/>
+          <md-input-container  class="example-full-width">
+            <input mdInput type="text" id="amount" name="amount" placeholder="Amount:" [(ngModel)]="transaction.value" required/>
+
+          </md-input-container><br/>
+          <button md-raised-button class="md-primary">Send</button>
+          <!--<md-button md-fab type="submit" class="btn btn-success">Send</md-button>-->
+        </div>
+
+      </div>
+    </div>
+  </div>
   </form>
-
-
 </div>
+

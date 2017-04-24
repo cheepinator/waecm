@@ -49,7 +49,7 @@ AppModule = __decorate([
             material_1.MdInputModule,
             login_route_1.loginRouting,
             material_1.MdDialogModule,
-            account_route_1.AccountRouting,
+            account_route_1.AccountRouting
         ],
         declarations: [
             app_1.App,

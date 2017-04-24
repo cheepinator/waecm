@@ -8,14 +8,12 @@ import {
 } from "../services/transaction-service";
 import {Router} from "@angular/router";
 import {Transaction} from "../../model/transaction";
-import {MdDialogRef, MdDialog, MdDialogConfig, MD_DIALOG_DATA} from "@angular/material";
-//import {NotificationsService} from "angular2-notifications/dist";
+import {MdDialogRef, MdDialog, MdDialogConfig, MD_DIALOG_DATA, MdSnackBar} from "@angular/material";
 
 
 @Component({
   selector: "transaction-cmp",
   templateUrl: "account/transaction/templates/transaction.html",
-  //template: '<simple-notifications [options]="options"></simple-notifications>',
   styleUrls: ["account/transaction/styles/transaction.css"]
 })
 export class TransactionCmp implements OnInit {
@@ -26,12 +24,18 @@ export class TransactionCmp implements OnInit {
 
   public ngOnInit():void {
     this.transaction = new Transaction();
-    this.transaction.value = 0;
   }
 
-  constructor(private _transactionService: TransactionService, private router: Router, private  dialog: MdDialog ) { //private _notificationService: NotificationsService
+  constructor(private _transactionService: TransactionService, private router: Router,
+              private  dialog: MdDialog, public snackBar: MdSnackBar){
 
 
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
   private generateTan(): void {
@@ -41,15 +45,16 @@ export class TransactionCmp implements OnInit {
     this._transactionService.postTransaction(this.transaction).subscribe(
       transaction  =>
           this.dialog.open(TransactionDialog, config.data),
-      error =>  console.log("error: "+error) );//this._notificationService.error('TAN could not be created!'));//console.log("error: "+error) );
+      error =>  this.openSnackBar('ERROR', error._body));//console.log("error: "+error) );
   }
 
   public sendTan(transaction:Transaction, tan:String):void{
     transaction.tan = tan;
     console.log("sending Tan");
     this._transactionService.postTransaction(transaction).subscribe(
-      transaction  => console.log("success") );//this._notificationService.success("Transaction successfully sent!"),//console.log("success"),
-      error =>  console.log("error: "+error) ;//this._notificationService.error('Wrong TAN entered!'));//console.log("error: "+error) );
+      transaction  => this.openSnackBar('SUCCESS', "Transaction successfully sent!"),//console.log("success"),
+
+      error =>  this.openSnackBar('ERROR', error._body));//console.log("error: "+error) );
     this.dialog.closeAll();
 
   }
