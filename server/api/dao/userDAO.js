@@ -15,7 +15,20 @@ userSchema.statics.getAll = () => {
           : resolve(users);
       });
   });
-};
+}
+
+userSchema.statics.getAllUsers = () => {
+  return new Promise((resolve, reject) => {
+
+    let _query = {}
+
+    User.find(_query)
+      .exec((err, user) => {
+        err ? reject(err)
+          : resolve(user);
+      });
+  });
+}
 
 userSchema.statics.getByUsername = (_username) => {
   return new Promise((resolve, reject) => {
