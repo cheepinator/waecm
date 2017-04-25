@@ -21,8 +21,17 @@
           </md-input-container><br/>
           <md-input-container  class="example-full-width">
             <input mdInput type="number" id="amount" name="amount" placeholder="Amount:" [(ngModel)]="transaction.value" required/>
-
           </md-input-container><br/>
+          <md-input-container  class="example-full-width">
+            <input mdInput type="text" id="sender" name="sender" placeholder="Sender:" [(ngModel)]="transaction.sender" required/>
+          </md-input-container><br/>
+          <md-input-container  class="example-full-width">
+            <input mdInput type="text" id="receiver" name="receiver" placeholder="Receiver:" [(ngModel)]="transaction.receiver" required/>
+          </md-input-container><br/>
+          <md-input-container  class="example-full-width">
+            <input mdInput type="text" id="paymentReference" name="paymentReference" placeholder="Payment Reference:" [(ngModel)]="transaction.paymentReference" required/>
+          </md-input-container><br/>
+
           <button md-raised-button class="md-primary">Send</button>
           <!--<md-button md-fab type="submit" class="btn btn-success">Send</md-button>-->
         </div>
