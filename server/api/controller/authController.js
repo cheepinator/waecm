@@ -1,11 +1,13 @@
 "use strict";
 
 const UserDAO = require("../dao/userDAO");
+const TestDataController = require("../controller/testdataController");
 
 var express = require('express'),
   _ = require('lodash'),
   config = require('../../auth/config/config'),
-  jwt = require('jsonwebtoken');
+  jwt = require('jsonwebtoken'),
+  async = require('async');
 
 function createToken(user) {
   console.log("creating token");
@@ -32,6 +34,43 @@ module.exports = class AuthController {
 
   static createToken(req, res) {
 
+    UserDAO
+      .getAllUsers()
+      .then(users => {
+        console.log("HI");
+        console.log(users);
+          if(users.length == 0)
+          {
+            console.log("no users available. create default users...");
+            TestDataController
+              .generateTestData()
+              .then(
+                returnValue => {
+                  console.log("hier??");
+                  login(req, res);
+                }
+              )
+          }
+          else
+            login(req, res);
+
+
+
+          // return res.status(201).send({
+          //   id_token: createToken(_user)
+          // });
+
+        }
+
+      )
+
+
+
+  }
+
+};
+
+function login(req, res) {
     let _user = req.body;
 
     console.log(_user);
@@ -68,12 +107,4 @@ module.exports = class AuthController {
         });
       })
       .catch(error => res.status(400).json(error));
-
-
-    // return res.status(201).send({
-    //   id_token: createToken(_user)
-    // });
-
-
-  }
-};
+}
