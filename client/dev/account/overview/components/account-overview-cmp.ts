@@ -9,6 +9,7 @@ import {
 import {Router} from "@angular/router";
 import {Account} from "../../model/account";
 import {Transaction} from "../../model/transaction";
+import {OverlayPanel} from "primeng/components/overlaypanel/overlaypanel";
 
 
 @Component({
@@ -20,6 +21,7 @@ export class AccountOverviewCmp implements OnInit {
   title: string = "Account";
   account: any;
   transactions: [Transaction];
+  selectedTransaction: Transaction;
 
   public ngOnInit():void {
     this._getAccount();
@@ -45,4 +47,9 @@ export class AccountOverviewCmp implements OnInit {
     {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
     {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
   ];
+
+  selectDetails(event, t: Transaction, overlaypanel: OverlayPanel) {
+    this.selectedTransaction = t;
+    overlaypanel.toggle(event);
+  }
 }

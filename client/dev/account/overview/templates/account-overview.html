@@ -35,7 +35,18 @@
         </p-column>
         <p-column field="ibanSender" header="From"></p-column>
         <p-column field="ibanReceiver" header="To"></p-column>
+
+        <p-column>
+          <ng-template let-transaction="rowData" pTemplate="body">
+            <button type="button" pButton (click)="selectDetails($event, transaction, op);">Details</button>
+          </ng-template>
+        </p-column>
+
       </p-dataTable>
+
+    <p-overlayPanel #op>
+      <div *ngIf="selectedTransaction">{{selectedTransaction.value}}</div>
+    </p-overlayPanel>
 
   </div>
 

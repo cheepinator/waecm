@@ -30,6 +30,7 @@ import {LoggedInGuard} from "./login/services/LoggedInGuard";
 import {DataTableModule, SharedModule} from "primeng/primeng";
 import {Router} from "@angular/router";
 import {TransactionService} from "./account/transaction/services/transaction-service";
+import {OverlayPanelModule} from 'primeng/primeng';
 
 @NgModule({
   imports: [
@@ -50,7 +51,8 @@ import {TransactionService} from "./account/transaction/services/transaction-ser
     MdInputModule,
     loginRouting,
     MdDialogModule,
-    AccountRouting
+    AccountRouting,
+    OverlayPanelModule
   ],
   declarations: [
     App,
