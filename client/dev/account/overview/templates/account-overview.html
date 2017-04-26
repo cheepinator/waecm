@@ -47,16 +47,14 @@
     <p-overlayPanel #op>
 
       <div class="ui-g-12" *ngIf="selectedTransaction">
-        <div class="ui-g-3" >Value</div>
-        <div class="ui-g-3">Payment Reference</div>
-        <div class="ui-g-3">Sender</div>
-        <div class="ui-g-3">Receiver</div>
+        <div class="ui-g-2" >Value</div>
+        <div class="ui-g-4">Category</div>
+        <div class="ui-g-6">Payment Reference</div>
       </div>
       <div class="ui-g-12" *ngIf="selectedTransaction">
-        <div class="ui-g-3">{{selectedTransaction.value}}</div>
-        <div class="ui-g-3">{{selectedTransaction.paymentReference}}</div>
-        <div class="ui-g-3">{{selectedTransaction.sender}}</div>
-        <div class="ui-g-3">{{selectedTransaction.receiver}}</div>
+        <div class="ui-g-2">{{selectedTransaction.value}}</div>
+        <div class="ui-g-4">{{selectedTransaction.category}}</div>
+        <div class="ui-g-6">{{selectedTransaction.paymentReference}}</div>
       </div>
     </p-overlayPanel>
 

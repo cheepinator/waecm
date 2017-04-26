@@ -8,7 +8,9 @@ const transactionSchema = {
   value: {type: Number},
   date: {type: Date},
   ibanSender: {type: String},
-  ibanReceiver: {type: String}
+  ibanReceiver: {type: String},
+  paymentReference:{type: String},
+  category:{type:String}
 
   // bankAccountSender: {
   //   type: mongoose.Schema.Types.ObjectId,

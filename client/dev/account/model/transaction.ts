@@ -7,6 +7,5 @@ export class Transaction {
   date:Date;
   tan:String;
   paymentReference:String;
-  sender:String;
-  receiver:String;
+  category:String;
 }
