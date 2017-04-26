@@ -87,7 +87,7 @@ module.exports = class TransactionController {
 
       // This sends the tan to an SMS
       // As we are just using a testaccount, the meessaging only works with preconfigured numbers
-      if (typeof tanUser.phoneNumber !== 'undefined' || tanUser.phoneNumber !== undefined || tanUser.phoneNumber !== null && tanUser.phoneNumber !== '') {
+      if (typeof tanUser.phoneNumber !== 'undefined' && tanUser.phoneNumber !== undefined && tanUser.phoneNumber !== null && tanUser.phoneNumber !== '') {
         console.log("sending to:"+ tanUser.phoneNumber);
         TransactionController.sendTan(tanUser.phoneNumber, createdTan, transaction.value, receiver.bankAccount.iban);
       }
