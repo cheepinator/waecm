@@ -1,20 +1,9 @@
 <div>
   <form (ngSubmit)="generateTan()">
-  <div class="container">
-    <div class="row">
-
-      <br/>
-      <h4>New Transaction:</h4>
-      <br/>
-    </div>
-    <div class="row">
-
-
-    </div>
-  </div>
   <div class="row">
-    <div class="col-md-4">
-      <div class="card" style="margin-top:2em">
+    <md-card>
+      <md-card-title><br/><h4>New Transaction:</h4></md-card-title>
+      <md-card-content>
         <div class="card-block">
           <md-input-container class="example-full-width">
             <input mdInput type="text" id="iban" name="recipient" placeholder="Recipient IBAN:" [(ngModel)]="transaction.ibanReceiver" required/>
@@ -24,19 +13,17 @@
           </md-input-container><br/>
 
           <md-input-container  class="example-full-width">
-            <input mdInput type="text" id="paymentReference" name="paymentReference" placeholder="Payment Reference:" [(ngModel)]="transaction.paymentReference" required/>
+            <input mdInput type="text" id="paymentReference" name="paymentReference" placeholder="Payment Reference:" [(ngModel)]="transaction.paymentReference"/>
           </md-input-container><br/>
           <md-input-container  class="example-full-width">
-            <input mdInput type="text" id="category" name="category" placeholder="Category:" [(ngModel)]="transaction.category" required/>
+            <input mdInput type="text" id="category" name="category" placeholder="Category:" [(ngModel)]="transaction.category"/>
           </md-input-container><br/>
 
           <button md-raised-button class="md-primary">Send</button>
           <!--<md-button md-fab type="submit" class="btn btn-success">Send</md-button>-->
         </div>
-
+    </md-card-content></md-card>
       </div>
-    </div>
-  </div>
   </form>
 </div>
 
