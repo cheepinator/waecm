@@ -166,7 +166,8 @@ Example Request:
   ```
  If the tan is correctly verified, the same Transaction is sent back as confirmation.
  
- ATTENTION: As we use twilio for SMS sending, the Phone Verification currently only works
+ ##ATTENTION: 
+ As we use twilio for SMS sending, the Phone Verification currently only works
  with phone numbers given to the twilio system in advance, therefore this can only be demonstrated 
  with our numbers. As the Authentification is only to be mocked in any case, 
  the TAN is logged out on the Server, so that Creating Transactions can be easily tested.
