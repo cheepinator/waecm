@@ -7,6 +7,7 @@ The file docker-start-script.sh must be encoded as LF. Probably this is only a p
 On Windows systems the volume host mapping did not work under CMD, (other than with administrator permissions), with PowerShell it worked well.
 
 ##Install
+All installation steps must be executed with Administrator rights!
 
 ###Create the docker container (must be inside the folder of the dockerfile)
 docker build -t waecm-bsp1 .
@@ -165,7 +166,10 @@ Example Request:
   ```
  If the tan is correctly verified, the same Transaction is sent back as confirmation.
  
- 
+ ATTENTION: As we use twilio for SMS sending, the Phone Verification currently only works
+ with phone numbers given to the twilio system in advance, therefore this can only be demonstrated 
+ with our numbers. As the Authentification is only to be mocked in any case, 
+ the TAN is logged out on the Server, so that Creating Transactions can be easily tested.
  
  
 This endpoint creates a new transaction in the database.
