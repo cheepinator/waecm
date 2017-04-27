@@ -1,6 +1,6 @@
 # Uber Banking
 
-The next generation Banking TOol.
+The next generation Banking Tool.
 
 ##PLEASE NOTE:
 The file docker-start-script.sh must be encoded as LF. Probably this is only a problem on windows systems.
