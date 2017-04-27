@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 import {Account} from "../../model/account";
 import {Transaction} from "../../model/transaction";
 import {OverlayPanel} from "primeng/components/overlaypanel/overlaypanel";
-
+import * as jwtDecode from "jwt-decode";
 
 @Component({
   selector: "account-overview-cmp",
@@ -22,9 +22,11 @@ export class AccountOverviewCmp implements OnInit {
   account: any;
   transactions: [Transaction];
   selectedTransaction: Transaction;
+  public firstName;
 
   public ngOnInit():void {
     this._getAccount();
+    this.firstName = jwtDecode(localStorage.getItem('currentUser')).firstName;
   }
 
   constructor(private _accountService: AccountOverviewService, private router: Router) { //
