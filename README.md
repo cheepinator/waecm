@@ -1,6 +1,6 @@
-# stodtradl
+# Uber Banking
 
-A application for displaying all citybike stations in vienna.
+The next generation Banking TOol.
 
 ##PLEASE NOTE:
 The file docker-start-script.sh must be encoded as LF. Probably this is only a problem on windows systems.
@@ -16,14 +16,14 @@ docker run -v {path-to-stodtradl-source-code}:/usr/src/app -p 8080:3000 waecm-bs
 
 ##Access the application
 
-https://localhost:8080/counter
+https://localhost:8080/
 
-Comments on the application:
-  the Username is "user", the password is "password"
-  if a wrong username/password combination is given, the server sends a 401.
-  The authentication is realised using jwt.
-  by pressing the '+' button, a post is sent to the server to increment the counter.
-  After the post, a get is called to retrieve the actual counter value and displays it in the textarea below
+Usernames and Passwords:
+max.mustermann         password
+erika.test             password
+gabi.musterfrau        password
+
+
 
 ##Technology stack
 
