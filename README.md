@@ -58,13 +58,14 @@ This endpoints creates a new user and provides an valid JWT-Token.
 It is not used anymore in the frontend application.
 
 It would expect a User in JSON Form as body, seen as follows:
-
+```json
 {
     "username" : "erika.test",
     "firstName" : "Erika",
     "lastName" : "Test",
     "password" : "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
 }
+```
 
 (Disclaimer: obviously, this endpoint opens a wide array of Security concerns, and would not be present in this way in a Production Application.)
 
@@ -75,16 +76,19 @@ POST "/api/token"
 This endpoint handles the login.
 A username and a hashed password are expected.
 It will provide a JWT-Token, if the login was successfull, otherwise a HTTP-401 error is thrown.
-
+```json
 {
     "username" : "erika.test",
     "password" : "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
 }
+```
 
 Result:
+```json
 {
     "id_token" : "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im1heC5tdXN0ZXJtYW5uIiwiZmlyc3ROYW1lIjoiTWF4IiwibGFzdE5hbWUiOiJNdXN0ZXJtYW5uIiwiaWF0IjoxNDkzMjkyMTgwLCJleHAiOjE0OTMzMTAxODB9.drfRpVQ3ZqlQ_oSxWC7hZHIcM8tdNf6DEHQ2yr87tS0"
 }
+```
 
 ###Account
 
@@ -95,7 +99,7 @@ GET   "/api/protected/account"
 This endpoint provides the account, which is related to the user in the JWT-Token.
 
 Example Result:
-
+```json
 {
     "username" : "erika.test",
     "firstName" : "Erika",
@@ -113,6 +117,7 @@ Example Result:
         ]
     },
 }
+```
 
 ###Transaction
 
@@ -121,42 +126,43 @@ The list of the transaction of an account is already included in an account.
 **create a new transaction**
 
 POST "/api/protected/transactions"
-´´´
+
 Example Request: 
+```json
 {
         "value" : 50,
         "ibanReceiver" : "AT55 7989 9877 9879",
 },
- ´´´
+```
  
  Example Response:
- ´´´
+ ```json
  {
          "value" : 50,
          "ibanReceiver" : "AT55 7989 9877 9879",
  },
- ´´´
+ ```
  With this Response, a verification TAN is sent via a Secondary Channel (SMS, log output on server for testing).
  This TAN is to be sent via another Request to confirm the Transaction.
  The second Request has to look like the following:
  Example Request:
  
  Example Request: 
- ´´´
+ ```json
  {
          "value" : 50,
          "ibanReceiver" : "AT55 7989 9877 9879",
          "tan" : "ab32ba"
  },
-  ´´´
+ ```
  Example Response:
- ´´´
+ ```json
   {
           "value" : 50,
           "ibanReceiver" : "AT55 7989 9877 9879",
           "tan" : "ab32ba"
   },
-   ´´´
+  ```
  If the tan is correctly verified, the same Transaction is sent back as confirmation.
  
  
