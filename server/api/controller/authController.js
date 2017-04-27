@@ -37,8 +37,6 @@ module.exports = class AuthController {
     UserDAO
       .getAllUsers()
       .then(users => {
-        console.log("HI");
-        console.log(users);
           if(users.length == 0)
           {
             console.log("no users available. create default users...");
@@ -46,7 +44,6 @@ module.exports = class AuthController {
               .generateTestData()
               .then(
                 returnValue => {
-                  console.log("hier??");
                   login(req, res);
                 }
               )
@@ -72,8 +69,6 @@ module.exports = class AuthController {
 
 function login(req, res) {
     let _user = req.body;
-
-    console.log(_user);
 
     if (!_user.username || !_user.password) {
       return res.status(400).send("You must send the username and the password");

@@ -1,8 +1,6 @@
 "use strict";
 
 const User = require("../dao/userDAO");
-const Transaction = require("../dao/transactionDAO");
-const BankAccount = require("../dao/bankAccountDAO");
 
 var io = null;
 
@@ -30,20 +28,7 @@ module.exports = class TransactionController {
       });
   }
 
-  static getTransaction(req, res) {
-    console.log("getTransaction Called")
-    //user gets set from jwt parsing ==> has to be protected in route
-    let _id = req.params.id;
 
-    Transaction.findTransactionById(_id)
-      .then(transaction => {
-          res.status(200).json(transaction);
-        })
-        .catch((err) => {
-          return res.status(404).send("No Transaction found with id: ".concat(_id));
-      });
-
-  }
 
   static generateTan(req, res){
     let transaction = req.body;

@@ -1,7 +1,5 @@
 "use strict";
 
-const BankAccount = require("../dao/bankAccountDAO");
-const Transaction = require("../dao/transactionDAO");
 const User = require("../dao/userDAO");
 
 module.exports = class TestDataController {

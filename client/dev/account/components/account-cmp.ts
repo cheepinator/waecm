@@ -21,15 +21,14 @@ export class AccountCmp implements OnInit {
   public ngOnInit(): void {
     this.username = jwtDecode(localStorage.getItem('currentUser')).username;
     var socket = io('/', {secure: true});
-    console.log(this.username);
+    //console.log(this.username);
     socket.on(this.username, function (data: any) {
-      console.log(data);
+      //console.log(data);
       let snackBarRef = this.snackBar.open("New transaction from ".concat(data.ibanSender).concat(", amount: ").concat(data.value).concat("!"), "Go to transaction", {
         duration: 5000
       });
       snackBarRef.onAction().subscribe(() => {
         console.log('The snack-bar action was triggered!');
-        //todo this.router.navigate(['/']); go to transaction and give transaction details
       });
     }.bind(this));
   }
