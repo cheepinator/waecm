@@ -15,7 +15,7 @@ module.exports = class TestDataController {
       console.log("testdata");
       var crypto = require('crypto');
       let user1 = new User();
-      let bankAccount1 = user1.bankAccount;
+      let bankAccount1;
       bankAccount1.balance = 300;
       bankAccount1.iban = "AT55 7989 9877 9879"
       let transaction;
