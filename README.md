@@ -41,3 +41,44 @@ In the backend we decided to use **node.js** and as web application framework **
 ###Database
 
 As database we use **mongoDB**. As ORM we use mongoose. 
+
+##REST API
+
+This section describes the REST endpoints.
+
+All rescources with "protected" in the URI, need an autorization header with an valid Java Web Token.
+
+###Authentication
+
+**Create new user**
+
+POST "/api/users"
+
+This endpoints creates a new user and provides an valid JWT-Token.
+It is not used anymore in the frontend application.
+
+**Login**
+
+POST "/api/token"
+
+This endpoint handles the login.
+A username and password are expected.
+It will provide a JWT-Token, if the login was successfull, otherwise a HTTP-401 error is thrown.
+
+###Account
+
+**get account**
+
+GET   "/api/protected/account"
+
+This endpoint provides the account, which is related to the user in the JWT-Token.
+
+###Transaction
+
+The list of the transaction of an account is already included in an account.
+
+**create a new transaction**
+
+POST "/api/protected/transactions"
+
+This endpoint creates a new transaction in the database.
