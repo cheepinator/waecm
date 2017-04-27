@@ -24,6 +24,7 @@ var login_cmp_1 = require("./login/components/login-cmp");
 var login_service_1 = require("./login/services/login-service");
 var primeng_1 = require("primeng/primeng");
 var transaction_service_1 = require("./account/transaction/services/transaction-service");
+var primeng_2 = require("primeng/primeng");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -49,7 +50,8 @@ AppModule = __decorate([
             material_1.MdInputModule,
             login_route_1.loginRouting,
             material_1.MdDialogModule,
-            account_route_1.AccountRouting
+            account_route_1.AccountRouting,
+            primeng_2.OverlayPanelModule
         ],
         declarations: [
             app_1.App,
