@@ -28,7 +28,6 @@ export class LoginCmp implements OnInit {
   }
 
   login(username: string, password: string) {
-    console.log("login cmp");
     this._loginService.login(username, password).subscribe(
       data => {
         this.router.navigate(["account"]);
