@@ -104,35 +104,25 @@ module.exports = class TestDataController {
       user3.password = crypto.createHash('sha256').update('password').digest('hex');
 
       console.log(User.getByUsername('max.mustermann'));
-      let promise1 = User
-        .getByUsername('max.mustermann');
+      let promise1 = User.createUser(user1);
+
       promise1
-        .then(user => {
-          User
-            .createUser(user1)
             .then(userRes => console.log("sucessfully created user"))
             .catch(error => console.log(error));
-        });
 
-      let promise2 = User
-        .getByUsername('gabi.musterfrau');
+
+      let promise2 = User.createUser(user2);
+
       promise2
-        .then(user => {
-          User
-            .createUser(user2)
             .then(userRes => console.log("sucessfully created user"))
             .catch(error => console.log(error));
-        });
 
-      let promise3 = User
-        .getByUsername('erika.test');
+
+      let promise3 = User.createUser(user3);
       promise3
-        .then(user => {
-          User
-            .createUser(user3)
             .then(userRes => console.log("sucessfully created user"))
             .catch(error => console.log(error));
-        });
+
 
       /*
        let bankAccount5 = new BankAccount();
