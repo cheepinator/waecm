@@ -64,7 +64,7 @@ It would expect a User in JSON Form as body, seen as follows:
     "username" : "erika.test",
     "firstName" : "Erika",
     "lastName" : "Test",
-    "password" : "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
+    "password" : "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8"
 }
 ```
 
@@ -80,7 +80,7 @@ It will provide a JWT-Token, if the login was successfull, otherwise a HTTP-401 
 ```json
 {
     "username" : "erika.test",
-    "password" : "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
+    "password" : "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8"
 }
 ```
 
