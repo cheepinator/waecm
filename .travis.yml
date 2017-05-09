@@ -1,17 +1,17 @@
 language: node_js
 
+os:
+  - linux
+services:
+  - docker
+
 node_js:
-  - "5"
+  - "6.10.1"
+
+sudo: true
 
 before_script:
-  - npm install -g bower gulp-cli mocha
-  - npm run-script test-on-travis
-  - bower install
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
+  - docker build -t waecm-bsp1 .
 
 script:
-  - gulp coverage_frontend
-  - npm run-script test-on-travis
-
-services: mongodb
+  - docker run -v $(pwd):/usr/src/app -p 8080:3000 waecm-bsp1 test
