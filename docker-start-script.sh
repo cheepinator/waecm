@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
-if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" -o "$1" = "test"\) -a \( -z "$2" -o \( "$1" = "build" -a "$2" = "deploy" \) \) ]
+if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" -o "$1" = "test" \) -a \( -z "$2" -o \( "$1" = "build" -a "$2" = "deploy" \) \) ]
 	then
+	npm config set loglevel warn
 		if [ "$1" = "build" ]
       then
 			echo "building ..."
@@ -30,20 +30,21 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" -o "$1" = "test"\) -a \( -z
     elif [ "$1" = "test" ]
 			then
     	  echo "testing ..."
+        export CHROME_BIN=/usr/bin/chromium-browser
         cp -av /usr/src/app/. /usr/src/tmp/
         cd /usr/src/tmp
         npm install -g bower
         npm install
         typings install
-        npm run-script test-on-travis
-        bower install
         export DISPLAY=:99.0
-        sh -e /etc/init.d/xvfb start
+        Xvfb :99 -screen 0 640x480x8 -nolisten tcp &
         gulp coverage_frontend
-        npm run-script test-on-travis
+        npm config set loglevel info
+        npm run-script test-client
+        npm run-script coverage-server
 		fi
 	else
-		echo "usage: build | deploy | build deploy"
+		echo "usage: build | deploy | build deploy | test"
 fi
 
 

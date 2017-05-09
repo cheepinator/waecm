@@ -41,9 +41,9 @@ module.exports = function(config) {
       {pattern: 'client/dev/**/*.ts', included: false, watched: false},
       {pattern: 'client/dev/**/*.js.map', included: false, watched: false},
 
-      
+
       {pattern: 'tests/client/**/*_test.js', included: false, watched: false},
-      
+
 
     ],
 
@@ -58,7 +58,13 @@ module.exports = function(config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: ['Chrome_without_sandbox'],
+    customLaunchers: {
+      Chrome_without_sandbox: {
+        base: 'Chrome',
+        flags: ['--no-sandbox'] // with sandbox it fails under Docker
+      }
+    },
     singleRun: true
   })
 }
