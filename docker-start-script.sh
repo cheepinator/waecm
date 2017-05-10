@@ -4,7 +4,7 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" -o "$1" = "test" \) -a \( -
 		if [ "$1" = "build" ]
       then
 			echo "building ..."
-      cp -av /usr/src/app/. /usr/src/tmp/
+      cp -a /usr/src/app/. /usr/src/tmp/
       cd /usr/src/tmp
       npm install
       typings install
@@ -19,7 +19,7 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" -o "$1" = "test" \) -a \( -
 		elif [ "$1" = "deploy" ]
 			then
     	  echo "deploying ..."
-        cp -av /usr/src/app/. /usr/src/tmp/
+        cp -a /usr/src/app/. /usr/src/tmp/
         cd /usr/src/tmp
         npm install
         typings install
@@ -31,7 +31,7 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" -o "$1" = "test" \) -a \( -
 			then
     	  echo "testing ..."
         export CHROME_BIN=/usr/bin/chromium-browser
-        cp -av /usr/src/app/. /usr/src/tmp/
+        cp -a /usr/src/app/. /usr/src/tmp/
         cd /usr/src/tmp
         npm install -g bower
         npm install
