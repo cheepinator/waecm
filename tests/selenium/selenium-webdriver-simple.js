@@ -15,7 +15,8 @@ usingServer("http://" + username + ":" + accessKey +
   "@ondemand.saucelabs.com:80/wd/hub").
 build();
 
-driver.get("http://saucelabs.com/test/guinea-pig");
+//driver.get("http://saucelabs.com/test/guinea-pig");
+driver.get(username + ":" +accessKey+"@localhost:3000")
 
 driver.getTitle().then(function (title) {
   console.log("title is: " + title);
