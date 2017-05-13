@@ -10,6 +10,7 @@ before_script:
   - docker build -t waecm-bsp1 .
 script:
   #- docker run --name waecm-bsp1-test -comv $(pwd):/usr/src/app -p 8080:3000 waecm-bsp1 test
+  - node tests/selenium/selenium-webdriver-simple.js
 after_script:
   #- docker rm -f waecm-bsp1-test
 deploy:
@@ -19,3 +20,9 @@ deploy:
    ec2-user@ec2-54-149-153-204.us-west-2.compute.amazonaws.com 'sudo ./deploy.sh'
  on:
    branch: master
+
+  #plz no steal key
+  addons:
+    sauce_connect:
+      username: "jobrot94"
+      access_key: "ab4eda0a-c39c-4107-b8d3-1a3ab459d16f"
