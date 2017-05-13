@@ -15,12 +15,11 @@ usingServer("http://" + username + ":" + accessKey +
   "@ondemand.saucelabs.com:80/wd/hub").
 build();
 
-//driver.get("http://saucelabs.com/test/guinea-pig");
-driver.get(username + ":" +accessKey+"@localhost:3000")
+driver.get("http://saucelabs.com/test/guinea-pig");
+//driver.get("http://"+username + ":" +accessKey+"@localhost:3000/wd/hub")
 
 driver.getTitle().then(function (title) {
   console.log("title is: " + title);
-  throw "This should break the build";
 });
 
 driver.quit();
