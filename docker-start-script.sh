@@ -54,8 +54,6 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" -o "$1" = "test" -o "$1" = 
             export DISPLAY=:99.0
             Xvfb :99 -screen 0 640x480x8 -nolisten tcp
             npm config set loglevel info
-            npm start &
-            gulp
             npm run-script test-selenium
 		fi
 	else
