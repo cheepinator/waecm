@@ -11,9 +11,9 @@ before_script:
     -in geppi_linux.private.enc -out ./deploy_key -d
   - docker build -t waecm-bsp1 .
 script:
-  #- docker run --name waecm-bsp1-test -comv $(pwd):/usr/src/app -p 8080:3000 waecm-bsp1 test
+  - docker run --name waecm-bsp1-test -comv $(pwd):/usr/src/app -p 8080:3000 waecm-bsp1 test
 after_script:
-  #- docker rm -f waecm-bsp1-test
+  - docker rm -f waecm-bsp1-test
 deploy:
  provider: script
  skip_cleanup: true
