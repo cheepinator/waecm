@@ -12,7 +12,7 @@ before_script:
   - docker build -t waecm-bsp1 .
 script:
   - docker run --name waecm-bsp1-test -comv $(pwd):/usr/src/app -p 8080:3000 waecm-bsp1 test
-  - node tests/selenium/selenium-webdriver-simple.js
+  # node tests/selenium/selenium-webdriver-simple.js
 after_script:
   - docker rm -f waecm-bsp1-test
 deploy:
