@@ -44,7 +44,7 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" -o "$1" = "test" \) -a \( -
         npm run-script coverage-server
     elif [ "$1" = "selenium" ]
     			then
-        	  echo "testing ..."
+        	  echo "testing selenium ..."
             export CHROME_BIN=/usr/bin/chromium-browser
             cp -a /usr/src/app/. /usr/src/tmp/
             cd /usr/src/tmp
@@ -52,13 +52,12 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" -o "$1" = "test" \) -a \( -
             npm install
             typings install
             export DISPLAY=:99.0
-            Xvfb :99 -screen 0 640x480x8 -nolisten tcp &
-            gulp coverage_frontend
+            Xvfb :99 -screen 0 640x480x8 -nolisten tcp
             npm config set loglevel info
             npm run-script test-selenium
 		fi
 	else
-		echo "usage: build | deploy | build deploy | test"
+		echo "usage: build | deploy | build deploy | test | selenium"
 fi
 
 
