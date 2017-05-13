@@ -1,24 +1,21 @@
 language: node_js
-
 os:
   - linux
 services:
   - docker
-
 node_js:
   - "6.10.1"
-
 sudo: true
-
 before_script:
   - docker build -t waecm-bsp1 .
-
 script:
-  - docker run -v $(pwd):/usr/src/app -p 8080:3000 waecm-bsp1 test
-
-after_success:
-- if [ "$TRAVIS_BRANCH" == "master" ]; then
-  docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" registry.heroku.com;
-  docker tag waecm-bsp1 uber-banking/web;
-  docker push uber-banking/web;
-  fi
+  #- docker run --name waecm-bsp1-test -comv $(pwd):/usr/src/app -p 8080:3000 waecm-bsp1 test
+after_script:
+  #- docker rm -f waecm-bsp1-test
+deploy:
+ provider: script
+ skip_cleanup: true
+ script: chmod 600 geppi_linux.private && ssh -o StrictHostKeyChecking=no -i ./geppi_linux.private
+   ec2-user@ec2-54-149-153-204.us-west-2.compute.amazonaws.com 'sudo ./deploy.sh'
+ on:
+   branch: master
