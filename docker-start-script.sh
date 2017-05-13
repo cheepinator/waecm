@@ -1,4 +1,4 @@
-if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" -o "$1" = "test" -o "$1" = "selenium"\) -a \( -z "$2" -o \( "$1" = "build" -a "$2" = "deploy" \) \) ]
+if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" -o "$1" = "test" -o "$1" = "selenium" \) -a \( -z "$2" -o \( "$1" = "build" -a "$2" = "deploy" \) \) ]
 	then
 	npm config set loglevel warn
 		if [ "$1" = "build" ]
@@ -54,6 +54,8 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" -o "$1" = "test" -o "$1" = 
             export DISPLAY=:99.0
             Xvfb :99 -screen 0 640x480x8 -nolisten tcp
             npm config set loglevel info
+            npm start &
+            gulp
             npm run-script test-selenium
 		fi
 	else
