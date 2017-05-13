@@ -1,4 +1,4 @@
-if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" -o "$1" = "test" \) -a \( -z "$2" -o \( "$1" = "build" -a "$2" = "deploy" \) \) ]
+if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" -o "$1" = "test" -o "$1" = "selenium"\) -a \( -z "$2" -o \( "$1" = "build" -a "$2" = "deploy" \) \) ]
 	then
 	npm config set loglevel warn
 		if [ "$1" = "build" ]
