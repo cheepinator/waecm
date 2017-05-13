@@ -9,8 +9,8 @@ sudo: true
 before_script:
   - docker build -t waecm-bsp1 .
 script:
-  #- docker run --name waecm-bsp1-test -comv $(pwd):/usr/src/app -p 8080:3000 waecm-bsp1 test
-  - node tests/selenium/selenium-webdriver-simple.js
+  - docker run --name waecm-bsp1-test -comv $(pwd):/usr/src/app -p 8080:3000 waecm-bsp1 selenium
+  # - node tests/selenium/selenium-webdriver-simple.js
 after_script:
   #- docker rm -f waecm-bsp1-test
 deploy:
@@ -22,7 +22,7 @@ deploy:
    branch: master
 
   #plz no steal key
-  addons:
-    sauce_connect:
-      username: "jobrot94"
-      access_key: "ab4eda0a-c39c-4107-b8d3-1a3ab459d16f"
+addons:
+  sauce_connect:
+    username: "jobrot94"
+    access_key: "ab4eda0a-c39c-4107-b8d3-1a3ab459d16f"
