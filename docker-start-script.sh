@@ -61,7 +61,7 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" -o "$1" = "test" -o "$1" = 
             sleeplesssleep 1m
             echo "start script finished"
             npm run-script test-selenium
-            ech "test-selenium finished"
+            echo "test-selenium finished"
 		fi
 	else
 		echo "usage: build | deploy | build deploy | test | selenium"
