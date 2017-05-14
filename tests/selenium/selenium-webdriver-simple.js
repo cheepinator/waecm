@@ -3,8 +3,9 @@ var webdriver = require('selenium-webdriver'),
   accessKey = "ab4eda0a-c39c-4107-b8d3-1a3ab459d16f",
   driver;
 
-
-
+// var remote = require('selenium-webdriver/remote')
+//
+// new remote
 
 driver = new webdriver.Builder().
 withCapabilities({
@@ -14,8 +15,7 @@ withCapabilities({
   'username': username,
   'accessKey': accessKey
 }).
-usingServer("http://" + username + ":" + accessKey +
-  "@localhost:4445/wd/hub").
+usingServer("http://@localhost:4445/wd/hub").
 build();
 
 // driver = new webdriver.Builder().
