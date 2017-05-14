@@ -15,8 +15,8 @@ usingServer("http://" + username + ":" + accessKey +
   "@ondemand.saucelabs.com:80/wd/hub").
 build();
 
-driver.get("http://saucelabs.com/test/guinea-pig");
-//driver.get("http://"+username + ":" +accessKey+"@localhost:3000/wd/hub")
+//driver.get("http://saucelabs.com/test/guinea-pig");
+driver.get("http://"+username + ":" +accessKey+"@localhost:3000/wd/hub")
 //https://github.com/itayw/selenium-ide-webdriver-node
 
 driver.getTitle().then(function (title) {
