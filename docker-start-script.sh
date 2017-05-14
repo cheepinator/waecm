@@ -45,16 +45,20 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" -o "$1" = "test" -o "$1" = 
     elif [ "$1" = "selenium" ]
     			then
         	  echo "testing selenium ..."
-            export CHROME_BIN=/usr/bin/chromium-browser
+            #export CHROME_BIN=/usr/bin/chromium-browser
             cp -a /usr/src/app/. /usr/src/tmp/
             cd /usr/src/tmp
             npm install -g bower
             npm install
             typings install
-            export DISPLAY=:99.0
-            Xvfb :99 -screen 0 640x480x8 -nolisten tcp
+            #export DISPLAY=:99.0
+            #Xvfb :99 -screen 0 640x480x8 -nolisten tcp
+            echo "starting with npm"
             npm config set loglevel info
+            npm run-script start
+            echo "start script finished"
             npm run-script test-selenium
+            ech "test-selenium finished"
 		fi
 	else
 		echo "usage: build | deploy | build deploy | test | selenium"
