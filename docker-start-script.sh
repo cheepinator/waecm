@@ -54,10 +54,11 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" -o "$1" = "test" -o "$1" = 
             #export DISPLAY=:99.0
             #Xvfb :99 -screen 0 640x480x8 -nolisten tcp
             echo "starting mongodb"
-            /usr/bin/mongod
+            /usr/bin/mongod &
             echo "starting with npm"
             npm config set loglevel info
-            npm run-script start
+            npm run-script start &
+            sleeplesssleep 1m
             echo "start script finished"
             npm run-script test-selenium
             ech "test-selenium finished"
