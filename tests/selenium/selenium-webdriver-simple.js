@@ -36,12 +36,21 @@ var client = require('webdriverio').remote({
     browserName: 'chrome'
   }
 });
+console.log("starting simple test");
 
 client
   .init()
-  .url('http://localhost')
+  .url('http://localhost:3333')
+  .getTitle().then(function(title) {
+  console.log('Title is: ' + title)})
+  .setValue("#md-input-1","max.mustermann")
+  .setValue("#md-input-3","password")
+  .click("#login")
+  .then(console.log("im here"))
   .getTitle().then(console.log)
   .end();
+
+console.log("simple test finished")
 
 
 
