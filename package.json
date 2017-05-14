@@ -55,6 +55,7 @@
     "tweetnacl-util": "^0.15.0",
     "twilio": "^2.11.1",
     "typescript": "^2.1.5",
+    "webdriverio": "^4.8.0",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
