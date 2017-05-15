@@ -15,7 +15,7 @@ withCapabilities({
   'username': username,
   'accessKey': accessKey
 }).
-usingServer("http://@localhost:4445/wd/hub").
+usingServer("http://localhost:4445/wd/hub").
 build();
 
 // driver = new webdriver.Builder().
