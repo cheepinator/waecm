@@ -58,7 +58,7 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" -o "$1" = "test" -o "$1" = 
             echo "starting with npm"
             npm config set loglevel info
             npm run-script start &
-            sleep 1m
+            sleep 5s
             echo "start script finished"
             npm run-script test-selenium
             echo "test-selenium finished"
