@@ -15,7 +15,8 @@ withCapabilities({
   //'username': username,
   //'accessKey': accessKey
 }).
-usingServer("http://"+username+":"+accessKey+"@localhost:4445/wd/hub").
+usingServer("http://"+username+":"+accessKey+"@ondemand.saucelabs.cmo/wd/hub").
+//usingServer("http://"+username+":"+accessKey+"@localhost:4445/wd/hub").
 build();
 console.log("building webdriver finished");
 
