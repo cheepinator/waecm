@@ -1,3 +1,4 @@
+const {By} = require('selenium-webdriver/lib/by')
 var webdriver = require('selenium-webdriver'),
   username = "jobrot94",
   accessKey = "ab4eda0a-c39c-4107-b8d3-1a3ab459d16f",
@@ -45,18 +46,25 @@ console.log("building webdriver finished");
 //driver.get("http://"+username + ":" +accessKey+"@localhost:3000/wd/hub")
 //https://github.com/itayw/selenium-ide-webdriver-node
 //driver.get("127.0.0.1:3000");
-//driver.get("localhost:3333");
+driver.get("localhost:3333").then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('max.mustermann'))
+  .then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('password'))
+  .then(_ => driver.findElement(By.id('#login')).click());
 //driver.get("/");
 
-driver.get('http://localhost:3333')
-  .getTitle().then(function(title) {
-  console.log('Title is: ' + title)})
-  .setValue("#md-input-1","max.mustermann")
-  .setValue("#md-input-3","password")
-  .click("#login")
-  .then(console.log("im here"))
-  .getTitle().then(console.log)
-  .end();
+// driver.findElements(webdriver.By.css("#md-input-1").then(function(links)
+// {console.log('Found', links.length, 'Wiki links.' );
+// }));
+
+
+// driver.get('http://localhost:3333')
+//   .getTitle().then(function(title) {
+//   console.log('Title is: ' + title)})
+//   .setValue("#md-input-1","max.mustermann")
+//   .setValue("#md-input-3","password")
+//   .click("#login")
+//   .then(console.log("im here"))
+//   .getTitle().then(console.log)
+//   .end();
 
 
 driver.getTitle().then(function (title) {
