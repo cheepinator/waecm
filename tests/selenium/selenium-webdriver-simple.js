@@ -45,8 +45,18 @@ console.log("building webdriver finished");
 //driver.get("http://"+username + ":" +accessKey+"@localhost:3000/wd/hub")
 //https://github.com/itayw/selenium-ide-webdriver-node
 //driver.get("127.0.0.1:3000");
-driver.get("localhost:3333");
+//driver.get("localhost:3333");
 //driver.get("/");
+
+driver.get('http://localhost:3333')
+  .getTitle().then(function(title) {
+  console.log('Title is: ' + title)})
+  .setValue("#md-input-1","max.mustermann")
+  .setValue("#md-input-3","password")
+  .click("#login")
+  .then(console.log("im here"))
+  .getTitle().then(console.log)
+  .end();
 
 
 driver.getTitle().then(function (title) {
