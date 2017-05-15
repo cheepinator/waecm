@@ -12,11 +12,12 @@ withCapabilities({
   'browserName': 'chrome',
   'platform': 'Windows XP',
   'version': '43.0',
-  'username': username,
-  'accessKey': accessKey
+  //'username': username,
+  //'accessKey': accessKey
 }).
-usingServer("http://localhost:4445/wd/hub").
+usingServer("http://"+username+":"+accessKey+"@localhost:4445/wd/hub").
 build();
+console.log("building webdriver finished");
 
 // driver = new webdriver.Builder().
 // withCapabilities({
