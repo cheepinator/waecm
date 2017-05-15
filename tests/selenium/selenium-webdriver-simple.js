@@ -15,10 +15,17 @@ withCapabilities({
   //'username': username,
   //'accessKey': accessKey
 }).
-usingServer("http://"+username+":"+accessKey+"@ondemand.saucelabs.cmo/wd/hub").
+usingServer("http://"+username+":"+accessKey+"@ondemand.saucelabs.com/wd/hub").
 //usingServer("http://"+username+":"+accessKey+"@localhost:4445/wd/hub").
 build();
 console.log("building webdriver finished");
+
+
+//localhost:
+//
+//saucelabs ondemand
+//Error: ENOTFOUND getaddrinfo ENOTFOUND ondemand.saucelabs.cmo ondemand.saucelabs.cmo:80
+
 
 // driver = new webdriver.Builder().
 // withCapabilities({
