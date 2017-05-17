@@ -1,13 +1,15 @@
-/*import mongoose from "mongoose";
+import mongoose from "mongoose";
 import UserDAO from "../../../server/api/dao/userDAO";
+import {expect} from "chai";
 import {setupMongoose, createUserAndAccounts} from "../_helpers/db";
 
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 let server = require('../../../server/server');
+
 chai.use(chaiHttp);
 
-describe("accountController", () => {
+describe("token", () => {
   before(() => {
     setupMongoose(mongoose);
   });
@@ -16,57 +18,39 @@ describe("accountController", () => {
     UserDAO.remove({}, () => done());
   })
 
-  describe("/GET getAccountByUser", () => {
-    beforeEach((done) => {
-      createUserAndAccounts()
-        .then(() => done())
-        .catch(() => done());
-    })
+  describe("/GET accountByUsername", () => {
 
-      it('it should GET all the Accounts of the user', (done) => {
+    it('it should get the Account by Username and first login', (done) => {
 
-        let _onSuccess = todos => {
-          expect(todos).to.be.defined;
-          expect(todos[0]).to.have.property("username").and.to.equal("aaaaaaa0");
-          expect(todos[0]).to.have.property("createdAt").and.to.be.defined;
+      process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+      chai.request(server)
+        .post('/api/token')
+        .send({username: 'max.mustermann', password: 'password'})
+        .end((err, res) => {
+          expect(res.status).to.equal(201);
+          expect(res.body).to.have.property("id_token");
 
-          done();
-        }
+          //retrieve token, so that we are logged in
+          let token = res.body.id_token;
 
-        let _onError = (err) => {
-          expect(true).to.be.false; // should not come here
-        }
+          chai.request(server)
+            .get('/api/protected/account')
+            .set('Authorization', 'Bearer '+token)
+            .send({username: 'max.mustermann'})
+            .end((err2, res2) => {
+              expect(res2.status).to.equal(200);
+              expect(res2.body).to.have.property("balance");
+              expect(res2.body).to.have.property("iban");
+            });
 
-        chai.request(server)
-          .get('/book')
-          .end((err, res) => {
-            res.should.have.status(200);
-            res.body.should.be.a('array');
-            res.body.length.should.be.eql(0);
-            done();
-          });
-      });
+        });
+    });
 
-    it("should get all todos", (done) => {
-      let _onSuccess = todos => {
-        expect(todos).to.be.defined;
-        expect(todos[0]).to.have.property("username").and.to.equal("aaaaaaa0");
-        expect(todos[0]).to.have.property("createdAt").and.to.be.defined;
 
-        done();
-      }
 
-      let _onError = (err) => {
-        expect(true).to.be.false; // should not come here
-      }
+  });
 
-      TodoDAO
-        .getAll()
-        .then(_onSuccess)
-        .catch(_onError);
-    })
-  })
+
 
 })
 
-*/
