@@ -19,7 +19,7 @@ withCapabilities({
 //usingServer("http://"+username+":"+accessKey+"@ondemand.saucelabs.com/wd/hub").
 usingServer("http://"+username+":"+accessKey+"@localhost:4445/wd/hub").    //DAS IST FÜR SAUCECONNECT
 build();
-console.log("building webdriver finished");
+console.log("building webdriver finished usr: " + username +" key: "+accessKey);
 
 
 //localhost:
