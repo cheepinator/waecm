@@ -53,11 +53,13 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" -o "$1" = "test" -o "$1" = 
             typings install
             #export DISPLAY=:99.0
             #Xvfb :99 -screen 0 640x480x8 -nolisten tcp
+            gulp client.build:dist
             echo "starting mongodb"
             /usr/bin/mongod &
             echo "starting with npm"
             npm config set loglevel info
-            npm run-script dev &
+            npm start &
+            gulp &
             sleep 5s
             echo "start script finished"
             npm run-script test-selenium
