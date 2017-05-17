@@ -9,7 +9,7 @@ sudo: true
 before_script:
   - docker build -t waecm-bsp1 .
 script:
-  - docker run -v $(pwd):/usr/src/app -p 8080:3000 waecm-bsp1 selenium
+  - docker run -v $(pwd):/usr/src/app -p 8080:3000 -p 4445:4445 waecm-bsp1 selenium
   # - docker run --name waecm-bsp1-test -comv $(pwd):/usr/src/app -p 8080:3000 waecm-bsp1 test
   # - node tests/selenium/selenium-webdriver-simple.js
 after_script:
