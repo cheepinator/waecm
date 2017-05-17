@@ -1,3 +1,4 @@
 {
-  "localhost": "mongodb://localhost:27017/stodtradl"
+  "_alternativelocalhost": "mongodb://localhost:27017/stodtradl",
+  "localhost": "mongodb://192.168.99.100:32768/stodtradl"
 }
