@@ -19,8 +19,8 @@ describe("userDAO", () => {
 
     beforeEach((done) => {
       createUserAndAccounts()
-        .then(() => {console.log("THEN"); done();})
-        .catch(() => {console.log("ERROR"); done();});
+        .then(() => { done();})
+        .catch(() => { done();});
     })
 
     it("should get all users", (done) => {
@@ -40,7 +40,6 @@ describe("userDAO", () => {
       }
 
       let _onError = (err) => {
-        //console.log(err);
         expect(true).to.be.false; // should not come here
       }
 
@@ -57,8 +56,8 @@ describe("userDAO", () => {
 
     beforeEach((done) => {
       createUserAndAccounts()
-        .then(() => {console.log("THEN"); done();})
-        .catch(() => {console.log("ERROR"); done();});
+        .then(() => done())
+        .catch(() => done());
     })
 
     it("should get all users", (done) => {
@@ -95,8 +94,8 @@ describe("userDAO", () => {
 
     beforeEach((done) => {
       createUserAndAccounts()
-        .then(() => {console.log("THEN"); done();})
-        .catch(() => {console.log("ERROR"); done();});
+        .then(() =>  done())
+        .catch(() => done());
     })
 
     it("should get user", (done) => {
@@ -131,8 +130,8 @@ describe("userDAO", () => {
 
     beforeEach((done) => {
       createUserAndAccounts()
-        .then(() => {console.log("THEN"); done();})
-        .catch(() => {console.log("ERROR"); done();});
+        .then(() =>  done())
+        .catch(() =>  done());
     })
 
     it("should throw exception due to invalid username", (done) => {
@@ -156,8 +155,8 @@ describe("userDAO", () => {
 
     beforeEach((done) => {
       createUserAndAccounts()
-        .then(() => {console.log("THEN"); done();})
-        .catch(() => {console.log("ERROR"); done();});
+        .then(() =>  done())
+        .catch(() => done());
     })
 
     it("should get user", (done) => {
@@ -190,8 +189,8 @@ describe("userDAO", () => {
 
     beforeEach((done) => {
       createUserAndAccounts()
-        .then(() => {console.log("THEN"); done();})
-        .catch(() => {console.log("ERROR"); done();});
+        .then(() =>  done())
+        .catch(() =>  done());
     })
 
     it("should throw exception due to invalid iban", (done) => {
