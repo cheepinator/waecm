@@ -3,7 +3,8 @@ import User from "../../../../server/api/dao/userDAO";
 import {expect} from "chai";
 import {setupMongoose, createUserAndAccounts} from "../../_helpers/db";
 
-describe("todo.dao", () => {
+describe("userDAO", () => {
+
   before(() => {
     setupMongoose(mongoose);
   });
@@ -13,6 +14,7 @@ describe("todo.dao", () => {
   })
 
   describe("getAll", () => {
+
     beforeEach((done) => {
       createUserAndAccounts()
         .then(() => done())
@@ -22,7 +24,7 @@ describe("todo.dao", () => {
     it("should get all users", (done) => {
       let _onSuccess = users => {
         expect(users).to.be.defined;
-        for (let i = 0; i < count; i++) {
+        for (let i = 0; i < 1; i++) {
           expect(users[i]).to.have.property("username").and.to.equal("user"+i);
           expect(users[i]).to.have.property("password").and.to.equal("password"+i);
           expect(users[i]).to.have.property("firstName").and.to.equal("Max"+i);
@@ -42,6 +44,8 @@ describe("todo.dao", () => {
         .getAll()
         .then(_onSuccess)
         .catch(_onError);
+
+      done();
     })
   })
 /*

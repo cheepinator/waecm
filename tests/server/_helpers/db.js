@@ -21,6 +21,7 @@ exports.createTodos = () => {
 
 exports.createUserAndAccounts = () => {
   let count = 10;
+  let _array = [];
 
   for (let i = 0; i < count; i++) {
 
@@ -44,13 +45,15 @@ exports.createUserAndAccounts = () => {
       transactions: transArray
     }
 
-      User.createUser({
-        username: 'user'+i,
-        password: 'password'+i,
-        firstName: 'Max'+i,
-        lastName: 'Muster'+i,
-        phoneNumber: '0123456789'+i,
-        bankAccount: ba
-      });
+    _array.push({
+      username: 'user'+i,
+      password: 'password'+i,
+      firstName: 'Max'+i,
+      lastName: 'Muster'+i,
+      phoneNumber: '0123456789'+i,
+      bankAccount: ba
+    });
   }
+
+  return User.create(_array);
 }
