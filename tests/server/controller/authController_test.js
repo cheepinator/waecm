@@ -26,7 +26,6 @@ describe("token", () => {
       chai.request(server)
         .post('/api/users')
         .send({username: 'user100', password: 'password'})
-        //.send({username: 'user0', password: '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'})
         .end((err, res) => {
           expect(res.status).to.equal(201);
           expect(res.body).to.have.property("id_token");
