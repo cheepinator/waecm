@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
-import UserDAO from "../../../../server/api/dao/userDAO";
+import UserDAO from "../../../server/api/dao/userDAO";
 import {expect} from "chai";
-import {setupMongoose, createUserAndAccounts} from "../../_helpers/db";
+import {setupMongoose, createUserAndAccounts} from "../_helpers/db";
 
 describe("userDAO", () => {
 
@@ -64,7 +64,7 @@ describe("userDAO", () => {
       let _onSuccess = users => {
         expect(users).to.be.defined;
 
-        for (let i = 0; i < 1; i++) {
+        for (let i = 0; i < 10; i++) {
           expect(users[i]).to.have.property("username").and.to.equal("user"+i);
           expect(users[i]).to.have.property("password").and.to.equal("password"+i);
           expect(users[i]).to.have.property("firstName").and.to.equal("Max"+i);
@@ -77,7 +77,7 @@ describe("userDAO", () => {
       }
 
       let _onError = (err) => {
-        //console.log(err);
+        console.log(err);
         expect(true).to.be.false; // should not come here
       }
 
