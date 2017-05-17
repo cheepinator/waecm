@@ -50,7 +50,7 @@ console.log("building webdriver finished");
 
 
 
-driver.get("https://localhost:3000").then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('max.mustermann'))
+driver.get("https://localhost:8080").then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('max.mustermann'))
   .then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('password'))
   .then(_ => driver.findElement(By.id('#login')).click());
 
