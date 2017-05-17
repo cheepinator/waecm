@@ -15,10 +15,9 @@ describe("userDAO", () => {
   })
 
 
-  describe("getAll", () => {
+  describe("getAllUsers", () => {
 
     beforeEach((done) => {
-      console.log("test before each");
       createUserAndAccounts()
         .then(() => {console.log("THEN"); done();})
         .catch(() => {console.log("ERROR"); done();});
@@ -26,15 +25,13 @@ describe("userDAO", () => {
 
     it("should get all users", (done) => {
       let _onSuccess = users => {
-        console.log("TEST IT");
-        console.log(users)
         expect(users).to.be.defined;
 
         for (let i = 0; i < 1; i++) {
-          expect(users[i]).to.have.property("username").and.to.equal("userddd"+i);
+          expect(users[i]).to.have.property("username").and.to.equal("user"+i);
           expect(users[i]).to.have.property("password").and.to.equal("password"+i);
           expect(users[i]).to.have.property("firstName").and.to.equal("Max"+i);
-          expect(users[i]).to.have.property("lastName").and.to.equal("Mustersssd"+i);
+          expect(users[i]).to.have.property("lastName").and.to.equal("Muster"+i);
           expect(users[i]).to.have.property("phoneNumber").and.to.equal("0123456789"+i);
           expect(users[i]).to.have.property("bankAccount").and.to.be.defined;
         }
@@ -43,13 +40,50 @@ describe("userDAO", () => {
       }
 
       let _onError = (err) => {
-        done();
+        //console.log(err);
         expect(true).to.be.false; // should not come here
       }
 
-      console.log("TEST");
       UserDAO
         .getAllUsers()//.then(() => console.log("TEST"), (users) => console.log(users))
+        .then(_onSuccess)
+        .catch(_onError);
+
+
+    })
+  })
+
+  describe("getAll", () => {
+
+    beforeEach((done) => {
+      createUserAndAccounts()
+        .then(() => {console.log("THEN"); done();})
+        .catch(() => {console.log("ERROR"); done();});
+    })
+
+    it("should get all users", (done) => {
+      let _onSuccess = users => {
+        expect(users).to.be.defined;
+
+        for (let i = 0; i < 1; i++) {
+          expect(users[i]).to.have.property("username").and.to.equal("user"+i);
+          expect(users[i]).to.have.property("password").and.to.equal("password"+i);
+          expect(users[i]).to.have.property("firstName").and.to.equal("Max"+i);
+          expect(users[i]).to.have.property("lastName").and.to.equal("Muster"+i);
+          expect(users[i]).to.have.property("phoneNumber").and.to.equal("0123456789"+i);
+          expect(users[i]).to.have.property("bankAccount").and.to.be.defined;
+        }
+
+        done();
+      }
+
+      let _onError = (err) => {
+        //console.log(err);
+        expect(true).to.be.false; // should not come here
+      }
+
+      UserDAO
+        .getAll()//.then(() => console.log("TEST"), (users) => console.log(users))
         .then(_onSuccess)
         .catch(_onError);
 
@@ -60,7 +94,6 @@ describe("userDAO", () => {
   describe("getByUsername", () => {
 
     beforeEach((done) => {
-      console.log("test before each");
       createUserAndAccounts()
         .then(() => {console.log("THEN"); done();})
         .catch(() => {console.log("ERROR"); done();});
@@ -68,8 +101,6 @@ describe("userDAO", () => {
 
     it("should get user", (done) => {
       let _onSuccess = user => {
-        console.log("TEST IT");
-        console.log(user)
         expect(user).to.be.defined;
 
         expect(user.username).to.equal("user0");
@@ -87,13 +118,96 @@ describe("userDAO", () => {
         expect(true).to.be.false; // should not come here
       }
 
-      console.log("TEST Start");
       UserDAO
         .getByUsername("user0")//.then(() => console.log("TEST"), (users) => console.log(users))
         .then(_onSuccess)
         .catch(_onError);
 
 
+    })
+  })
+
+  describe("getByUserame_invalid", () => {
+
+    beforeEach((done) => {
+      createUserAndAccounts()
+        .then(() => {console.log("THEN"); done();})
+        .catch(() => {console.log("ERROR"); done();});
+    })
+
+    it("should throw exception due to invalid username", (done) => {
+      let _onSuccess = user => {
+        expect(true).to.be.false;
+      }
+
+      let _onError = (err) => {
+        expect(err).to.be.defined;
+        done();
+      }
+
+      UserDAO
+        .getByUsername("user000")
+        .then(_onSuccess)
+        .catch(_onError);
+    })
+  })
+
+  describe("getByIBAN", () => {
+
+    beforeEach((done) => {
+      createUserAndAccounts()
+        .then(() => {console.log("THEN"); done();})
+        .catch(() => {console.log("ERROR"); done();});
+    })
+
+    it("should get user", (done) => {
+      let _onSuccess = user => {
+        expect(user).to.be.defined;
+
+        expect(user.username).to.equal("user0");
+        expect(user.password).to.equal("password0");
+        expect(user.firstName).to.equal("Max0");
+        expect(user.lastName).to.equal("Muster0");
+        expect(user.phoneNumber).and.to.equal("01234567890");
+        expect(user.bankAccount).and.to.be.defined;
+
+        done();
+      }
+
+      let _onError = (err) => {
+        console.log(err);
+        expect(true).to.be.false; // should not come here
+      }
+
+      UserDAO
+        .getByIBAN("IBAN0")//.then(() => console.log("TEST"), (users) => console.log(users))
+        .then(_onSuccess)
+        .catch(_onError);
+    })
+  })
+
+  describe("getByIBAN_invalid", () => {
+
+    beforeEach((done) => {
+      createUserAndAccounts()
+        .then(() => {console.log("THEN"); done();})
+        .catch(() => {console.log("ERROR"); done();});
+    })
+
+    it("should throw exception due to invalid iban", (done) => {
+      let _onSuccess = user => {
+        expect(true).to.be.false;
+      }
+
+      let _onError = (err) => {
+        expect(err).to.be.defined;
+        done();
+      }
+
+      UserDAO
+        .getByIBAN("IBAN000")//.then(() => console.log("TEST"), (users) => console.log(users))
+        .then(_onSuccess)
+        .catch(_onError);
     })
   })
 
@@ -132,11 +246,10 @@ describe("userDAO", () => {
         expect(user.username).to.equal("user");
         expect(user.password).to.equal("password");
         expect(user.firstName).to.equal("Max");
-        expect(user.lastName).to.equal("Mustersssd");
+        expect(user.lastName).to.equal("Muster");
         expect(user.phoneNumber).and.to.equal("0123456789");
         expect(user.bankAccount).and.to.be.undefined;
 
-        console.log("TEST GEHT");
 
         done();
       }
