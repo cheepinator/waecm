@@ -16,8 +16,8 @@ withCapabilities({
   //'username': username,
   //'accessKey': accessKey
 }).
-usingServer("http://"+username+":"+accessKey+"@ondemand.saucelabs.com/wd/hub").
-//usingServer("http://"+username+":"+accessKey+"@localhost:4445/wd/hub").
+//usingServer("http://"+username+":"+accessKey+"@ondemand.saucelabs.com/wd/hub").
+usingServer("http://"+username+":"+accessKey+"@localhost:4445/wd/hub").    //DAS IST FÜR SAUCECONNECT
 build();
 console.log("building webdriver finished");
 
@@ -48,7 +48,7 @@ console.log("building webdriver finished");
 //driver.get("127.0.0.1:3000");
 
 
-
+//ich glaube, das sauceconnect wird einfach ignoriert
 
 driver.get("https://localhost:3000").then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('max.mustermann'))
   .then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('password'))
