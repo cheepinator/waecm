@@ -26,7 +26,7 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" -o "$1" = "test" -o "$1" = 
         gulp client.build:dist
         /usr/bin/mongod &
         npm start &
-        gulp
+        gulp & #todo & entfernen
     elif [ "$1" = "test" ]
 			then
     	  echo "testing ..."
