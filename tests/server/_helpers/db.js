@@ -1,11 +1,13 @@
 import Todo from "../../../server/api/todo/dao/todo-dao";
 import User from "../../../server/api/dao/userDAO";
-import userSchema from "../../../server/api/model/userModel";
-import dbJson from "./db.json";
+import dbConst from "../../../server/constants/db.json";
 
 exports.setupMongoose = (mongoose) => {
   mongoose.models = {};
-  mongoose.connect(dbJson.db.test.url);
+
+  const URL = (process.env.NODE_ENV === "production") ? process.env.MONGOHQ_URL
+    : dbConst.localhost;
+  mongoose.connect(URL);
   mongoose.connection.on("error", () => {});
 }
 
