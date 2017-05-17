@@ -23,29 +23,29 @@ describe("accountController", () => {
         .catch(() => done());
     })
 
-      it('it should GET all the Accounts of the user', (done) => {
+    it('it should GET all the Accounts of the user', (done) => {
 
-        let _onSuccess = todos => {
-          expect(todos).to.be.defined;
-          expect(todos[0]).to.have.property("username").and.to.equal("aaaaaaa0");
-          expect(todos[0]).to.have.property("createdAt").and.to.be.defined;
+      let _onSuccess = todos => {
+        expect(todos).to.be.defined;
+        expect(todos[0]).to.have.property("username").and.to.equal("aaaaaaa0");
+        expect(todos[0]).to.have.property("createdAt").and.to.be.defined;
 
+        done();
+      }
+
+      let _onError = (err) => {
+        expect(true).to.be.false; // should not come here
+      }
+
+      chai.request(server)
+        .get('/book')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('array');
+          res.body.length.should.be.eql(0);
           done();
-        }
-
-        let _onError = (err) => {
-          expect(true).to.be.false; // should not come here
-        }
-
-        chai.request(server)
-          .get('/book')
-          .end((err, res) => {
-            res.should.have.status(200);
-            res.body.should.be.a('array');
-            res.body.length.should.be.eql(0);
-            done();
-          });
-      });
+        });
+    });
 
     it("should get all todos", (done) => {
       let _onSuccess = todos => {
