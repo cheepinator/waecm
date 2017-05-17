@@ -7,14 +7,15 @@ node_js:
   - "6.10.1"
 sudo: true
 before_script:
+
   - docker build -t waecm-bsp1 .
-  - curl https://gist.github.com/santiycr/5139565/raw/sauce_connect_setup.sh | bash
 script:
   - docker run -v $(pwd):/usr/src/app -p 8080:3000 waecm-bsp1 selenium
   # - docker run --name waecm-bsp1-test -comv $(pwd):/usr/src/app -p 8080:3000 waecm-bsp1 test
   # - node tests/selenium/selenium-webdriver-simple.js
 after_script:
   #- docker rm -f waecm-bsp1-test
+  - node tests/selenium/selenium-webdriver-simple.js
 deploy:
  provider: script
  skip_cleanup: true
