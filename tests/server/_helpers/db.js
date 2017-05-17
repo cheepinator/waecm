@@ -54,6 +54,14 @@ exports.createUserAndAccounts = () => {
       bankAccount: ba
     });
   }
+/*
+  console.log(User.createUser({
+    username: 'user',
+    password: 'password',
+    firstName: 'Max',
+    lastName: 'Muster',
+    phoneNumber: '0123456789'
+  }));*/
 
   return User.create(_array);
 }
