@@ -11,11 +11,12 @@ before_script:
   - docker build -t waecm-bsp1 .
 script:
   - docker run -v $(pwd):/usr/src/app -p 8080:3000 waecm-bsp1 selenium
+  - node tests/selenium/selenium-webdriver-simple.js
   # - docker run --name waecm-bsp1-test -comv $(pwd):/usr/src/app -p 8080:3000 waecm-bsp1 test
   # - node tests/selenium/selenium-webdriver-simple.js
 after_script:
   #- docker rm -f waecm-bsp1-test
-  - node tests/selenium/selenium-webdriver-simple.js
+
 deploy:
  provider: script
  skip_cleanup: true
