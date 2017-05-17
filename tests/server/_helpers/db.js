@@ -46,7 +46,7 @@ exports.createUserAndAccounts = () => {
 
     _array.push({
       username: 'user'+i,
-      password: 'password'+i,
+      password: 'password',
       firstName: 'Max'+i,
       lastName: 'Muster'+i,
       phoneNumber: '0123456789'+i,
