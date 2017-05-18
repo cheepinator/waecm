@@ -17,7 +17,7 @@ withCapabilities({
   //'accessKey': accessKey
 }).
 //usingServer("http://"+username+":"+accessKey+"@ondemand.saucelabs.com/wd/hub").
-usingServer("http://"+username+":"+accessKey+"@localhost:4445/wd/hub") //DAS IST FÜR SAUCECONNECT
+usingServer("http://"+username+":"+accessKey+"@localhost:4445/wd/hub"). //DAS IST FÜR SAUCECONNECT
   // .withCapabilities({
   //   'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,})
 build();
@@ -49,11 +49,16 @@ console.log("building webdriver finished usr: " + username +" key: "+accessKey);
 //https://github.com/itayw/selenium-ide-webdriver-node
 //driver.get("127.0.0.1:3000");
 
+driver.get("https://localhost:8080");
+
+driver.getTitle().then(function (title) {
+  console.log("title is: " + title);
+});
 
 // https://ec2-54-149-153-204.us-west-2.compute.amazonaws.com:8080/
-driver.get("https://localhost:8080").then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('max.mustermann'))
-  .then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('password'))
-  .then(_ => driver.findElement(By.id('#login')).click());
+// driver.get("https://localhost:8080").then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('max.mustermann'))
+//   .then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('password'))
+//   .then(_ => driver.findElement(By.id('#login')).click());
 
 // driver.get('http://www.google.com/ncr')
 //   .then(_ => driver.findElement(By.name('q')).sendKeys('webdriver'))
@@ -116,30 +121,5 @@ driver.get("https://localhost:8080").then(_ => driver.findElement(By.id('#md-inp
 // }, done);
 
 
-
-
-
-// echo "starting sauce..."
-//
-// CONNECT_URL="http://saucelabs.com/downloads/Sauce-Connect-latest.zip"
-// CONNECT_DIR="/tmp/sauce-connect-$RANDOM"
-// CONNECT_DOWNLOAD="Sauce_Connect.zip"
-// READY_FILE="connect-ready-$RANDOM"
-//
-// # Get Connect and start it
-// mkdir -p $CONNECT_DIR
-// cd $CONNECT_DIR
-// curl $CONNECT_URL > $CONNECT_DOWNLOAD
-// unzip $CONNECT_DOWNLOAD
-// rm $CONNECT_DOWNLOAD
-// java -jar Sauce-Connect.jar --readyfile $READY_FILE \
-// --tunnel-identifier $TRAVIS_JOB_NUMBER \
-// $SAUCE_USERNAME $SAUCE_ACCESS_KEY &
-//
-// # Wait for Connect to be ready before exiting
-// while [ ! -f $READY_FILE ]; do
-//   sleep .5
-// done
-// echo "sauce started"
 
 driver.quit();
