@@ -55,12 +55,12 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" -o "$1" = "test" -o "$1" = 
             echo "starting mongodb"
             /usr/bin/mongod &
             echo "starting with npm"
-            npm config set loglevel info
+            # npm config set loglevel info
             npm run-script dev &
             # sleep 5s
             echo "start script finished"
             # npm run-script dev &
-            # sleep 20s
+            sleep 5m
             # npm run-script test-selenium
             # echo "test-selenium finished"
 		fi
