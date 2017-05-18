@@ -37,3 +37,5 @@ addons:
   sauce_connect:
     username: "jobrot94"
     access_key: "ab4eda0a-c39c-4107-b8d3-1a3ab459d16f"
+  hosts:
+    - uberbank
