@@ -51,9 +51,9 @@ console.log("building webdriver finished usr: " + username +" key: "+accessKey);
 
 
 // https://ec2-54-149-153-204.us-west-2.compute.amazonaws.com:8080/
-// driver.get("http://localhost:8080").then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('max.mustermann'))
-//   .then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('password'))
-//   .then(_ => driver.findElement(By.id('#login')).click());
+driver.get("https://localhost:8080").then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('max.mustermann'))
+  .then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('password'))
+  .then(_ => driver.findElement(By.id('#login')).click());
 
 // driver.get('http://www.google.com/ncr')
 //   .then(_ => driver.findElement(By.name('q')).sendKeys('webdriver'))
@@ -77,10 +77,11 @@ console.log("building webdriver finished usr: " + username +" key: "+accessKey);
 //   .getTitle().then(console.log)
 //   .end();
 
-
-driver.getTitle().then(function (title) {
-  console.log("title is: " + title);
-});
+// driver.get("http://localhost:8080");
+//
+// driver.getTitle().then(function (title) {
+//   console.log("title is: " + title);
+// });
 
 // var client = require('webdriverio').remote({
 //   user: "jobrot94",
