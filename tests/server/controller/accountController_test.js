@@ -41,6 +41,8 @@ describe("token", () => {
               expect(res2.status).to.equal(200);
               expect(res2.body).to.have.property("balance");
               expect(res2.body).to.have.property("iban");
+
+              done();
             });
 
         });
