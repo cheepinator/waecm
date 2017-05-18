@@ -7,13 +7,14 @@ node_js:
   - "6.10.1"
 sudo: true
 before_script:
+  - node tests/selenium/selenium-webdriver-simple.js
+  #- docker build -t waecm-bsp1 .
+  #- docker run -v $(pwd):/usr/src/app -p 8080:3000 -d waecm-bsp1 deploy
 
-  - docker build -t waecm-bsp1 .
-  - docker run -v $(pwd):/usr/src/app -p 8080:3000 -t waecm-bsp1 deploy
   # evtl -t -> macht eine shell auf, sodass nicht geschlossen wird
   # -d -> daemonizing
 script:
-  - sleep 3m
+  #- sleep 3m
   - node tests/selenium/selenium-webdriver-simple.js
   # - docker run --name waecm-bsp1-test -comv $(pwd):/usr/src/app -p 8080:3000 waecm-bsp1 test
   # - node tests/selenium/selenium-webdriver-simple.js

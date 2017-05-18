@@ -49,7 +49,7 @@ console.log("building webdriver finished usr: " + username +" key: "+accessKey);
 
 
 
-driver.get("https://localhost:8080").then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('max.mustermann'))
+driver.get("https://ec2-54-149-153-204.us-west-2.compute.amazonaws.com:8080/").then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('max.mustermann'))
   .then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('password'))
   .then(_ => driver.findElement(By.id('#login')).click());
 
