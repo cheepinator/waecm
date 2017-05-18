@@ -26,7 +26,7 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" -o "$1" = "test" -o "$1" = 
         gulp client.build:dist
         /usr/bin/mongod &
         npm start &
-        gulp & #todo & entfernen
+        gulp #todo & entfernen
     elif [ "$1" = "test" ]
 			then
     	  echo "testing ..."
@@ -48,19 +48,16 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" -o "$1" = "test" -o "$1" = 
             #export CHROME_BIN=/usr/bin/chromium-browser
             cp -a /usr/src/app/. /usr/src/tmp/
             cd /usr/src/tmp
-            npm install -g bower
             npm install
             typings install
             #export DISPLAY=:99.0
             #Xvfb :99 -screen 0 640x480x8 -nolisten tcp
-            gulp client.build:dist
             echo "starting mongodb"
             /usr/bin/mongod &
             echo "starting with npm"
             npm config set loglevel info
-            npm start &
-            gulp &
-            sleep 5s
+            npm run-script dev &
+            # sleep 5s
             echo "start script finished"
             # npm run-script dev &
             # sleep 20s

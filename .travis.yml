@@ -8,13 +8,14 @@ node_js:
 sudo: true
 before_script:
   - docker build -t waecm-bsp1 .
-  - docker run -v $(pwd):/usr/src/app -p 8080:3000 -d waecm-bsp1 deploy
+  - docker run -v $(pwd):/usr/src/app -p 8080:3000 waecm-bsp1 selenium &
 
   # evtl -t -> macht eine shell auf, sodass nicht geschlossen wird
   # -d -> detach
 script:
   - sleep 3m
   - ps -ef | grep docker
+  - docker ps
   - curl https://localhost:8080 --insecure
   - node tests/selenium/selenium-webdriver-simple.js
   - ps -ef | grep docker
