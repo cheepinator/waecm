@@ -49,7 +49,7 @@ console.log("building webdriver finished usr: " + username +" key: "+accessKey);
 //https://github.com/itayw/selenium-ide-webdriver-node
 //driver.get("127.0.0.1:3000");
 
-driver.get("https://localhost:8080");
+driver.get("https://ec2-54-149-153-204.us-west-2.compute.amazonaws.com:8080/");
 
 driver.getTitle().then(function (title) {
   console.log("title is: " + title);

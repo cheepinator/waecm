@@ -1,24 +1,24 @@
 language: node_js
 os:
   - linux
-services:
-  - docker
-node_js:
-  - "6.10.1"
+#services:
+#  - docker
+#node_js:
+#  - "6.10.1"
 sudo: true
 before_script:
-  - docker build -t waecm-bsp1 .
-  - docker run -v $(pwd):/usr/src/app -p 8080:3000 waecm-bsp1 selenium &
+  #- docker build -t waecm-bsp1 .
+  #- docker run -v $(pwd):/usr/src/app -p 8080:3000 waecm-bsp1 selenium &
 
   # evtl -t -> macht eine shell auf, sodass nicht geschlossen wird
   # -d -> detach
 script:
-  - sleep 3m
-  - ps -ef | grep docker
-  - docker ps
-  - curl https://localhost:8080 --insecure
+  #- sleep 3m
+  #- ps -ef | grep docker
+  #- docker ps
+  #- curl https://localhost:8080 --insecure
   - node tests/selenium/selenium-webdriver-simple.js
-  - ps -ef | grep docker
+  #- ps -ef | grep docker
   # - docker run --name waecm-bsp1-test -comv $(pwd):/usr/src/app -p 8080:3000 waecm-bsp1 test
   # - node tests/selenium/selenium-webdriver-simple.js
 after_script:
