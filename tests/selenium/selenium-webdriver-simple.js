@@ -17,7 +17,9 @@ withCapabilities({
   //'accessKey': accessKey
 }).
 //usingServer("http://"+username+":"+accessKey+"@ondemand.saucelabs.com/wd/hub").
-//usingServer("http://"+username+":"+accessKey+"@localhost:4445/wd/hub").    //DAS IST FÜR SAUCECONNECT
+usingServer("http://"+username+":"+accessKey+"@localhost:4445/wd/hub") //DAS IST FÜR SAUCECONNECT
+  .withCapabilities({
+    'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,})
 build();
 console.log("building webdriver finished usr: " + username +" key: "+accessKey);
 
@@ -49,9 +51,9 @@ console.log("building webdriver finished usr: " + username +" key: "+accessKey);
 
 
 // https://ec2-54-149-153-204.us-west-2.compute.amazonaws.com:8080/
-driver.get("https://localhost:8080").then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('max.mustermann'))
-  .then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('password'))
-  .then(_ => driver.findElement(By.id('#login')).click());
+// driver.get("http://localhost:8080").then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('max.mustermann'))
+//   .then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('password'))
+//   .then(_ => driver.findElement(By.id('#login')).click());
 
 // driver.get('http://www.google.com/ncr')
 //   .then(_ => driver.findElement(By.name('q')).sendKeys('webdriver'))
