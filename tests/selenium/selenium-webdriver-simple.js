@@ -21,7 +21,7 @@ withCapabilities({
   //'accessKey': accessKey
 }).
 //usingServer("http://"+username+":"+accessKey+"@ondemand.saucelabs.com/wd/hub").
-usingServer("http://"+username+":"+accessKey+"@localhost:4445/wd/hub"). //DAS IST FÜR SAUCECONNECT
+//usingServer("http://"+username+":"+accessKey+"@localhost:4445/wd/hub"). //DAS IST FÜR SAUCECONNECT
   // .withCapabilities({
   //   'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,})
 build();
@@ -71,9 +71,7 @@ driver.wait(until.elementLocated(By.id('md-input-1')), 10000, 'Could not locate 
 //   return driver.isElementPresent(webdriver.By.name("username"));
 // });
 
-driver.findElement(By.id('#md-input-1')).sendKeys('max.mustermann')
-  .then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('password'))
-   .then(_ => driver.findElement(By.id('#login')).click());
+driver.wait(until.elementLocated(By.id('hello')), 10000, 'Could not locate the child element within the time specified');
 
 
 // driver.get('http://www.google.com/ncr')
