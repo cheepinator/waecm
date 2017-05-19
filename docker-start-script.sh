@@ -37,7 +37,7 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" -o "$1" = "test" -o "$1" = 
         npm install
         typings install
         npm config set loglevel info
-        npm run-script coveralls-server
+        npm run-script coverage-server
     elif [ "$1" = "selenium" ]
     			then
         	  echo "testing selenium ..."
