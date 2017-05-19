@@ -1,4 +1,5 @@
 const {By} = require('selenium-webdriver/lib/by')
+const {until} = require('selenium-webdriver/lib/until')
 var webdriver = require('selenium-webdriver'),
   username = "jobrot94",
   accessKey = "ab4eda0a-c39c-4107-b8d3-1a3ab459d16f",
@@ -63,9 +64,14 @@ driver.getTitle().then(function (title) {
 //    .then(_ => driver.findElement(By.id('#login')).click());
 
 driver.get("https://ec2-54-149-153-204.us-west-2.compute.amazonaws.com:8080/");
-driver.wait(until.elementLocated(By.id('#md-input-1')), 5 * 1000).then(el => {
-  return el.sendKeys('max.mustermann');
+driver.wait(function () {
+  return driver.isElementPresent(webdriver.By.name("username"));
 });
+
+driver.findElement(By.id('#md-input-1')).sendKeys('max.mustermann')
+  .then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('password'))
+   .then(_ => driver.findElement(By.id('#login')).click());
+
 
 // driver.get('http://www.google.com/ncr')
 //   .then(_ => driver.findElement(By.name('q')).sendKeys('webdriver'))
