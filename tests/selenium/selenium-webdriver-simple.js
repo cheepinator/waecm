@@ -21,7 +21,7 @@ withCapabilities({
   //'accessKey': accessKey
 }).
 //usingServer("http://"+username+":"+accessKey+"@ondemand.saucelabs.com/wd/hub").
-//usingServer("http://"+username+":"+accessKey+"@localhost:4445/wd/hub"). //DAS IST FÜR SAUCECONNECT
+usingServer("http://"+username+":"+accessKey+"@localhost:4445/wd/hub"). //DAS IST FÜR SAUCECONNECT
   // .withCapabilities({
   //   'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,})
 build();
