@@ -33,7 +33,7 @@ describe("userDAO", () => {
           expect(users[i]).to.have.property("firstName").and.to.equal("Max"+i);
           expect(users[i]).to.have.property("lastName").and.to.equal("Muster"+i);
           expect(users[i]).to.have.property("phoneNumber").and.to.equal("0123456789"+i);
-          expect(users[i]).to.have.property("bankAccount").and.to.be.defined;
+          //expect(users[i]).to.have.property("bankAccount").and.to.be.defined;
         }
 
         done();
@@ -51,44 +51,6 @@ describe("userDAO", () => {
 
     })
   })
-
-  /*describe("getAll", () => {
-
-    beforeEach((done) => {
-      createUserAndAccounts()
-        .then(() => done())
-        .catch(() => done());
-    })
-
-    it("should get all users", (done) => {
-      let _onSuccess = users => {
-        expect(users).to.be.defined;
-
-        for (let i = 0; i < 10; i++) {
-          expect(users[i]).to.have.property("username").and.to.equal("user"+i);
-          expect(users[i]).to.have.property("password").and.to.equal("password");
-          expect(users[i]).to.have.property("firstName").and.to.equal("Max"+i);
-          expect(users[i]).to.have.property("lastName").and.to.equal("Muster"+i);
-          expect(users[i]).to.have.property("phoneNumber").and.to.equal("0123456789"+i);
-          expect(users[i]).to.have.property("bankAccount").and.to.be.defined;
-        }
-
-        done();
-      }
-
-      let _onError = (err) => {
-        console.log(err);
-        expect(true).to.be.false; // should not come here
-      }
-
-      UserDAO
-        .getAll()//.then(() => console.log("TEST"), (users) => console.log(users))
-        .then(_onSuccess)
-        .catch(_onError);
-
-
-    })
-  })*/
 
   describe("getByUsername", () => {
 
@@ -121,18 +83,7 @@ describe("userDAO", () => {
         .getByUsername("user0")//.then(() => console.log("TEST"), (users) => console.log(users))
         .then(_onSuccess)
         .catch(_onError);
-
-
-    })
-  })
-
-  describe("getByUserame_invalid", () => {
-
-    beforeEach((done) => {
-      createUserAndAccounts()
-        .then(() =>  done())
-        .catch(() =>  done());
-    })
+    });
 
     it("should throw exception due to invalid username", (done) => {
       let _onSuccess = user => {
@@ -148,7 +99,8 @@ describe("userDAO", () => {
         .getByUsername("user000")
         .then(_onSuccess)
         .catch(_onError);
-    })
+    });
+
   })
 
   describe("getByIBAN", () => {
@@ -183,15 +135,6 @@ describe("userDAO", () => {
         .then(_onSuccess)
         .catch(_onError);
     })
-  })
-
-  describe("getByIBAN_invalid", () => {
-
-    beforeEach((done) => {
-      createUserAndAccounts()
-        .then(() =>  done())
-        .catch(() =>  done());
-    })
 
     it("should throw exception due to invalid iban", (done) => {
       let _onSuccess = user => {
@@ -208,8 +151,8 @@ describe("userDAO", () => {
         .then(_onSuccess)
         .catch(_onError);
     })
-  })
 
+  })
 
   describe("createUser", () => {
     it("should throw an error, object passed is not defined", (done) => {

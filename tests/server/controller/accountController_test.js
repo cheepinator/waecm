@@ -9,7 +9,7 @@ let server = require('../../../server/server');
 
 chai.use(chaiHttp);
 
-describe("token", () => {
+describe("Account", () => {
   before(() => {
     setupMongoose(mongoose);
   });
@@ -18,7 +18,7 @@ describe("token", () => {
     UserDAO.remove({}, () => done());
   })
 
-  describe("/GET accountByUsername", () => {
+  describe("accountByUsername", () => {
 
     it('it should get the Account by Username and first login', (done) => {
 
@@ -53,11 +53,11 @@ describe("token", () => {
       process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
       //retrieve token, so that we are logged in
-      let token = "wrongtoken";
+      let some_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ";
 
       chai.request(server)
         .get('/api/protected/account')
-        .set('Authorization', 'Bearer ' + token)
+        .set('Authorization', 'Bearer ' + some_token)
         .end((err2, res2) => {
           expect(res2.status).to.equal(401);
           expect(res2.body).to.not.have.property("balance");
@@ -67,7 +67,7 @@ describe("token", () => {
         });
     });
 
-    it('it should get max.mustermann\'s account even if another username is passed because of the parameter', (done) => {
+    it('it should get the user from the jwt token', (done) => {
 
       //Login first
       process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";

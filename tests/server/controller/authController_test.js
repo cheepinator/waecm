@@ -9,7 +9,7 @@ let server = require('../../../server/server');
 
 chai.use(chaiHttp);
 
-describe("token", () => {
+describe("Authentication", () => {
   before(() => {
     setupMongoose(mongoose);
   });
@@ -18,7 +18,7 @@ describe("token", () => {
     UserDAO.remove({}, () => done());
   })
 
-  describe("/POST CreateUsers", () => {
+  describe("test create users", () => {
 
     it('it should create user and get token', (done) => {
 
@@ -55,7 +55,7 @@ describe("token", () => {
     });
   });
 
-  describe("/POST Token", () => {
+  describe("test the login", () => {
 
     it('it should validate login return token', (done) => {
 
