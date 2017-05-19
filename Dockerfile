@@ -14,6 +14,5 @@ RUN npm install -g n
 RUN n 6.10.1
 RUN npm i -g istanbul mocha babel gulp-cli
 RUN npm install -g typescript typings
-EXPOSE 3000
 
 ENTRYPOINT ["/bin/sh", "-c", "/usr/src/docker-start-script.sh ${*}", "--"]

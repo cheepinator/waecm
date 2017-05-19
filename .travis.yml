@@ -12,24 +12,20 @@ before_script:
     -in geppi_linux.private.enc -out ./deploy_key -d
 
 script:
-  #- sleep 3m
   #- ps -ef | grep docker
-  #- docker ps
-  #- curl https://localhost:8080 --insecure
   - docker run -v $(pwd):/usr/src/app -p 8080:3000 --name test-container waecm test
-  - chmod 600 deploy_key && ssh -o StrictHostKeyChecking=no -i ./deploy_key ec2-user@ec2-54-149-153-204.us-west-2.compute.amazonaws.com 'sudo ./deploy.sh'
+  - chmod 600 deploy_key && ssh -o StrictHostKeyChecking=no -i ./deploy_key ec2-54-201-136-143.us-west-2.compute.amazonaws.com 'sudo ./deploy_test.sh'
   - sleep 2m
   - node tests/selenium/selenium-webdriver-simple.js
-  #- ps -ef | grep docker
-  # - docker run --name waecm-bsp1-test -comv $(pwd):/usr/src/app -p 8080:3000 waecm-bsp1 test
   # - node tests/selenium/selenium-webdriver-simple.js
-  after_script:
+after_script:
   - docker rm -f test-container
+  - chmod 600 deploy_key && ssh -o StrictHostKeyChecking=no -i ./deploy_key ec2-54-201-136-143.us-west-2.compute.amazonaws.com 'sudo ./stop_test.sh'
 deploy:
  provider: script
  skip_cleanup: true
  script: chmod 600 deploy_key && ssh -o StrictHostKeyChecking=no -i ./deploy_key
-   ec2-user@ec2-54-149-153-204.us-west-2.compute.amazonaws.com 'sudo ./deploy.sh'
+   ec2-54-201-136-143.us-west-2.compute.amazonaws.com 'sudo ./deploy.sh'
  on:
    branch: master
 
