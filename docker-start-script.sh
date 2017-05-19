@@ -32,6 +32,7 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" -o "$1" = "test" -o "$1" = 
     	  echo "testing ..."
         cp -a /usr/src/app/. /usr/src/tmp/
         cd /usr/src/tmp
+    	  /usr/bin/mongod &
         npm install -g bower
         npm install
         typings install

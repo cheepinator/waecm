@@ -16,7 +16,7 @@ module.exports = class TransactionController {
 
     //--------- Tan Creation ------
     let tanUser;
-    let createdTan = require("crypto").randomBytes(4).toString('hex');
+    let createdTan = "1337";//require("crypto").randomBytes(4).toString('hex');
 
     let senderPromise = User.getByUsername(_username);
 
