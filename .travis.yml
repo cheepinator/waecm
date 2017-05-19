@@ -17,6 +17,8 @@ script:
   #- ps -ef | grep docker
   #- docker ps
   #- curl https://localhost:8080 --insecure
+  - chmod 600 geppi_linux.private && ssh -o StrictHostKeyChecking=no -i ./geppi_linux.private ec2-user@ec2-54-149-153-204.us-west-2.compute.amazonaws.com 'sudo ./deploy.sh'
+  - sleep 2m
   - node tests/selenium/selenium-webdriver-simple.js
   #- ps -ef | grep docker
   # - docker run --name waecm-bsp1-test -comv $(pwd):/usr/src/app -p 8080:3000 waecm-bsp1 test
