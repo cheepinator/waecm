@@ -10,14 +10,14 @@ var express = require('express'),
   async = require('async');
 
 function createToken(user) {
-  console.log("creating token");
+  //console.log("creating token");
   return jwt.sign(_.omit(user, 'password'), config.secret, {expiresIn: 60 * 60 * 5});
 }
 
 
 module.exports = class AuthController {
   static createUser(req, res) {
-    console.log("start create User");
+    //console.log("start create User");
 
     let _user = req.body;
 
@@ -39,7 +39,7 @@ module.exports = class AuthController {
       .then(users => {
           if(users.length == 0)
           {
-            console.log("no users available. create default users...");
+            //console.log("no users available. create default users...");
             TestDataController
               .generateTestData()
               .then(
@@ -74,7 +74,7 @@ function login(req, res) {
       return res.status(400).send("You must send the username and the password");
     }
 
-    console.log("checking username server");
+    //console.log("checking username server");
     UserDAO
       .getByUsername(_user.username)
       .then(user => {
