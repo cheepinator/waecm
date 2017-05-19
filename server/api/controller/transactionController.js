@@ -67,13 +67,13 @@ module.exports = class TransactionController {
         return res.status(403).send("Sender and Receiver Account are identical!");
       }
       tanUser.bankAccount.nexttan = createdTan;
-      console.log("TAN TO INPUT: " + createdTan);
+      //console.log("TAN TO INPUT: " + createdTan);
       tanUser.save();
 
       // This sends the tan to an SMS
       // As we are just using a testaccount, the meessaging only works with preconfigured numbers
       if (typeof tanUser.phoneNumber !== 'undefined' && tanUser.phoneNumber !== undefined && tanUser.phoneNumber !== null && tanUser.phoneNumber !== '') {
-        console.log("sending to:"+ tanUser.phoneNumber);
+        //console.log("sending to:"+ tanUser.phoneNumber);
         TransactionController.sendTan(tanUser.phoneNumber, createdTan, transaction.value, receiver.bankAccount.iban);
       }
       return res.status(200).json(transaction);
@@ -164,7 +164,7 @@ module.exports = class TransactionController {
       }
 
       else {
-        console.log("tan not matching: saved:" + updatedSender.bankAccount.nexttan + "!= provided:" + transaction.tan);
+        //console.log("tan not matching: saved:" + updatedSender.bankAccount.nexttan + "!= provided:" + transaction.tan);
         return res.status(403).send("Wrong TAN!");
       }
     });
@@ -180,11 +180,11 @@ module.exports = class TransactionController {
       return res.status(400).send("No negative Transactions allowed");
     }
     else if (transaction.tan === null) {
-      console.log("Tan null, generating new Tan.")
+      //console.log("Tan null, generating new Tan.")
       TransactionController.generateTan(req, res)
     }
     else{
-      console.log("Tan not null, creating Transaction.")
+      //console.log("Tan not null, creating Transaction.")
       TransactionController.executeTransaction(req,res)
     }
   }

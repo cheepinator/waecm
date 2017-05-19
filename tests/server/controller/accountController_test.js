@@ -47,9 +47,6 @@ describe("token", () => {
             });
         });
     });
-  });
-
-  describe("/GET accountByUsername Without Token", () => {
 
     it('it should get authentication error 401', (done) => {
 
@@ -69,10 +66,6 @@ describe("token", () => {
           done();
         });
     });
-  });
-
-
-  describe("/GET accountByUsername with wrong username", () => {
 
     it('it should get max.mustermann\'s account even if another username is passed because of the parameter', (done) => {
 
@@ -93,9 +86,6 @@ describe("token", () => {
             .set('Authorization', 'Bearer '+token)
             .send({user:{username: 'user'}})
             .end((err2, res2) => {
-              console.log("START TEST");
-              console.log(res2.status);
-              console.log(res2.body);
               expect(res2.status).to.equal(200);
               expect(res2.body).to.have.property("balance");
               expect(res2.body).to.have.property("iban");

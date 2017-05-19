@@ -16,7 +16,7 @@ module.exports = class TestDataController {
 
   static generateTestData() {
     return new Promise((resolve, reject) => {
-      console.log("testdata");
+      //console.log("testdata");
       var crypto = require('crypto');
       let user1 = new User();
       let bankAccount1 = {};
@@ -107,24 +107,27 @@ module.exports = class TestDataController {
       bankAccount3.transactions = [transaction8, transaction10];
       user3.password = crypto.createHash('sha256').update('password').digest('hex');
 
-      console.log(User.getByUsername('max.mustermann'));
+      //console.log(User.getByUsername('max.mustermann'));
       let promise1 = User.createUser(user1);
 
       promise1
-            .then(userRes => console.log("sucessfully created user"))
+            //.then(userRes => console.log("sucessfully created user"))
+        .then()
             .catch(error => console.log(error));
 
 
       let promise2 = User.createUser(user2);
 
       promise2
-            .then(userRes => console.log("sucessfully created user"))
+            //.then(userRes => console.log("sucessfully created user"))
+        .then()
             .catch(error => console.log(error));
 
 
       let promise3 = User.createUser(user3);
       promise3
-            .then(userRes => console.log("sucessfully created user"))
+            //.then(userRes => console.log("sucessfully created user"))
+        .then()
             .catch(error => console.log(error));
 
 
@@ -138,7 +141,7 @@ module.exports = class TestDataController {
        .catch(error => res.status(400).json(error));*/
 
       Promise.all([promise1,promise2,promise3]).then(function () {
-        console.log("every promise ready.");
+        //console.log("every promise ready.");
         resolve();
       });
 
