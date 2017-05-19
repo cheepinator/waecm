@@ -1,4 +1,3 @@
-import Todo from "../../../server/api/todo/dao/todo-dao";
 import User from "../../../server/api/dao/userDAO";
 import dbConst from "./db.json";
 
@@ -6,16 +5,6 @@ exports.setupMongoose = (mongoose) => {
   mongoose.models = {};
   mongoose.createConnection(dbConst.db.test.url);
   mongoose.connection.on("error", () => {});
-}
-
-exports.createTodos = () => {
-    let _array = [];
-
-    for (let i = 0; i < 10; i++) {
-        _array.push({_id: "507c7f 79bcf86cd7994f6c"+ (i + 10), todoMessage: "aaaaaaa"+i});
-    }
-
-    return Todo.create(_array);
 }
 
 exports.createUserAndAccounts = () => {
@@ -53,14 +42,6 @@ exports.createUserAndAccounts = () => {
       bankAccount: ba
     });
   }
-/*
-  console.log(User.createUser({
-    username: 'user',
-    password: 'password',
-    firstName: 'Max',
-    lastName: 'Muster',
-    phoneNumber: '0123456789'
-  }));*/
 
   return User.create(_array);
 }

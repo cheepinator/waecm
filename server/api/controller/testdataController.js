@@ -107,6 +107,13 @@ module.exports = class TestDataController {
       bankAccount3.transactions = [transaction8, transaction10];
       user3.password = crypto.createHash('sha256').update('password').digest('hex');
 
+
+      let user4 = new User();
+      user4.username = 'user.four';
+      user4.firstName = 'User';
+      user4.lastName = 'Four';
+      user4.password = crypto.createHash('sha256').update('password').digest('hex');
+
       //console.log(User.getByUsername('max.mustermann'));
       let promise1 = User.createUser(user1);
 
@@ -130,6 +137,11 @@ module.exports = class TestDataController {
         .then()
             .catch(error => console.log(error));
 
+      let promise4 = User.createUser(user4);
+      promise4
+      //.then(userRes => console.log("sucessfully created user"))
+        .then()
+        .catch(error => console.log(error));
 
       /*
        let bankAccount5 = new BankAccount();
@@ -140,7 +152,7 @@ module.exports = class TestDataController {
        .json(bankAccount2))
        .catch(error => res.status(400).json(error));*/
 
-      Promise.all([promise1,promise2,promise3]).then(function () {
+      Promise.all([promise1,promise2,promise3,promise4]).then(function () {
         //console.log("every promise ready.");
         resolve();
       });

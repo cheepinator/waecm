@@ -9,7 +9,7 @@ let server = require('../../../server/server');
 
 chai.use(chaiHttp);
 
-describe("token", () => {
+describe("test data", () => {
   before(() => {
     setupMongoose(mongoose);
   });
@@ -19,7 +19,7 @@ describe("token", () => {
   })
 
 
-  describe("/POST token to check Testdata", () => {
+  describe("insert testdata via POST", () => {
 
     it('it should insert testdata', (done) => {
       //Check users DB = 0 entries
@@ -39,7 +39,7 @@ describe("token", () => {
                 .getAllUsers()
                 .then((users2) => {
                   expect(users2).to.be.defined;
-                  expect(users2.length).to.equals(3);
+                  expect(users2.length).to.equals(4);
                   done();
                 })
                 .catch((err) => {
@@ -53,7 +53,7 @@ describe("token", () => {
     });
   });
 
-  describe("/POST token to check Testdata", () => {
+  describe("insert testdata via first login", () => {
 
     it('it should insert testdata on login, if no users are in the DB', (done) => {
       //Check users DB = 0 entries
@@ -78,7 +78,7 @@ describe("token", () => {
               .getAllUsers()
               .then((users2) => {
                 expect(users2).to.be.defined;
-                expect(users2.length).to.equals(3);
+                expect(users2.length).to.equals(4);
                 done();
               })
               .catch((err) => {
