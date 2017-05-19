@@ -30,18 +30,13 @@ if [ -n "$1" -a \( "$1" = "build" -o "$1" = "deploy" -o "$1" = "test" -o "$1" = 
     elif [ "$1" = "test" ]
 			then
     	  echo "testing ..."
-        export CHROME_BIN=/usr/bin/chromium-browser
         cp -a /usr/src/app/. /usr/src/tmp/
         cd /usr/src/tmp
         npm install -g bower
         npm install
         typings install
-        export DISPLAY=:99.0
-        Xvfb :99 -screen 0 640x480x8 -nolisten tcp &
-        gulp coverage_frontend
         npm config set loglevel info
-        npm run-script test-client
-        npm run-script coverage-server
+        npm run-script coveralls-server
     elif [ "$1" = "selenium" ]
     			then
         	  echo "testing selenium ..."
