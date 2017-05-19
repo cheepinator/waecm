@@ -64,7 +64,7 @@ driver.get("https://ec2-54-149-153-204.us-west-2.compute.amazonaws.com:8080/");
 driver.wait(until.elementLocated(By.id('md-input-1')), 10000, 'Could not locate the child element within the time specified')
   .then(_ => driver.findElement(By.id('md-input-1')).sendKeys('max.mustermann'))
    .then(_ => driver.findElement(By.id('md-input-3')).sendKeys('password'))
-   .then(_ => driver.findElement(By.className('pull-right mat-raised-button')).click());
+   .then(_ => driver.findElement(By.id('login')).click());
 
 // driver.get("https://ec2-54-149-153-204.us-west-2.compute.amazonaws.com:8080/");
 // driver.wait(function () {
