@@ -7,7 +7,7 @@ var webdriver = require('selenium-webdriver'),
 
 var until = webdriver.until;
 var By = webdriver.By;
-
+var correctTests = 0;
 // var remote = require('selenium-webdriver/remote')
 //
 // new remote
@@ -45,7 +45,7 @@ try {
     .then(_ => driver.findElement(By.className('pull-right mat-raised-button')).click());
 
   driver.wait(until.elementLocated(By.xpath("//*[contains(text(),'Hello Max!')]")), 10000, 'Could not locate Hello Max')
-    .then(_ => console.log("Login Test passed"));
+    .then(_ => {console.log("Login Test passed"); correctTests = correctTests +1;});
   driver.findElement(By.xpath("//*[contains(text(),'Logout')]/..")).click();
 }
 catch(err){
@@ -61,7 +61,7 @@ try {
     .then(_ => driver.findElement(By.className('pull-right mat-raised-button')).click());
 
   driver.wait(until.elementLocated(By.xpath("//*[contains(text(),'Username or Password do not match!')]")), 10000, 'Could not locate the error window')
-  .then(_=>console.log("Login Test with wrong Credentials passed."));
+  .then(_=>{console.log("Login Test with wrong Credentials passed."); correctTests = correctTests +1;});
 }
 catch(err){
   console.log("Login Test with wrong Credentials failed with: "+err)
@@ -76,7 +76,7 @@ try {
     .then(_ => driver.findElement(By.id('password')).sendKeys('password'))
     .then(_ => driver.findElement(By.className('pull-right mat-raised-button')).click());
   // --------
-  driver.wait(until.elementLocated(By.id('newTransaction')), 10000, 'Could not locate newTransaction Button')
+  driver.wait(until.elementLocated(By.id('newTransaction')), 15000, 'Could not locate newTransaction Button')
     .then(_ => driver.findElement(By.id('newTransaction')).click());
 
   driver.wait(until.elementLocated(By.id('iban')), 10000, 'Could not locate iban field')
@@ -90,7 +90,7 @@ try {
     .then(_ => driver.findElement(By.id('tanSubmit')).click());
 
   driver.wait(until.elementLocated(By.xpath("//*[contains(text(),'Transaction successfully sent!')]")), 10000, 'Could not locate success field')
-    .then(_ => console.log("Transaction test passed."))
+    .then(_ => {console.log("Transaction test passed."); correctTests = correctTests +1;})
 
   //logout
   driver.findElement(By.xpath("//*[contains(text(),'Logout')]/..")).click();
@@ -121,7 +121,7 @@ try {
     .then(_ => driver.findElement(By.id('tanSubmit')).click());
 
   driver.wait(until.elementLocated(By.xpath("//*[contains(text(),'Wrong TAN!')]")), 10000, 'Could not locate Error field')
-    .then(_=> console.log("Transaction Test with wrong Tan passed."))
+    .then(_=> {console.log("Transaction Test with wrong Tan passed."); correctTests = correctTests +1;})
 }
 catch(err){
   console.log("Transaction Test with wrong Tan failed with: "+err)
