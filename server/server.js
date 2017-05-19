@@ -53,3 +53,5 @@ DBConfig.init();
 Routes.init(app, express.Router(),getIOInstance);
 
 //todo
+
+module.exports = server;

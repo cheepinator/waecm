@@ -9,9 +9,10 @@
     "build-dev": "gulp client.build:dev",
     "build-dist": "gulp client.build:dist",
     "test-client": "gulp client.unit_test",
-    "test-server": "mocha 'tests/server/**/*_test.js' --recursive --check-leaks --reporter min --compilers js:babel-register",
-    "coverage-server": "istanbul cover ./node_modules/mocha/bin/_mocha -- 'tests/server/**/*_test.js' --compilers js:babel-register",
-    "coveralls-server": "istanbul cover ./node_modules/mocha/bin/_mocha -- 'tests/server/**/*_test.js' --compilers js:babel-register --report lcovonly && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "test-selenium": "node ./tests/selenium/selenium-webdriver-simple.js",
+    "test-server": "mocha tests/server/**/*_test.js --recursive --check-leaks --reporter min --compilers js:babel-register",
+    "coverage-server": "istanbul cover ./node_modules/mocha/bin/_mocha -- tests/server/**/*_test.js --compilers js:babel-register",
+    "coveralls-server": "istanbul cover ./node_modules/mocha/bin/_mocha -- tests/server/**/*_test.js --compilers js:babel-register --report lcovonly && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "dependencies": {
     "@angular/animations": "^4.0.0-rc.1",
@@ -32,6 +33,8 @@
     "bcrypt": "^1.0.2",
     "bluebird": "^3.3.4",
     "body-parser": "^1.5.0",
+    "chai-http": "^3.0.0",
+    "chromedriver": "^2.29.0",
     "compression": "^1.6.2",
     "express": "~4.14.0",
     "express-content-length-validator": "1.0.0",
@@ -54,6 +57,7 @@
     "tweetnacl-util": "^0.15.0",
     "twilio": "^2.11.1",
     "typescript": "^2.1.5",
+    "webdriverio": "^4.8.0",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {

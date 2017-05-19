@@ -9,16 +9,24 @@ sudo: true
 before_script:
   - openssl aes-256-cbc -K $encrypted_df2dee2886a8_key -iv $encrypted_df2dee2886a8_iv
     -in geppi_linux.private.enc -out ./deploy_key -d
-  - docker build -t waecm-bsp1 .
+
 script:
-  - docker run --name waecm-bsp1-test -comv $(pwd):/usr/src/app -p 8080:3000 waecm-bsp1 test
-  # node tests/selenium/selenium-webdriver-simple.js
+  #- sleep 3m
+  #- ps -ef | grep docker
+  #- docker ps
+  #- curl https://localhost:8080 --insecure
+  - chmod 600 geppi_linux.private && ssh -o StrictHostKeyChecking=no -i ./geppi_linux.private ec2-user@ec2-54-149-153-204.us-west-2.compute.amazonaws.com 'sudo ./deploy.sh'
+  - sleep 2m
+  - node tests/selenium/selenium-webdriver-simple.js
+  #- ps -ef | grep docker
+  # - docker run --name waecm-bsp1-test -comv $(pwd):/usr/src/app -p 8080:3000 waecm-bsp1 test
+  # - node tests/selenium/selenium-webdriver-simple.js
 after_script:
-  - docker rm -f waecm-bsp1-test
+  #- docker rm -f waecm-bsp1-test
 deploy:
  provider: script
  skip_cleanup: true
- script: chmod 600 deploy_key && ssh -o StrictHostKeyChecking=no -i ./deploy_key
+ script: chmod 600 geppi_linux.private && ssh -o StrictHostKeyChecking=no -i ./geppi_linux.private
    ec2-user@ec2-54-149-153-204.us-west-2.compute.amazonaws.com 'sudo ./deploy.sh'
  on:
    branch: master

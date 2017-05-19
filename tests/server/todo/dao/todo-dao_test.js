@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+/*import mongoose from "mongoose";
 import TodoDAO from "../../../../server/api/todo/dao/todo-dao";
 import {expect} from "chai";
 import {setupMongoose, createTodos} from "../../_helpers/db";
@@ -126,4 +126,4 @@ describe("todo.dao", () => {
             .catch(_onError);
         })
     })
-})
+})*/
