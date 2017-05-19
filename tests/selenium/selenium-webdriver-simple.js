@@ -12,7 +12,7 @@ var webdriver = require('selenium-webdriver'),
 driver = new webdriver.Builder().
 withCapabilities({
   'browserName': 'chrome',
-  'platform': 'Windows XP',
+  'platform': 'Ubuntu',
   'version': '43.0',
   //'username': username,
   //'accessKey': accessKey
