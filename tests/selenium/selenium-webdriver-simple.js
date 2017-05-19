@@ -37,7 +37,7 @@ build();
 
 
 // Login test
-try {
+
   driver.get("https://ec2-54-201-136-143.us-west-2.compute.amazonaws.com:7777");
   driver.wait(until.elementLocated(By.id('username')), 10000, 'Could not locate username (username)')
     .then(_ => driver.findElement(By.id('username')).sendKeys('max.mustermann'))
@@ -47,13 +47,11 @@ try {
   driver.wait(until.elementLocated(By.xpath("//*[contains(text(),'Hello Max!')]")), 10000, 'Could not locate Hello Max')
     .then(_ => {console.log("Login Test passed"); correctTests = correctTests +1;});
   driver.findElement(By.xpath("//*[contains(text(),'Logout')]/..")).click();
-}
-catch(err){
-  console.log("Login Test failed with: "+err);
-}
+
+
 
 //Login Test wrong credentials
-try {
+
   driver.get("https://ec2-54-201-136-143.us-west-2.compute.amazonaws.com:7777");
   driver.wait(until.elementLocated(By.id('username')), 10000, 'Could not locate username (username)')
     .then(_ => driver.findElement(By.id('username')).sendKeys('max.mustermann'))
@@ -62,14 +60,11 @@ try {
 
   driver.wait(until.elementLocated(By.xpath("//*[contains(text(),'Username or Password do not match!')]")), 10000, 'Could not locate the error window')
   .then(_=>{console.log("Login Test with wrong Credentials passed."); correctTests = correctTests +1;});
-}
-catch(err){
-  console.log("Login Test with wrong Credentials failed with: "+err)
-}
+
 
 
 //Transaction test
-try {
+
   driver.get("https://ec2-54-201-136-143.us-west-2.compute.amazonaws.com:7777");
   driver.wait(until.elementLocated(By.id('username')), 10000, 'Could not locate username (username)')
     .then(_ => driver.findElement(By.id('username')).sendKeys('max.mustermann'))
@@ -87,20 +82,16 @@ try {
 
   driver.wait(until.elementLocated(By.id('tan')), 10000, 'Could not locate tan field')
     .then(_ => driver.findElement(By.id('tan')).sendKeys('1337'))
-    .then(_ => driver.findElement(By.id('tanSubmit')).click());
+    .then(_ => driver.findElement(By.xpath("//*[contains(text(),'Send Tan')]/..")).click());
 
   driver.wait(until.elementLocated(By.xpath("//*[contains(text(),'Transaction successfully sent!')]")), 10000, 'Could not locate success field')
     .then(_ => {console.log("Transaction test passed."); correctTests = correctTests +1;})
 
   //logout
   driver.findElement(By.xpath("//*[contains(text(),'Logout')]/..")).click();
-}
-catch(err){
-  console.log("Transaction Test failed with: "+err)
-}
+
 
 //Transaction test with wrong credentials
-try {
   driver.get("https://ec2-54-201-136-143.us-west-2.compute.amazonaws.com:7777");
   driver.wait(until.elementLocated(By.id('username')), 10000, 'Could not locate username (username)')
     .then(_ => driver.findElement(By.id('username')).sendKeys('max.mustermann'))
@@ -118,13 +109,10 @@ try {
 
   driver.wait(until.elementLocated(By.id('tan')), 10000, 'Could not locate tan field')
     .then(_ => driver.findElement(By.id('tan')).sendKeys('wrongtan'))
-    .then(_ => driver.findElement(By.id('tanSubmit')).click());
+    .then(_ => driver.findElement(By.xpath("//*[contains(text(),'Send Tan')]/..")).click());
 
   driver.wait(until.elementLocated(By.xpath("//*[contains(text(),'Wrong TAN!')]")), 10000, 'Could not locate Error field')
     .then(_=> {console.log("Transaction Test with wrong Tan passed."); correctTests = correctTests +1;})
-}
-catch(err){
-  console.log("Transaction Test with wrong Tan failed with: "+err)
-}
 
 driver.quit();
+
