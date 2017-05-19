@@ -12,8 +12,8 @@ var webdriver = require('selenium-webdriver'),
 driver = new webdriver.Builder().
 withCapabilities({
   'browserName': 'chrome',
-  'platform': 'Ubuntu',
-  'version': '43.0',
+  'platform': 'Linux',
+  'version': '48.0',
   //'username': username,
   //'accessKey': accessKey
 }).
@@ -57,9 +57,8 @@ driver.getTitle().then(function (title) {
 });
 
 // https://ec2-54-149-153-204.us-west-2.compute.amazonaws.com:8080/
-// driver.get("https://ec2-54-149-153-204.us-west-2.compute.amazonaws.com:8080/").(_ => wait(function () {
-//     return driver.isElementPresent(webdriver.Bywebdriver.By.id("#md-input-1"));
-// }, timeout)).then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('max.mustermann'))
+// driver.get("https://ec2-54-149-153-204.us-west-2.compute.amazonaws.com:8080/")
+// .then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('max.mustermann'))
 //    .then(_ => driver.findElement(By.id('#md-input-1')).sendKeys('password'))
 //    .then(_ => driver.findElement(By.id('#login')).click());
 
