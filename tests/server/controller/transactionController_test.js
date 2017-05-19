@@ -214,97 +214,10 @@ describe("Transaction", () => {
                       expect(max).to.have.property("bankAccount");
                       let bank = max.bankAccount;
 
-                      expect(max.bankAccount.nexttan).to.not.be.undefined;
-                      expect(max.bankAccount.nexttan).to.not.be.null;
+                      expect(max.bankAccount.nexttan).to.be.equal("1337");
+                      //expect(max.bankAccount.nexttan).to.not.be.null;
 
                       done();
-                    })
-                    .catch((err) => {
-                      console.log(err);
-                      expect(true).to.be.false; // should not come here
-                    });
-                });
-            })
-            .catch((err) => {
-              console.log(err);
-              expect(true).to.be.false; // should not come here
-            });
-        });
-    });
-
-    it('it should generate a tan and validate this tan', (done) => {
-
-      let transaction = {
-        value: 100,
-        date: new Date(),
-        ibanSender: "AT55 7989 9877 9879",
-        ibanReceiver: "AT55 2189 1241 0275",
-        paymentReference: "Ich need test money",
-        category: "Test",
-        tan: null
-      };
-
-      //First login
-      process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-      chai.request(server)
-        .post('/api/token')
-        .send({username: 'max.mustermann', password: 'password'})
-        .end((err, res) => {
-          expect(res.status).to.equal(201);
-          expect(res.body).to.have.property("id_token");
-
-          //retrieve token, so that we are logged in
-          let token = res.body.id_token;
-
-          UserDAO
-            .getByUsername("max.mustermann")
-            .then((max) => {
-              expect(max).to.be.defined;
-              expect(max).to.have.property("bankAccount");
-              expect(max.bankAccount.nexttan).to.be.undefined;
-
-              chai.request(server)
-                .post('/api/protected/transactions')
-                .set('Authorization', 'Bearer ' + token)
-                .send(transaction)
-                .end((err2, res2) => {
-                  expect(res2.status).to.equal(200);
-
-
-                  UserDAO
-                    .getByUsername("max.mustermann")
-                    .then((max) => {
-                      expect(max).to.be.defined;
-                      expect(max).to.have.property("bankAccount");
-                      let bank = max.bankAccount;
-
-                      expect(max.bankAccount.nexttan).to.not.be.undefined;
-                      expect(max.bankAccount.nexttan).to.not.be.null;
-                      transaction.tan = max.bankAccount.nexttan;
-
-                      chai.request(server)
-                        .post('/api/protected/transactions')
-                        .set('Authorization', 'Bearer ' + token)
-                        .send(transaction)
-                        .end((err2, res2) => {
-                          expect(res2.status).to.equal(200);
-
-                          UserDAO
-                            .getByUsername("max.mustermann")
-                            .then((max) => {
-                              expect(max).to.be.defined;
-                              expect(max).to.have.property("bankAccount");
-
-                              //New Transaction is in DB
-                              expect(max.bankAccount.transactions.length).to.be.equal(4);
-
-                              done();
-                            })
-                            .catch((err) => {
-                              console.log(err);
-                              expect(true).to.be.false; // should not come here
-                            });
-                        });
                     })
                     .catch((err) => {
                       console.log(err);

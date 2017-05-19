@@ -47,7 +47,7 @@ module.exports = class TransactionController {
         return res.status(403).send("Sender and Receiver Account are identical!");
       }
       tanUser.bankAccount.nexttan = createdTan;
-      //console.log("TAN TO INPUT: " + createdTan);
+      console.log("TAN TO INPUT: " + createdTan);
       tanUser.save();
 
       // This sends the tan to an SMS
