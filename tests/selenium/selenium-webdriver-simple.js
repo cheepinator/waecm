@@ -22,8 +22,8 @@ withCapabilities({
 }).
 //usingServer("http://"+username+":"+accessKey+"@ondemand.saucelabs.com/wd/hub").
 usingServer("http://"+username+":"+accessKey+"@localhost:4445/wd/hub"). //DAS IST FÜR SAUCECONNECT
-  // .withCapabilities({
-  //   'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,})
+// .withCapabilities({
+//   'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,})
 build();
 console.log("building webdriver finished usr: " + username +" key: "+accessKey);
 
@@ -59,19 +59,33 @@ driver.getTitle().then(function (title) {
   console.log("title is: " + title);
 });
 
-// https://ec2-54-149-153-204.us-west-2.compute.amazonaws.com:8080/
+// First test
 driver.get("https://ec2-54-149-153-204.us-west-2.compute.amazonaws.com:8080/");
 driver.wait(until.elementLocated(By.id('md-input-1')), 10000, 'Could not locate the child element within the time specified')
   .then(_ => driver.findElement(By.id('md-input-1')).sendKeys('max.mustermann'))
-   .then(_ => driver.findElement(By.id('md-input-3')).sendKeys('password'))
-   .then(_ => driver.findElement(By.className('pull-right mat-raised-button')).click());
+  .then(_ => driver.findElement(By.id('md-input-3')).sendKeys('password'))
+  .then(_ => driver.findElement(By.className('pull-right mat-raised-button')).click());
 
 // driver.get("https://ec2-54-149-153-204.us-west-2.compute.amazonaws.com:8080/");
 // driver.wait(function () {
 //   return driver.isElementPresent(webdriver.By.name("username"));
 // });
 
-driver.wait(until.elementLocated(By.id('hello')), 10000, 'Could not locate the child element within the time specified');
+driver.wait(until.elementLocated(By.xpath("//*[contains(text(),'Hello Max!')]")), 10000, 'Could not locate the child element within the time specified');
+driver.findElement(By.xpath("//*[contains(text(),'Logout')]/..")).click();
+
+//Second test
+
+
+driver.get("https://ec2-54-149-153-204.us-west-2.compute.amazonaws.com:8080/");
+driver.wait(until.elementLocated(By.id('md-input-1')), 10000, 'Could not locate the child element within the time specified')
+  .then(_ => driver.findElement(By.id('md-input-1')).sendKeys('max.mustermann'))
+  .then(_ => driver.findElement(By.id('md-input-3')).sendKeys('passwordfalsch'))
+  .then(_ => driver.findElement(By.className('pull-right mat-raised-button')).click());
+
+driver.wait(until.elementLocated(By.xpath("//*[contains(text(),'Username or Password do not match!')]")), 10000, 'Could not locate the child element within the time specified');
+
+
 
 
 // driver.get('http://www.google.com/ncr')
