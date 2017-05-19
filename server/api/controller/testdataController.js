@@ -5,7 +5,11 @@ const User = require("../dao/userDAO");
 module.exports = class TestDataController {
   static testData(req, res) {
 
-    this.generateTestData();
+    if(this) {
+      this.generateTestData();
+    }else{
+      TestDataController.generateTestData();
+    }
     return res.status(200).json("{'success': 'true'}");
 
   };
