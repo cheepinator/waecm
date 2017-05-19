@@ -27,12 +27,12 @@ describe("userDAO", () => {
       let _onSuccess = users => {
         expect(users).to.be.defined;
 
-        for (let i = 0; i < 1; i++) {
-          expect(users[i]).to.have.property("username").and.to.equal("user"+i);
+        for (let i = 0; i < 10; i++) {
+          expect(users[i]).to.have.property("username").and.to.contain("user");
           expect(users[i]).to.have.property("password").and.to.equal("password");
-          expect(users[i]).to.have.property("firstName").and.to.equal("Max"+i);
-          expect(users[i]).to.have.property("lastName").and.to.equal("Muster"+i);
-          expect(users[i]).to.have.property("phoneNumber").and.to.equal("0123456789"+i);
+          expect(users[i]).to.have.property("firstName").and.to.contain("Max");
+          expect(users[i]).to.have.property("lastName").and.to.contain("Muster");
+          expect(users[i]).to.have.property("phoneNumber").and.to.contain("0123456789");
           //expect(users[i]).to.have.property("bankAccount").and.to.be.defined;
         }
 
@@ -40,6 +40,7 @@ describe("userDAO", () => {
       }
 
       let _onError = (err) => {
+        console.log(err);
         expect(true).to.be.false; // should not come here
       }
 

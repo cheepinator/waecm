@@ -48,6 +48,31 @@ describe("Account", () => {
         });
     });
 
+    it('it should throw error, no account for user', (done) => {
+
+      process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+      chai.request(server)
+        .post('/api/token')
+        .send({username: 'user.four', password: 'password'})
+        .end((err, res) => {
+          expect(res.status).to.equal(201);
+          expect(res.body).to.have.property("id_token");
+
+          //retrieve token, so that we are logged in
+          let token = res.body.id_token;
+
+          chai.request(server)
+            .get('/api/protected/account')
+            .set('Authorization', 'Bearer '+token)
+            .end((err2, res2) => {
+              expect(res2.status).to.equal(404);
+              expect(res2.text).to.equals("No BankAccount for user: user.four"); //IBAN of max.mustermann
+
+              done();
+            });
+        });
+    });
+
     it('it should get authentication error 401', (done) => {
 
       process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";

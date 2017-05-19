@@ -39,7 +39,7 @@ describe("test data", () => {
                 .getAllUsers()
                 .then((users2) => {
                   expect(users2).to.be.defined;
-                  expect(users2.length).to.equals(3);
+                  expect(users2.length).to.equals(4);
                   done();
                 })
                 .catch((err) => {
@@ -78,7 +78,7 @@ describe("test data", () => {
               .getAllUsers()
               .then((users2) => {
                 expect(users2).to.be.defined;
-                expect(users2.length).to.equals(3);
+                expect(users2.length).to.equals(4);
                 done();
               })
               .catch((err) => {

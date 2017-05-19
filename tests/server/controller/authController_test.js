@@ -57,7 +57,7 @@ describe("Authentication", () => {
 
   describe("test the login", () => {
 
-    it('it should validate login return token', (done) => {
+    it('it should validate login and return token', (done) => {
 
         process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
         chai.request(server)
@@ -80,6 +80,7 @@ describe("Authentication", () => {
         .end((err, res) => {
           expect(res.status).to.equal(401);
           expect(res.body).to.not.have.property("id_token");
+          expect(res.text).to.equal("The username or password don't match");
 
           done();
         });
@@ -93,6 +94,7 @@ describe("Authentication", () => {
         .send({username: 'max.mustermann', password: 'unknown'})
         .end((err, res) => {
           expect(res.status).to.equal(401);
+          expect(res.text).to.equal("The username or password don't match");
           expect(res.body).to.not.have.property("id_token");
 
           done();

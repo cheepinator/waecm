@@ -10,26 +10,6 @@ module.exports = class TransactionController {
     io = iooo;
   }
 
-
-
-  static getTransactions(req, res) {
-    //user gets set from jwt parsing ==> has to be protected in route
-    let transaction = req.body;
-    let _username = req.user.username;
-
-
-    User
-      .getByUsername(_username)
-      .then(user => {
-        return res.status(200).json(user.bankAccount.transactions);
-      })
-      .catch((err) => {
-        return res.status(404).send("No BankAccount for user: ".concat(_username));
-      });
-  }
-
-
-
   static generateTan(req, res){
     let transaction = req.body;
     let _username = req.user.username;
@@ -126,7 +106,6 @@ module.exports = class TransactionController {
         return res.status(404).send("Sender Username not found!");
       });
 
-
     //--- Transaction and Update
     Promise.all([senderPromise, receiverPromise]).then(function () {
 
@@ -158,7 +137,6 @@ module.exports = class TransactionController {
 
         updatedReceiver.save();
         updatedSender.save();
-        //todo transaction auf den empfangenden user emitten mit der transaction, dann im account controller im client anpassen
         io().emit(updatedReceiver.username, transaction);
         return res.status(200).json(transaction);
       }
@@ -168,8 +146,6 @@ module.exports = class TransactionController {
         return res.status(403).send("Wrong TAN!");
       }
     });
-
-
   }
 
   static createTransaction(req, res) {

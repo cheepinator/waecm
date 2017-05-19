@@ -24,7 +24,6 @@ module.exports = class AuthController {
     UserDAO
       .createUser(_user)
       .then(user => {
-        //res.status(201).json(todo)
         res.status(201).send({
           id_token: createToken(user)
         });
@@ -50,21 +49,9 @@ module.exports = class AuthController {
           }
           else
             login(req, res);
-
-
-
-          // return res.status(201).send({
-          //   id_token: createToken(_user)
-          // });
-
         }
-
       )
-
-
-
   }
-
 };
 
 function login(req, res) {

@@ -9,10 +9,11 @@ module.exports = class AccountController {
     User
       .getByUsername(_username)
       .then(user => {
-        return res.status(200).json(user.bankAccount);
+        if(user.bankAccount) {
+          return res.status(200).json(user.bankAccount);
+        }else{
+          return res.status(404).send("No BankAccount for user: ".concat(_username));
+        }
       })
-      .catch((err) => {
-        return res.status(404).send("No BankAccount for user: ".concat(_username));
-      });
   }
 };
